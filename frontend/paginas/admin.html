@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel Administrador</title>
+  <link rel="stylesheet" href="../styles/principal.css">
+</head>
+<body>
+  <h1>Panel del Administrador 🍔</h1>
+
+  <!-- Navegación -->
+  <nav style="margin-bottom: 20px;">
+    <button onclick="mostrarSeccion('hamburguesas')">🍔 Hamburguesas</button>
+    <button onclick="mostrarSeccion('reservas')">📅 Reservas</button>
+  </nav>
+
+  <!-- SECCIÓN: Hamburguesas -->
+  <section id="seccion-hamburguesas">
+    <section class="formulario-admin">
+      <h2>Añadir nueva hamburguesa</h2>
+      <form id="form-hamburguesa">
+        <input type="text" id="nombre" placeholder="Nombre" required>
+        <input type="text" id="descripcion" placeholder="Descripción" required>
+        <input type="number" step="0.01" id="precio" placeholder="Precio (€)" required>
+        <button type="submit">Crear Hamburguesa</button>
+      </form>
+      <p id="mensaje"></p>
+    </section>
+
+    <section class="tabla-hamburguesas">
+      <h2>Hamburguesas Registradas</h2>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio (€)</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="lista-hamburguesas"></tbody>
+      </table>
+    </section>
+  </section>
+
+  <!-- SECCIÓN: Reservas -->
+  <section id="seccion-reservas" style="display: none;">
+    <h2>📋 Reservas Registradas</h2>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Usuario</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Personas</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tabla-reservas-body">
+        <!-- Se cargarán por JS -->
+      </tbody>
+    </table>
+  </section>
+
+  <script src="../scripts/admin.js"></script>
+  <script>
+    function mostrarSeccion(seccion) {
+      document.getElementById('seccion-hamburguesas').style.display = (seccion === 'hamburguesas') ? 'block' : 'none';
+      document.getElementById('seccion-reservas').style.display = (seccion === 'reservas') ? 'block' : 'none';
+      if (seccion === 'reservas') cargarReservas();
+    }
+  </script>
+</body>
+<h2>📋 Ver Reservas por Restaurante</h2>
+<select id="selector-restaurante"></select>
+<table>
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Fecha</th>
+      <th>Hora</th>
+      <th>Personas</th>
+    </tr>
+  </thead>
+  <tbody id="tabla-reservas"></tbody>
+</table>
+
+</html>

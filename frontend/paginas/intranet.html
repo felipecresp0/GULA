@@ -1,0 +1,800 @@
+            </div>
+            
+            <!-- Página de Mi Tiempo de Trabajo -->
+            <div id="tiempo" class="page">
+                <h2 class="page-title">Mi Tiempo de Trabajo</h2>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Resumen Mensual</h3>
+                        </div>
+                        <div class="card-content">
+                            <p><strong>Mes actual:</strong> Mayo 2025</p>
+                            <p><strong>Horas trabajadas:</strong> 85 / 160</p>
+                            <p><strong>Días trabajados:</strong> 10 / 20</p>
+                            <p><strong>Horas extra:</strong> 5</p>
+                            <div style="margin-top: 15px; height: 10px; background-color: #eee; border-radius: 5px;">
+                                <div style="width: 53%; height: 100%; background-color: var(--primary-color); border-radius: 5px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Próximos Turnos</h3>
+                        </div>
+                        <div class="card-content">
+                            <ul style="list-style-type: none; padding: 0;">
+                                <li style="margin-bottom: 10px;">
+                                    <strong>Miércoles, 14 Mayo:</strong> 15:00 - 23:00
+                                </li>
+                                <li style="margin-bottom: 10px;">
+                                    <strong>Jueves, 15 Mayo:</strong> 15:00 - 23:00
+                                </li>
+                                <li style="margin-bottom: 10px;">
+                                    <strong>Viernes, 16 Mayo:</strong> 16:00 - 00:00
+                                </li>
+                                <li style="margin-bottom: 10px;">
+                                    <strong>Sábado, 17 Mayo:</strong> 16:00 - 00:00
+                                </li>
+                            </ul>
+                            <button class="secondary" style="margin-top: 10px;">Ver Calendario Completo</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Acciones Rápidas</h3>
+                        </div>
+                        <div class="card-content">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <button onclick="changePage('fichar')">Fichar</button>
+                                <button onclick="changePage('vacaciones')">Solicitar Vacaciones</button>
+                                <button onclick="showExcedenciaForm()">Pedir Excedencia</button>
+                                <button onclick="showModificacionForm()">Modificar Fichajes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sección para Modificar Fichajes -->
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-header">
+                        <h3>Modificar Fichajes</h3>
+                    </div>
+                    <div class="card-content">
+                        <form id="modificacion-form">
+                            <div class="form-group">
+                                <label for="mod-date">Fecha del fichaje a modificar:</label>
+                                <input type="date" id="mod-date" required>
+                            </div>
+                            
+                            <div style="display: flex; gap: 20px;">
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="mod-entrada">Hora de entrada actual:</label>
+                                    <input type="time" id="mod-entrada" required>
+                                </div>
+                                
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="mod-salida">Hora de salida actual:</label>
+                                    <input type="time" id="mod-salida" required>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; gap: 20px;">
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="new-entrada">Nueva hora de entrada:</label>
+                                    <input type="time" id="new-entrada" required>
+                                </div>
+                                
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="new-salida">Nueva hora de salida:</label>
+                                    <input type="time" id="new-salida" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="mod-reason">Motivo de la modificación:</label>
+                                <textarea id="mod-reason" rows="3" required></textarea>
+                            </div>
+                            
+                            <div class="buttons">
+                                <button type="submit" class="success">Solicitar Modificación</button>
+                                <button type="reset" class="secondary">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Sección para Solicitar Excedencia -->
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-header">
+                        <h3>Solicitar Excedencia</h3>
+                    </div>
+                    <div class="card-content">
+                        <form id="excedencia-form">
+                            <div class="form-group">
+                                <label for="exc-type">Tipo de excedencia:</label>
+                                <select id="exc-type" required>
+                                    <option value="">Seleccionar...</option>
+                                    <option value="voluntary">Excedencia voluntaria</option>
+                                    <option value="family">Cuidado de familiares</option>
+                                    <option value="forced">Forzosa</option>
+                                    <option value="childcare">Cuidado de hijos</option>
+                                </select>
+                            </div>
+                            
+                            <div style="display: flex; gap: 20px;">
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="exc-start">Fecha de inicio:</label>
+                                    <input type="date" id="exc-start" required>
+                                </div>
+                                
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="exc-end">Fecha estimada de finalización:</label>
+                                    <input type="date" id="exc-end" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exc-reason">Motivo detallado:</label>
+                                <textarea id="exc-reason" rows="4" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exc-docs">Adjuntar documentación (opcional):</label>
+                                <input type="file" id="exc-docs">
+                            </div>
+                            
+                            <div class="buttons">
+                                <button type="submit" class="success">Enviar Solicitud</button>
+                                <button type="reset" class="secondary">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 30px; margin-bottom: 15px;">Historial de Fichajes</h3>
+                
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Entrada</th>
+                                <th>Salida</th>
+                                <th>Total Horas</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>13/05/2025</td>
+                                <td>09:00</td>
+                                <td>17:30</td>
+                                <td>8.5h</td>
+                                <td><span style="color: var(--success-color);">Completado</span></td>
+                                <td><button class="secondary" onclick="editTimeEntry()">Editar</button></td>
+                            </tr>
+                            <tr>
+                                <td>12/05/2025</td>
+                                <td>09:15</td>
+                                <td>18:00</td>
+                                <td>8.75h</td>
+                                <td><span style="color: var(--success-color);">Completado</span></td>
+                                <td><button class="secondary" onclick="editTimeEntry()">Editar</button></td>
+                            </tr>
+                            <tr>
+                                <td>11/05/2025</td>
+                                <td>08:45</td>
+                                <td>17:15</td>
+                                <td>8.5h</td>
+                                <td><span style="color: var(--success-color);">Completado</span></td>
+                                <td><button class="secondary" onclick="editTimeEntry()">Editar</button></td>
+                            </tr>
+                            <tr>
+                                <td>10/05/2025</td>
+                                <td>16:00</td>
+                                <td>00:15</td>
+                                <td>8.25h</td>
+                                <td><span style="color: var(--success-color);">Completado</span></td>
+                                <td><button class="secondary" onclick="editTimeEntry()">Editar</button></td>
+                            </tr>
+                            <tr>
+                                <td>09/05/2025</td>
+                                <td>16:00</td>
+                                <td>00:30</td>
+                                <td>8.5h</td>
+                                <td><span style="color: var(--success-color);">Completado</span></td>
+                                <td><button class="secondary" onclick="editTimeEntry()">Editar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Página de Términos y Condiciones -->
+            <div id="terminos" class="page">
+                <h2 class="page-title">Términos y Condiciones</h2>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3>1. Introducción</h3>
+                        <p>Esta intranet es una herramienta proporcionada por [Nombre de la Empresa] para facilitar la gestión del tiempo y tareas laborales de sus empleados. El uso de esta plataforma está sujeto a los siguientes términos y condiciones.</p>
+                        
+                        <h3>2. Acceso y Seguridad</h3>
+                        <p>El acceso a la intranet está restringido únicamente a empleados activos de la empresa. Cada empleado recibe credenciales personales e intransferibles. Está prohibido compartir estas credenciales con terceros o con otros empleados.</p>
+                        <p>El usuario se compromete a mantener la confidencialidad de su contraseña y a notificar inmediatamente cualquier uso no autorizado de su cuenta.</p>
+                        
+                        <h3>3. Uso Adecuado</h3>
+                        <p>La intranet debe utilizarse exclusivamente para fines laborales relacionados con la empresa. Queda prohibido:</p>
+                        <ul>
+                            <li>Utilizar la plataforma para fines personales no relacionados con el trabajo</li>
+                            <li>Subir, descargar o compartir contenido ofensivo, ilegal o inapropiado</li>
+                            <li>Intentar acceder a áreas o información para las que no se tiene autorización</li>
+                            <li>Modificar, alterar o intentar eludir las medidas de seguridad del sistema</li>
+                        </ul>
+                        
+                        <h3>4. Control de Fichajes</h3>
+                        <p>El sistema de fichaje es el método oficial para registrar las horas de entrada y salida. Los empleados se comprometen a:</p>
+                        <ul>
+                            <li>Realizar los fichajes de forma veraz y puntual</li>
+                            <li>No realizar fichajes en nombre de otros empleados</li>
+                            <li>Solicitar modificaciones de fichajes erróneos a través del procedimiento establecido</li>
+                            <li>Revisar periódicamente el registro de sus fichajes para verificar su exactitud</li>
+                        </ul>
+                        
+                        <h3>5. Solicitud de Vacaciones y Ausencias</h3>
+                        <p>La plataforma es el canal oficial para la solicitud de vacaciones y permisos. Todas las solicitudes:</p>
+                        <ul>
+                            <li>Deben realizarse con la antelación establecida en la política de la empresa</li>
+                            <li>Están sujetas a aprobación por parte del supervisor correspondiente</li>
+                            <li>Pueden ser denegadas por necesidades del servicio</li>
+                            <li>Una vez aprobadas, constituyen un compromiso tanto para el empleado como para la empresa</li>
+                        </ul>
+                        
+                        <h3>6. Protección de Datos</h3>
+                        <p>La empresa se compromete a proteger la privacidad de los datos personales conforme a la legislación vigente. El empleado acepta que sus datos de fichaje, vacaciones y desempeño sean procesados para fines de gestión laboral.</p>
+                        
+                        <h3>7. Responsabilidad</h3>
+                        <p>El empleado es responsable de la veracidad de la información que proporcione a través de la intranet. La falsificación de datos (como fichajes, justificantes de ausencia, etc.) puede conllevar medidas disciplinarias.</p>
+                        
+                        <h3>8. Modificaciones</h3>
+                        <p>La empresa se reserva el derecho de modificar estas condiciones en cualquier momento, notificando los cambios a través de la propia intranet.</p>
+                        
+                        <h3>9. Aceptación</h3>
+                        <p>El uso de esta intranet implica la aceptación completa de estos términos y condiciones. Si no está de acuerdo con alguno de estos términos, no debe utilizar la plataforma y debe comunicarlo a su supervisor o al departamento de Recursos Humanos.</p>
+                        
+                        <div style="margin-top: 30px;">
+                            <p><strong>Última actualización:</strong> 01/05/2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Página de Ayuda - Cómo Usar la Intranet -->
+            <div id="ayuda" class="page">
+                <h2 class="page-title">Cómo Usar la Intranet</h2>
+                
+                <div class="alert alert-success">
+                    <strong>¡Bienvenido a la guía de uso!</strong> En esta sección encontrarás toda la información necesaria para aprovechar al máximo nuestra intranet.
+                </div>
+                
+                <div class="card" style="margin-bottom: 20px;">
+                    <div class="card-header">
+                        <h3>Navegación Básica</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>La intranet está organizada en diferentes secciones accesibles desde el menú lateral:</p>
+                        <ul>
+                            <li><strong>Inicio:</strong> Información general sobre la empresa y noticias recientes.</li>
+                            <li><strong>Fichar:</strong> Registra tus entradas y salidas diarias.</li>
+                            <li><strong>Solicitar Vacaciones:</strong> Gestiona tus solicitudes de días libres.</li>
+                            <li><strong>Mi Puesto de Trabajo:</strong> Consulta información sobre tu puesto actual e historial.</li>
+                            <li><strong>Mi Tiempo de Trabajo:</strong> Gestiona tu tiempo, modifica fichajes y solicita excedencias.</li>
+                            <li><strong>Términos y Condiciones:</strong> Normativa de uso de la intranet.</li>
+                            <li><strong>Cómo Usar la Intranet:</strong> Esta guía de ayuda.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Cómo Fichar</h3>
+                        </div>
+                        <div class="card-content">
+                            <ol>
+                                <li>Accede a la sección <strong>Fichar</strong> desde el menú lateral.</li>
+                                <li>Verifica que la fecha y hora mostradas son correctas.</li>
+                                <li>Haz clic en <strong>Fichar Entrada</strong> al comenzar tu jornada.</li>
+                                <li>Al finalizar, regresa a la misma sección y haz clic en <strong>Fichar Salida</strong>.</li>
+                                <li>Comprueba que el registro aparece correctamente en la tabla de fichajes recientes.</li>
+                            </ol>
+                            <p><strong>Importante:</strong> Si olvidas fichar o cometes un error, puedes solicitar una modificación en la sección <strong>Mi Tiempo de Trabajo</strong>.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Solicitud de Vacaciones</h3>
+                        </div>
+                        <div class="card-content">
+                            <ol>
+                                <li>Ve a la sección <strong>Solicitar Vacaciones</strong>.</li>
+                                <li>Consulta tu saldo disponible en la parte superior.</li>
+                                <li>Completa el formulario con las fechas deseadas y el tipo de ausencia.</li>
+                                <li>Añade cualquier comentario relevante.</li>
+                                <li>Haz clic en <strong>Enviar Solicitud</strong>.</li>
+                                <li>Espera la aprobación de tu supervisor (recibirás una notificación).</li>
+                            </ol>
+                            <p><strong>Recomendación:</strong> Realiza tus solicitudes con al menos 15 días de antelación para periodos largos.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Modificar Fichajes</h3>
+                        </div>
+                        <div class="card-content">
+                            <ol>
+                                <li>Accede a <strong>Mi Tiempo de Trabajo</strong>.</li>
+                                <li>Busca la sección <strong>Modificar Fichajes</strong>.</li>
+                                <li>Selecciona la fecha del fichaje a modificar.</li>
+                                <li>Introduce las horas actuales y las horas correctas.</li>
+                                <li>Explica el motivo de la modificación.</li>
+                                <li>Envía la solicitud para su revisión.</li>
+                            </ol>
+                            <p><strong>Nota:</strong> Las modificaciones deben realizarse dentro de los 7 días siguientes al fichaje erróneo.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 30px; margin-bottom: 15px;">Preguntas Frecuentes</h3>
+                
+                <div class="card" style="margin-bottom: 20px;">
+                    <div class="card-content">
+                        <div style="margin-bottom: 15px;">
+                            <h4>¿Qué hago si olvido mi contraseña?</h4>
+                            <p>Haz clic en "¿Olvidaste tu contraseña?" en la pantalla de inicio de sesión o contacta con el departamento de IT.</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 15px;">
+                            <h4>¿Puedo acceder a la intranet desde mi teléfono móvil?</h4>
+                            <p>Sí, la intranet es compatible con dispositivos móviles. Simplemente accede desde el navegador de tu smartphone.</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 15px;">
+                            <h4>¿Qué ocurre si me equivoco al solicitar vacaciones?</h4>
+                            <p>Puedes cancelar cualquier solicitud pendiente de aprobación. Si ya ha sido aprobada, contacta con tu supervisor o RRHH.</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 15px;">
+                            <h4>¿Cómo puedo ver mi horario de la próxima semana?</h4>
+                            <p>En la sección "Mi Tiempo de Trabajo" encontrarás tus próximos turnos programados.</p>
+                        </div>
+                        
+                        <div>
+                            <h4>¿Dónde puedo solicitar días de asuntos propios?</h4>
+                            <p>En la sección "Solicitar Vacaciones", seleccionando "Días personales" como tipo de ausencia.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3>¿Necesitas más ayuda?</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Si tienes preguntas adicionales o encuentras algún problema con la intranet, puedes:</p>
+                        <ul>
+                            <li>Consultar con tu supervisor directo</li>
+                            <li>Contactar con el departamento de Recursos Humanos</li>
+                            <li>Enviar un correo a <strong>soporte@empresa.com</strong></li>
+                            <li>Llamar a la extensión interna <strong>2345</strong></li>
+                        </ul>
+                        
+                        <div style="margin-top: 20px;">
+                            <button class="success">Contactar Soporte</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="scripts.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intranet de Empleados</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <script src="../js/intranet.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="/api/placeholder/200/80" alt="Logo de la Empresa" class="sidebar-logo">
+                <h3>Intranet Empleados</h3>
+            </div>
+            
+            <ul>
+                <li class="active" onclick="changePage('inicio')"><a href="#"><i>🏠</i> Inicio</a></li>
+                <li onclick="changePage('fichar')"><a href="#"><i>⏱️</i> Fichar</a></li>
+                <li onclick="changePage('vacaciones')"><a href="#"><i>🏖️</i> Solicitar Vacaciones</a></li>
+                <li onclick="changePage('puesto')"><a href="#"><i>👔</i> Mi Puesto de Trabajo</a></li>
+                <li onclick="changePage('tiempo')"><a href="#"><i>📊</i> Mi Tiempo de Trabajo</a></li>
+                <li onclick="changePage('terminos')"><a href="#"><i>📝</i> Términos y Condiciones</a></li>
+                <li onclick="changePage('ayuda')"><a href="#"><i>❓</i> Cómo Usar la Intranet</a></li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                © 2025 Nuestra Empresa
+            </div>
+        </div>
+        
+        <!-- Main Content Area -->
+        <div class="content">
+            <div class="header">
+                <h2>Intranet de Empleados</h2>
+                <div class="user-info">
+                    <div class="user-avatar">JD</div>
+                    <div>
+                        <div>Juan Domínguez</div>
+                        <small>Camarero</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Página de Inicio -->
+            <div id="inicio" class="page active">
+                <h2 class="page-title">Bienvenido a Nuestra Empresa</h2>
+                
+                <div class="alert alert-success">
+                    <strong>¡Bienvenido!</strong> Esta es tu intranet personalizada para gestionar tu trabajo y tiempo en nuestra empresa.
+                </div>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Quiénes Somos</h3>
+                            <div class="card-icon">🏢</div>
+                        </div>
+                        <div class="card-content">
+                            <p>Somos una empresa líder en hostelería y restauración fundada en 2010. Nuestro compromiso es ofrecer experiencias gastronómicas excepcionales y un servicio al cliente de primera clase.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Nuestra Misión</h3>
+                            <div class="card-icon">🎯</div>
+                        </div>
+                        <div class="card-content">
+                            <p>Crear experiencias memorables para nuestros clientes mediante un servicio excepcional y productos de la más alta calidad, mientras fomentamos un ambiente de trabajo positivo para nuestros empleados.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Nuestros Valores</h3>
+                            <div class="card-icon">💎</div>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Excelencia en el servicio</li>
+                                <li>Trabajo en equipo</li>
+                                <li>Respeto mutuo</li>
+                                <li>Pasión por la calidad</li>
+                                <li>Responsabilidad</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 30px; margin-bottom: 20px;">Noticias y Anuncios</h3>
+                
+                <div class="card" style="margin-bottom: 20px;">
+                    <div class="card-header">
+                        <h3 class="card-title">Nueva función de gestión de vacaciones</h3>
+                        <small>14 May 2025</small>
+                    </div>
+                    <div class="card-content">
+                        <p>Hemos implementado una nueva característica en la intranet que facilita la solicitud y gestión de vacaciones. Ahora puedes ver tu saldo disponible y el historial de solicitudes anteriores.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Próxima reunión de personal</h3>
+                        <small>10 May 2025</small>
+                    </div>
+                    <div class="card-content">
+                        <p>Recordatorio: La próxima reunión general de personal se celebrará el viernes 16 de mayo a las 10:00h. Se discutirán los nuevos menús de verano y las promociones especiales.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Página de Fichar -->
+            <div id="fichar" class="page">
+                <h2 class="page-title">Control de Fichaje</h2>
+                
+                <div class="time-card">
+                    <h3>Estado actual</h3>
+                    <div class="status off">No has fichado</div>
+                    <div class="time-display" id="current-time">15:30:25</div>
+                    <p><strong>Fecha actual:</strong> <span id="current-date">Miércoles, 14 de Mayo de 2025</span></p>
+                    
+                    <div class="action-buttons">
+                        <button class="success" onclick="clockIn()">Fichar Entrada</button>
+                        <button class="danger" onclick="clockOut()">Fichar Salida</button>
+                    </div>
+                </div>
+                
+                <h3>Historial de Fichajes Recientes</h3>
+                
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Entrada</th>
+                                <th>Salida</th>
+                                <th>Total Horas</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>13/05/2025</td>
+                                <td>09:00</td>
+                                <td>17:30</td>
+                                <td>8.5h</td>
+                                <td><button class="secondary" onclick="editTimeEntry()">Editar</button></td>
+                            </tr>
+                            <tr>
+                                <td>12/05/2025</td>
+                                <td>09:15</td>
+                                <td>18:00</td>
+                                <td>8.75h</td>
+                                <td><button class="secondary" onclick="editTimeEntry()">Editar</button></td>
+                            </tr>
+                            <tr>
+                                <td>11/05/2025</td>
+                                <td>08:45</td>
+                                <td>17:15</td>
+                                <td>8.5h</td>
+                                <td><button class="secondary" onclick="editTimeEntry()">Editar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Página de Solicitud de Vacaciones -->
+            <div id="vacaciones" class="page">
+                <h2 class="page-title">Solicitud de Vacaciones</h2>
+                
+                <div class="card" style="margin-bottom: 20px;">
+                    <div class="card-header">
+                        <h3>Saldo de Vacaciones</h3>
+                    </div>
+                    <div class="card-content">
+                        <div style="display: flex; justify-content: space-around; text-align: center;">
+                            <div>
+                                <h4>Días Disponibles</h4>
+                                <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">18</div>
+                            </div>
+                            <div>
+                                <h4>Días Utilizados</h4>
+                                <div style="font-size: 2rem; font-weight: bold; color: var(--dark-color);">12</div>
+                            </div>
+                            <div>
+                                <h4>Días Pendientes</h4>
+                                <div style="font-size: 2rem; font-weight: bold; color: var(--accent-color);">2</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Nueva Solicitud de Vacaciones</h3>
+                    </div>
+                    <div class="card-content">
+                        <form id="vacation-form">
+                            <div class="form-group">
+                                <label for="start-date">Fecha de inicio:</label>
+                                <input type="date" id="start-date" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="end-date">Fecha de fin:</label>
+                                <input type="date" id="end-date" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="vacation-type">Tipo de ausencia:</label>
+                                <select id="vacation-type" required>
+                                    <option value="">Seleccionar...</option>
+                                    <option value="vacation">Vacaciones</option>
+                                    <option value="personal">Días personales</option>
+                                    <option value="sick">Baja por enfermedad</option>
+                                    <option value="unpaid">Permiso sin sueldo</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="comments">Comentarios:</label>
+                                <textarea id="comments" rows="4"></textarea>
+                            </div>
+                            
+                            <div class="buttons">
+                                <button type="submit" class="success">Enviar Solicitud</button>
+                                <button type="reset" class="secondary">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 30px; margin-bottom: 15px;">Historial de Solicitudes</h3>
+                
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fecha Solicitud</th>
+                                <th>Desde</th>
+                                <th>Hasta</th>
+                                <th>Tipo</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>02/04/2025</td>
+                                <td>01/07/2025</td>
+                                <td>15/07/2025</td>
+                                <td>Vacaciones</td>
+                                <td><span style="color: var(--success-color);">Aprobada</span></td>
+                                <td><button class="secondary" disabled>Ver</button></td>
+                            </tr>
+                            <tr>
+                                <td>15/03/2025</td>
+                                <td>25/03/2025</td>
+                                <td>26/03/2025</td>
+                                <td>Días personales</td>
+                                <td><span style="color: var(--success-color);">Aprobada</span></td>
+                                <td><button class="secondary" disabled>Ver</button></td>
+                            </tr>
+                            <tr>
+                                <td>10/02/2025</td>
+                                <td>12/02/2025</td>
+                                <td>14/02/2025</td>
+                                <td>Baja por enfermedad</td>
+                                <td><span style="color: var(--success-color);">Aprobada</span></td>
+                                <td><button class="secondary" disabled>Ver</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Página de Mi Puesto de Trabajo -->
+            <div id="puesto" class="page">
+                <h2 class="page-title">Mi Puesto de Trabajo</h2>
+                
+                <div class="card" style="margin-bottom: 30px;">
+                    <div class="card-header">
+                        <h3>Información del Puesto</h3>
+                    </div>
+                    <div class="card-content">
+                        <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                            <div style="width: 80px; height: 80px; background-color: var(--primary-color); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; margin-right: 20px;">
+                                👨‍🍳
+                            </div>
+                            <div>
+                                <h3 style="margin-bottom: 5px;">Camarero</h3>
+                                <p>Departamento: Servicio</p>
+                                <p>Supervisor: Ana Martínez</p>
+                                <p>Fecha de inicio: 15/06/2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Funciones y Responsabilidades</h3>
+                
+                <div class="duty-card">
+                    <div class="duty-title">Servicio al Cliente</div>
+                    <p>Recibir a los clientes, tomar pedidos, servir alimentos y bebidas, y asegurar que los clientes estén satisfechos durante toda su experiencia.</p>
+                </div>
+                
+                <div class="duty-card">
+                    <div class="duty-title">Preparación del Área de Servicio</div>
+                    <p>Preparar las mesas, verificar la limpieza de cubiertos, vajilla y cristalería, y mantener las estaciones de servicio abastecidas.</p>
+                </div>
+                
+                <div class="duty-card">
+                    <div class="duty-title">Conocimiento del Menú</div>
+                    <p>Tener conocimiento detallado de los platos, ingredientes y sugerencias para poder asesorar a los clientes y responder preguntas sobre el menú.</p>
+                </div>
+                
+                <div class="duty-card">
+                    <div class="duty-title">Gestión de Pagos</div>
+                    <p>Procesar pagos, emitir facturas y gestionar devoluciones conforme a los procedimientos establecidos.</p>
+                </div>
+                
+                <h3 style="margin-top: 30px; margin-bottom: 15px;">Historial de Puestos</h3>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">Junio 2023 - Presente</div>
+                            <h3>Camarero</h3>
+                            <p>Servicio en el restaurante principal, atención al cliente y gestión de pedidos. Coordinación con la cocina y el bar para asegurar un servicio eficiente.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">Enero 2023 - Mayo 2023</div>
+                            <h3>Ayudante de Camarero</h3>
+                            <p>Asistencia al equipo de camareros, preparación de mesas, limpieza y mantenimiento del área de servicio.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 30px; margin-bottom: 15px;">Formación y Habilidades</h3>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Formación Completada</h3>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Curso de Atención al Cliente (2023)</li>
+                                <li>Manipulación de Alimentos (2023)</li>
+                                <li>Primeros Auxilios Básicos (2024)</li>
+                                <li>Curso de Vinos y Maridajes (2024)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Habilidades Destacadas</h3>
+                        </div>
+                        <div class="card-content">
+                            <ul>
+                                <li>Excelente atención al cliente</li>
+                                <li>Trabajo bajo presión</li>
+                                <li>Conocimiento de vinos</li>
+                                <li>Manejo de TPV y sistemas de pedidos</li>
+                                <li>Resolución de problemas</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Próxima Formación</h3>
+                        </div>
+                        <div class="card-content">
+                            <p><strong>Curso de Barista Profesional</strong></p>
+                            <p>Fecha: 10/06/2025 - 15/06/2025</p>
+                            <p>Duración: 20 horas</p>
+                            <button class="secondary" style="margin-top: 10px;">Ver Detalles</button>
+                        </div>
+                    </div>
+                </div>
+            </div>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Restaurantes Gula</title>
+  <link rel="stylesheet" href="../styles/principal.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script defer src="../scripts/restaurantes.js"></script>
+</head>
+<body>
+  <header> ... <!-- el mismo header que usas --> </header>
+
+  <main class="contenido" style="margin-top:120px">
+    <h1>Encuentra tu Restaurante Gula</h1>
+    <form id="busqueda-form">
+      <input type="text" id="codigo-postal" placeholder="Introduce tu código postal" required />
+      <button type="submit">Buscar</button>
+    </form>
+
+    <div id="mapa" style="height: 500px; margin-top: 20px;"></div>
+  </main>
+</body>
+</html>

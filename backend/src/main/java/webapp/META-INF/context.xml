@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/gulaburger">
+    <!-- Configuración de la conexión a PostgreSQL con pool de conexiones -->
+    <Resource
+            name="jdbc/gulaburger"
+            auth="Container"
+            type="javax.sql.DataSource"
+            driverClassName="org.postgresql.Driver"
+            url="jdbc:postgresql://gula-hamburguesas.xxxxxxxx.us-east-1.rds.amazonaws.com:5432/guladb"
+            username="gulaadmin"
+            password="Password123!"
+            maxTotal="20"
+            maxIdle="10"
+            maxWaitMillis="10000"
+            validationQuery="SELECT 1"
+            testOnBorrow="true"
+            removeAbandonedOnBorrow="true"
+            removeAbandonedTimeout="60" />
+</Context>

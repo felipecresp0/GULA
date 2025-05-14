@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gula - Siente la Tentación</title>
+  <link rel="stylesheet" href="../styles/principal.css"/>
+  <script defer src="../scripts/main.js"></script>
+  <script defer src="../scripts/menu.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+  <div class="logo">
+    <a href="index.html">
+      <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/20250404_1704_GULA+Edgy+Burger+Logo_simple_compose_01jr0narqrebrva5ge7tefa84x.png" alt="Logo Gula" class="logo-img" />
+    </a>
+  </div>
+
+  <nav class="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="menu.html">Carta</a>
+    <a href="foodtruck.html">FoodTruck</a>
+    <a href="restaurantes.html">Restaurantes</a>
+  </nav>
+
+  <div class="header-right">
+    <i class="fas fa-search search-icon"></i>
+    <i class="fas fa-shopping-cart cart-icon" onclick="location.href='carrito.html'"></i>
+    <button class="sign-in-btn" onclick="location.href='acceso.html'">Sign in</button>
+  </div>
+</header>
+
+
+  <!-- Main Section -->
+  <section class="main-section">
+    <div class="main-left">
+      <h1 class="main-heading">
+        Siente la Tentación <br />
+        con nuestras <span class="resaltado">Hamburguesas de pecado</span>
+      </h1>
+      <p class="main-subheading">
+        Ingredientes prohibidos, sabores que no deberías desear… pero no podrás resistirte.<br/>
+        Para verdaderos pecadores del sabor.
+      </p>
+      <div class="main-buttons">
+        <button class="explore-btn" onclick="location.href='menu.html'">Explorar Menú</button>
+        <button class="play-video-btn">
+          <i class="fas fa-play"></i> Ver Video
+        </button>
+      </div>
+    </div>
+    <div class="main-right">
+        <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/20250420_2255_Hamburguesa+y+Neon+Irresistible_remix_01jsafmb48ems8agfx7vb0y4s9.png" width="400px" alt="Burger" class="burger-image">
+      <div class="discount-tag">20% OFF</div>
+      <div class="delivery-options">
+        <div class="delivery-option">
+          <i class="fas fa-truck delivery-icon"></i>
+          <div class="delivery-text">
+            <h3>Entrega Rápida</h3>
+            Caliente y delicioso en 30 mins
+          </div>
+        </div>
+        <div class="delivery-option">
+          <i class="fas fa-box-open delivery-icon"></i>
+          <div class="delivery-text">
+            <h3>Listo para Comer</h3>
+            Disfrútalo en el local
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Carrusel -->
+  <section class="carousel-container">
+    <i class="fas fa-chevron-left prev-arrow carousel-arrow"></i>
+    <div class="carousel-inner" id="carousel">
+         <!-- Hamburguesas se insertan aquí desde main.js -->
+    </div>
+    <i class="fas fa-chevron-right next-arrow carousel-arrow"></i>
+  </section>
+</body>
+</html>

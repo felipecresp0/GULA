@@ -1,0 +1,220 @@
+/* BEBIDAS.CSS - ESTÉTICO Y PROFESIONAL */
+
+:root {
+  --primary: #ff6b35;
+  --primary-dark: #e55a2b;
+  --secondary: #1a73e8;
+  --secondary-dark: #0d5cd3;
+  --background: #111;
+  --text-light: #f8f8f8;
+  --text-gray: #aaa;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-light);
+  font-family: 'Poppins', sans-serif;
+}
+
+.bebidas-main {
+  padding: 4rem 2rem 6rem;
+  background-image: url('../Imagenes/fondo-carta-texto-rojo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.bebidas-section {
+  max-width: 1300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.bebidas-titulo {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.bebidas-subtitulo {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  color: var(--text-gray);
+}
+
+.bebidas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.bebida-card {
+  background-color: rgba(255,255,255,0.05);
+  border-radius: 15px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bebida-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+}
+
+.bebida-imagen img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.bebida-etiqueta {
+  background-color: var(--primary);
+  color: white;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.bebida-info h3 {
+  font-size: 1.3rem;
+  margin: 0.5rem 0 0.3rem;
+}
+
+.bebida-descripcion {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  margin-bottom: 1rem;
+}
+
+.bebida-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bebida-precio {
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.btn-agregar-mini {
+  background-color: var(--secondary);
+  border: none;
+  padding: 0.6rem;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-agregar-mini:hover {
+  background-color: var(--secondary-dark);
+}
+
+/* MODAL */
+.modal {
+  display: none;
+}
+
+.modal.mostrar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 1000;
+}
+
+.modal-contenido {
+  background: #222;
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: 400px;
+  color: white;
+  position: relative;
+  text-align: center;
+  width: 90%;
+}
+
+.modal-contenido img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.cerrar-modal {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal-cantidad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.modal-cantidad button {
+  background-color: var(--primary);
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-agregar-modal {
+  background-color: var(--secondary);
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 30px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-agregar-modal:hover {
+  background-color: var(--secondary-dark);
+}
+
+/* NOTIFICACIÓN */
+.notificacion {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--secondary);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 2000;
+}
+
+.notificacion.mostrar {
+  display: flex;
+}

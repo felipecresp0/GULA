@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gula | Carta</title>
+  <link rel="stylesheet" href="../styles/principal.css" />
+  <link rel="stylesheet" href="../styles/menu.css" />
+  <script defer src="../scripts/menu.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ✅ HEADER NAVEGACIÓN -->
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/20250404_1704_GULA+Edgy+Burger+Logo_simple_compose_01jr0narqrebrva5ge7tefa84x.png" alt="Logo Gula" class="logo-img" />
+      </a>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="menu.html" class="active">Carta</a>
+      <a href="foodtruck.html">FoodTruck</a>
+      <a href="restaurantes.html">Restaurantes</a>
+    </nav>
+    <div class="header-right">
+      <i class="fas fa-search search-icon"></i>
+      <i class="fas fa-shopping-cart cart-icon" onclick="location.href='carrito.html'"></i>
+      <button class="sign-in-btn" onclick="location.href='acceso.html'">Sign in</button>
+    </div>
+  </header>
+
+  <!-- ✅ CONTENIDO PRINCIPAL -->
+  <main class="contenido fondo-carta">
+
+    <!-- ✅ CATEGORÍAS -->
+    <section class="categorias-grid">
+      <div class="categoria-card" onclick="irACategoria('hamburguesas.html')">
+        <img src="../Imagenes/20250420_2054_Hamburguesa con Neón_remix_01jsa8pww0fn4rpmnpwp8w3tqe.png" alt="Hamburguesas" />
+        <h3>Hamburguesas</h3>
+      </div>
+      <div class="categoria-card" onclick="irACategoria('postres.html')">
+        <img src="../Imagenes/categoria-postres.webp" alt="Postres" />
+        <h3>Postres</h3>
+      </div>
+      <div class="categoria-card" onclick="irACategoria('bebidas.html')">
+        <img src="../Imagenes/categoria-bebidas.webp" alt="Bebidas" />
+        <h3>Bebidas</h3>
+      </div>
+      <div class="categoria-card" onclick="irACategoria('acompañantes.html')">
+        <img src="../Imagenes/categoria-acompañantes.webp" alt="Acompañantes" />
+        <h3>Acompañantes</h3>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ✅ FOOTER CON NEWSLETTER INTEGRADA -->
+  <footer class="footer-gula">
+    <div class="newsletter-content">
+      <h3>¿Quieres descuentos exclusivos?</h3>
+      <p>Suscríbete a nuestra newsletter y recibe promociones y novedades</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="tu@email.com" required>
+        <button type="submit" class="btn-subscribe">Suscribirse</button>
+      </form>
+    </div>
+
+    <div class="footer-main">
+      <div class="footer-logo">
+        <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/20250404_1704_GULA+Edgy+Burger+Logo_simple_compose_01jr0narqrebrva5ge7tefa84x.png" alt="Logo Gula" class="footer-logo-img" />
+        <p>Sabor que enciende tus pecados</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-section">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Carta</a></li>
+            <li><a href="foodtruck.html">FoodTruck</a></li>
+          </ul>
+        </div>
+       
+        <div class="footer-section">
+          <h4>Contacto</h4>
+          <ul>
+            <li><i class="fas fa-map-marker-alt"></i> C/ Hamburguesa, 42</li>
+            <li><i class="fas fa-phone"></i> +34 600 123 456</li>
+            <li><i class="fas fa-envelope"></i> info@gulaburger.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-social">
+        <h4>Síguenos</h4>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/gula_burger" target="_blank" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.facebook.com/gulaburger" target="_blank" title="Facebook">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="https://www.tiktok.com/@gulaburger" target="_blank" title="TikTok">
+            <i class="fab fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 GULA Burgers. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

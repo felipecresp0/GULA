@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gula | Bebidas</title>
+  <link rel="stylesheet" href="../styles/principal.css" />
+  <link rel="stylesheet" href="../styles/menu.css" />
+  <link rel="stylesheet" href="../styles/bebidas.css" />
+  <script defer src="../scripts/bebidas.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+</head>
+<body>
+  <!-- ✅ HEADER -->
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/logo_gula.png" alt="Logo Gula" class="logo-img" />
+      </a>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Carta</a>
+      <a href="foodtruck.html">FoodTruck</a>
+      <a href="restaurantes.html">Restaurantes</a>
+    </nav>
+    <div class="header-right">
+      <i class="fas fa-search search-icon"></i>
+      <i class="fas fa-shopping-cart cart-icon" onclick="location.href='carrito.html'"></i>
+      <button class="sign-in-btn" onclick="location.href='acceso.html'">Sign in</button>
+    </div>
+  </header>
+
+  <!-- ✅ FORMULARIO ADMIN (OCULTO POR DEFECTO) -->
+  <section class="form-crear-bebida" id="admin-crear-bebida" style="display: none;">
+    <h2>Crear Nueva Bebida</h2>
+    <form id="formBebida">
+      <input type="text" id="nuevo-nombre" placeholder="Nombre" required />
+      <input type="text" id="nuevo-descripcion" placeholder="Descripción" required />
+      <input type="number" id="nuevo-precio" step="0.01" placeholder="Precio (€)" required />
+      <input type="text" id="nuevo-imagen" placeholder="URL de imagen" required />
+      <label><input type="checkbox" id="nuevo-destacada" /> Destacada</label>
+      <button type="submit">Crear Bebida</button>
+    </form>
+  </section>
+
+  <!-- ✅ CONTENIDO BEBIDAS -->
+  <main class="bebidas-main">
+    <section class="bebidas-section">
+      <h1 class="bebidas-titulo">Nuestras Bebidas</h1>
+      <p class="bebidas-subtitulo">Elige entre una selección fría, fresca y diabólicamente deliciosa.</p>
+
+      <div class="bebidas-grid" id="grid-bebidas">
+        <!-- JS insertará aquí las tarjetas de bebidas -->
+      </div>
+    </section>
+  </main>
+
+  <!-- ✅ MODAL DETALLE BEBIDA -->
+  <div class="modal" id="producto-modal">
+    <div class="modal-contenido">
+      <span class="cerrar-modal">&times;</span>
+      <img id="modal-img" alt="bebida" />
+      <h2 id="modal-nombre"></h2>
+      <p id="modal-descripcion"></p>
+      <span id="modal-precio" class="modal-precio"></span>
+      <div class="modal-cantidad">
+        <button id="restar-cantidad">-</button>
+        <span id="cantidad">1</span>
+        <button id="sumar-cantidad">+</button>
+      </div>
+      <button id="agregar-carrito" class="btn-agregar-modal">Añadir al carrito</button>
+    </div>
+  </div>
+
+  <!-- ✅ NOTIFICACIÓN -->
+  <div class="notificacion" id="notificacion">
+    <i class="fas fa-check-circle"></i>
+    <span id="notificacion-mensaje">Mensaje</span>
+  </div>
+
+  <!-- ✅ FOOTER -->
+  <footer class="footer-gula">
+    <div class="footer-main">
+      <div class="footer-logo">
+        <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/logo_gula.png" alt="Logo Gula" class="footer-logo-img" />
+        <p>Sabor que enciende tus pecados</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-section">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Carta</a></li>
+            <li><a href="foodtruck.html">FoodTruck</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contacto</h4>
+          <ul>
+            <li><i class="fas fa-map-marker-alt"></i> C/ Hamburguesa, 42</li>
+            <li><i class="fas fa-phone"></i> +34 600 123 456</li>
+            <li><i class="fas fa-envelope"></i> info@gulaburger.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-social">
+        <h4>Síguenos</h4>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 GULA Burgers. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>

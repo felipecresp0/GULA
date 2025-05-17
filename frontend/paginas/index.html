@@ -4,82 +4,73 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gula - Siente la Tentación</title>
-  <link rel="stylesheet" href="/frontend/styles/principal.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Satisfy&display=swap">
-  <script defer src="/frontend/scripts/main.js"></script>
-  <script defer src="/frontend/scripts/menu.js"></script>
+  <link rel="stylesheet" href="../styles/principal.css"/>
+  <script defer src="../scripts/main.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
 </head>
-<body>
+<body class="gula-body">
   <!-- Header -->
-  <header>
-    <div class="logo">
+  <header class="gula-header">
+    <div class="gula-logo">
       <a href="index.html">
-        <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/20250404_1704_GULA+Edgy+Burger+Logo_simple_compose_01jr0narqrebrva5ge7tefa84x.png" alt="Logo Gula" class="logo-img" />
+        <img src="https://hamburgueseria.s3.us-east-1.amazonaws.com/Imagenes/20250404_1704_GULA+Edgy+Burger+Logo_simple_compose_01jr0narqrebrva5ge7tefa84x.png" alt="Logo Gula" class="gula-logo-img" />
       </a>
     </div>
 
-    <nav class="nav-links">
+    <nav class="gula-nav-links">
       <a href="index.html" class="active">Home</a>
       <a href="menu.html">Carta</a>
       <a href="foodtruck.html">FoodTruck</a>
       <a href="restaurantes.html">Restaurantes</a>
     </nav>
 
-    <div class="header-right">
-      <i class="fas fa-search search-icon"></i>
-      <i class="fas fa-shopping-cart cart-icon" onclick="location.href='carrito.html'"></i>
-      <button class="sign-in-btn" onclick="location.href='acceso.html'">Sign in</button>
-      <div class="menu-toggle">
+    <div class="gula-header-right">
+      <i class="fas fa-search gula-search-icon"></i>
+      <i class="fas fa-shopping-cart gula-cart-icon" onclick="location.href='carrito.html'"></i>
+      <button class="gula-sign-in-btn" onclick="location.href='acceso.html'">Sign in</button>
+      <div class="gula-menu-toggle">
         <i class="fas fa-bars"></i>
       </div>
     </div>
   </header>
 
-  <!-- Main Section with updated background and burger -->
-  <section class="main-section">
-    <div class="parallax-bg"></div>
-    <div class="main-left" data-aos="fade-right" data-aos-duration="1000">
-      <h1 class="main-heading">
+  <!-- Main Section -->
+  <section class="gula-main-section">
+    <div class="gula-parallax-bg"></div>
+    <div class="gula-main-left" data-aos="fade-right" data-aos-duration="1000">
+      <h1 class="gula-main-heading">
         Siente la Tentación <br />
-        con nuestras <span class="resaltado">Hamburguesas de pecado</span>
+        con nuestras <span class="gula-resaltado">Hamburguesas de pecado</span>
       </h1>
-      <p class="main-subheading">
+      <p class="gula-main-subheading">
         Ingredientes prohibidos, sabores que no deberías desear… pero no podrás resistirte.<br/>
         Para verdaderos pecadores del sabor.
       </p>
-      <div class="main-buttons">
-        <button class="explore-btn" onclick="location.href='menu.html'">
+      <div class="gula-main-buttons">
+        <button class="gula-explore-btn" onclick="location.href='menu.html'">
           <span>Explorar Menú</span>
           <i class="fas fa-arrow-right"></i>
         </button>
-        <button class="play-video-btn">
+        <button class="gula-play-video-btn">
           <i class="fas fa-play"></i> Ver Video
         </button>
       </div>
     </div>
-    <div class="main-right" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-      <!-- Updated burger image from the reference image -->
-      <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/burger-with-cheese-sauce.png" alt="Burger" class="burger-image">
-      <div class="discount-tag">20% OFF</div>
-      <!-- Added burger slogan from the image -->
-      <div class="burger-slogan">
-        No es hambre,<br>
-        <span>es GULA.</span>
-      </div>
-      <div class="delivery-options">
-        <div class="delivery-option">
-          <i class="fas fa-truck delivery-icon"></i>
-          <div class="delivery-text">
+    <div class="gula-main-right" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+      <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/20250420_2255_Hamburguesa+y+Neon+Irresistible_remix_01jsafmb48ems8agfx7vb0y4s9.png" alt="Burger" class="gula-burger-image">
+      <div class="gula-discount-tag">20% OFF</div>
+      <div class="gula-delivery-options">
+        <div class="gula-delivery-option">
+          <i class="fas fa-truck gula-delivery-icon"></i>
+          <div class="gula-delivery-text">
             <h3>Entrega Rápida</h3>
             <p>Caliente y delicioso en 30 mins</p>
           </div>
         </div>
-        <div class="delivery-option">
-          <i class="fas fa-box-open delivery-icon"></i>
-          <div class="delivery-text">
+        <div class="gula-delivery-option">
+          <i class="fas fa-box-open gula-delivery-icon"></i>
+          <div class="gula-delivery-text">
             <h3>Listo para Comer</h3>
             <p>Disfrútalo en el local</p>
           </div>
@@ -89,128 +80,175 @@
   </section>
 
   <!-- Promoción Especial -->
-  <section class="promo-section">
-    <div class="promo-container" data-aos="zoom-in">
-      <div class="promo-content">
+  <section class="gula-promo-section">
+    <div class="gula-promo-container" data-aos="zoom-in">
+      <div class="gula-promo-content">
         <h2>¡OFERTA EXCLUSIVA ONLINE!</h2>
-        <p>Compra 2 hamburguesas y llévate <span class="promo-highlight">GRATIS</span> patatas y refresco</p>
-        <div class="countdown">
+        <p>Compra 2 hamburguesas y llévate <span class="gula-promo-highlight">GRATIS</span> patatas y refresco</p>
+        <div class="gula-countdown">
           <p>Termina en:</p>
-          <div class="countdown-timer">
-            <span id="hours">24</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+          <div class="gula-countdown-timer">
+            <span id="gula-hours">24</span>:<span id="gula-minutes">00</span>:<span id="gula-seconds">00</span>
           </div>
         </div>
-        <button class="promo-btn">¡Aprovechar ahora!</button>
+        <button class="gula-promo-btn">¡Aprovechar ahora!</button>
       </div>
     </div>
   </section>
 
-  <!-- The rest of your HTML remains unchanged -->
-  
+  <!-- Carrusel de Categorías Destacadas -->
+  <section class="gula-categories-section">
+    <div class="gula-section-title" data-aos="fade-up">
+      <h2>Nuestra <span class="gula-resaltado">CARTA</span></h2>
+      <p>Descubre todas nuestras tentaciones</p>
+    </div>
+    <div class="gula-categories-container" data-aos="fade-up" data-aos-delay="200">
+      <div class="gula-category-card" onclick="location.href='hamburguesas.html'">
+        <div class="gula-category-img">
+          <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/20250420_2222_Lucifers+Feast+Hamburguesa_sharp_01jsacrfvs0z9zqnhz4q2vemyr.png" alt="Hamburguesas">
+        </div>
+        <div class="gula-category-overlay">
+          <h3>Hamburguesas</h3>
+          <p>Nuestras creaciones pecaminosas</p>
+          <span class="gula-cat-link">Ver todas <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </div>
+      <div class="gula-category-card" onclick="location.href='acompañantes.html'">
+        <div class="gula-category-img">
+          <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/acompanantes.jpg" alt="Acompañantes">
+        </div>
+        <div class="gula-category-overlay">
+          <h3>Acompañantes</h3>
+          <p>El complemento perfecto</p>
+          <span class="gula-cat-link">Ver todos <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </div>
+      <div class="gula-category-card" onclick="location.href='bebidas.html'">
+        <div class="gula-category-img">
+          <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/bebidas.jpg" alt="Bebidas">
+        </div>
+        <div class="gula-category-overlay">
+          <h3>Bebidas</h3>
+          <p>Para calmar tu sed</p>
+          <span class="gula-cat-link">Ver todas <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </div>
+      <div class="gula-category-card" onclick="location.href='postres.html'">
+        <div class="gula-category-img">
+          <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/postres.jpg" alt="Postres">
+        </div>
+        <div class="gula-category-overlay">
+          <h3>Postres</h3>
+          <p>El dulce final para tu pecado</p>
+          <span class="gula-cat-link">Ver todos <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Carrusel Hamburguesas Destacadas -->
-  <section class="carousel-section">
-    <div class="section-title" data-aos="fade-up">
-      <h2>Nuestras hamburguesas <span class="resaltado">DESTACADAS</span></h2>
+  <section class="gula-carousel-section">
+    <div class="gula-section-title" data-aos="fade-up">
+      <h2>Nuestras hamburguesas <span class="gula-resaltado">DESTACADAS</span></h2>
       <p>Descubre nuestras creaciones más tentadoras</p>
     </div>
-    <div class="carousel-container" data-aos="fade-up" data-aos-delay="200">
-      <i class="fas fa-chevron-left prev-arrow carousel-arrow"></i>
-      <div class="carousel-inner" id="carousel">
+    <div class="gula-carousel-container" data-aos="fade-up" data-aos-delay="200">
+      <i class="fas fa-chevron-left gula-prev-arrow gula-carousel-arrow"></i>
+      <div class="gula-carousel-inner" id="gula-carousel">
         <!-- Hamburguesas se insertan aquí desde main.js -->
-        <div class="carousel-loader">
+        <div class="gula-carousel-loader">
           <i class="fas fa-spinner fa-spin"></i>
           <p>Cargando delicias...</p>
         </div>
       </div>
-      <i class="fas fa-chevron-right next-arrow carousel-arrow"></i>
+      <i class="fas fa-chevron-right gula-next-arrow gula-carousel-arrow"></i>
     </div>
   </section>
 
   <!-- Nuestras Especialidades -->
-  <section class="especialidades-section">
-    <div class="section-title" data-aos="fade-up">
-      <h2>Nuestras <span class="resaltado">ESPECIALIDADES</span></h2>
+  <section class="gula-especialidades-section">
+    <div class="gula-section-title" data-aos="fade-up">
+      <h2>Nuestras <span class="gula-resaltado">ESPECIALIDADES</span></h2>
       <p>Creaciones únicas que nos definen</p>
     </div>
-    <div class="especialidades-grid">
-      <div class="especialidad-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="especialidad-img">
+    <div class="gula-especialidades-grid">
+      <div class="gula-especialidad-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="gula-especialidad-img">
           <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/20250420_2222_Lucifers+Feast+Hamburguesa_sharp_01jsacrfvs0z9zqnhz4q2vemyr.png" alt="Lucifer's Feast">
-          <div class="especialidad-tag">BESTSELLER</div>
+          <div class="gula-especialidad-tag">BESTSELLER</div>
         </div>
-        <div class="especialidad-info">
+        <div class="gula-especialidad-info">
           <h3>Lucifer's Feast</h3>
           <p>Doble carne, queso cheddar fundido, bacon crujiente, jalapeños y nuestra salsa infernal.</p>
-          <div class="especialidad-price">
+          <div class="gula-especialidad-price">
             <span>€12.95</span>
-            <button class="add-to-cart-btn"><i class="fas fa-plus"></i></button>
+            <button class="gula-add-to-cart-btn"><i class="fas fa-plus"></i></button>
           </div>
         </div>
       </div>
-      <div class="especialidad-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="especialidad-img">
+      <div class="gula-especialidad-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="gula-especialidad-img">
           <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/20250420_2224_Eden+Temptation+Hamburguesa_sharp_01jsad8rvcq8crjt5hngd0taq8.png" alt="Eden's Temptation">
         </div>
-        <div class="especialidad-info">
+        <div class="gula-especialidad-info">
           <h3>Eden's Temptation</h3>
           <p>Pollo crujiente, aguacate, rúcula, queso brie y nuestra salsa secreta de manzana caramelizada.</p>
-          <div class="especialidad-price">
+          <div class="gula-especialidad-price">
             <span>€11.50</span>
-            <button class="add-to-cart-btn"><i class="fas fa-plus"></i></button>
+            <button class="gula-add-to-cart-btn"><i class="fas fa-plus"></i></button>
           </div>
         </div>
       </div>
-      <div class="especialidad-card" data-aos="fade-up" data-aos-delay="300">
-        <div class="especialidad-img">
+      <div class="gula-especialidad-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="gula-especialidad-img">
           <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/20250420_2225_Seven+Deadly+Sins+Hamburguesa_sharp_01jsadkq1h1w1h5qdyxsttgqcs.png" alt="Seven Deadly Sins">
-          <div class="especialidad-tag">NEW</div>
+          <div class="gula-especialidad-tag">NEW</div>
         </div>
-        <div class="especialidad-info">
+        <div class="gula-especialidad-info">
           <h3>Seven Deadly Sins</h3>
           <p>7 capas de ingredientes: carne, pollo, bacon, huevo, queso, cebolla crujiente y pepinillos.</p>
-          <div class="especialidad-price">
+          <div class="gula-especialidad-price">
             <span>€14.95</span>
-            <button class="add-to-cart-btn"><i class="fas fa-plus"></i></button>
+            <button class="gula-add-to-cart-btn"><i class="fas fa-plus"></i></button>
           </div>
         </div>
       </div>
     </div>
-    <div class="especialidades-link" data-aos="fade-up" data-aos-delay="400">
+    <div class="gula-especialidades-link" data-aos="fade-up" data-aos-delay="400">
       <a href="menu.html">Ver carta completa <i class="fas fa-arrow-right"></i></a>
     </div>
   </section>
 
-  <!-- Remainder of your HTML content remains the same -->
   <!-- Por qué elegirnos -->
-  <section class="why-choose-section">
-    <div class="section-title" data-aos="fade-up">
-      <h2>¿Por qué <span class="resaltado">ELEGIRNOS?</span></h2>
+  <section class="gula-why-choose-section">
+    <div class="gula-section-title" data-aos="fade-up">
+      <h2>¿Por qué <span class="gula-resaltado">ELEGIRNOS?</span></h2>
       <p>Lo que nos hace diferentes</p>
     </div>
-    <div class="features-container">
-      <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="feature-icon">
+    <div class="gula-features-container">
+      <div class="gula-feature-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="gula-feature-icon">
           <i class="fas fa-hamburger"></i>
         </div>
         <h3>Ingredientes Premium</h3>
         <p>Seleccionamos los mejores ingredientes locales para crear sabores intensos.</p>
       </div>
-      <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="feature-icon">
+      <div class="gula-feature-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="gula-feature-icon">
           <i class="fas fa-fire"></i>
         </div>
         <h3>Recetas Originales</h3>
         <p>Cada hamburguesa es una creación única con nuestra firma especial.</p>
       </div>
-      <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-        <div class="feature-icon">
+      <div class="gula-feature-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="gula-feature-icon">
           <i class="fas fa-utensils"></i>
         </div>
         <h3>Preparación al Momento</h3>
         <p>Cocinamos cada hamburguesa al momento para garantizar la máxima frescura.</p>
       </div>
-      <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
-        <div class="feature-icon">
+      <div class="gula-feature-card" data-aos="fade-up" data-aos-delay="400">
+        <div class="gula-feature-icon">
           <i class="fas fa-medal"></i>
         </div>
         <h3>Premios Gastronómicos</h3>
@@ -220,22 +258,22 @@
   </section>
 
   <!-- Testimonios -->
-  <section class="testimonials-section">
-    <div class="section-title" data-aos="fade-up">
-      <h2>Lo que dicen nuestros <span class="resaltado">CLIENTES</span></h2>
+  <section class="gula-testimonials-section">
+    <div class="gula-section-title" data-aos="fade-up">
+      <h2>Lo que dicen nuestros <span class="gula-resaltado">CLIENTES</span></h2>
       <p>Opiniones reales de pecadores satisfechos</p>
     </div>
-    <div class="testimonials-container" data-aos="fade-up" data-aos-delay="200">
-      <div class="testimonial-card">
-        <div class="testimonial-rating">
+    <div class="gula-testimonials-container" data-aos="fade-up" data-aos-delay="200">
+      <div class="gula-testimonial-card">
+        <div class="gula-testimonial-rating">
           <i class="fas fa-star"></i>
           <i class="fas fa-star"></i>
           <i class="fas fa-star"></i>
           <i class="fas fa-star"></i>
           <i class="fas fa-star"></i>
         </div>
-        <p class="testimonial-text">"La mejor hamburguesa que he probado en mi vida. La 'Lucifer's Feast' es una experiencia que todo amante de la carne debería probar al menos una vez."</p>
-        <div class="testimonial-author">
+        <p class="gula-testimonial-text">"La mejor hamburguesa que he probado en mi vida. La 'Lucifer's Feast' es una experiencia que todo amante de la carne debería probar al menos una vez."</p>
+        <div class="gula-testimonial-author">
           <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/avatar-1.jpg" alt="Cliente">
           <div>
             <h4>Carlos Martínez</h4>
@@ -243,16 +281,16 @@
           </div>
         </div>
       </div>
-      <div class="testimonial-card active">
-        <div class="testimonial-rating">
+      <div class="gula-testimonial-card active">
+        <div class="gula-testimonial-rating">
           <i class="fas fa-star"></i>
           <i class="fas fa-star"></i>
           <i class="fas fa-star"></i>
           <i class="fas fa-star"></i>
           <i class="fas fa-star"></i>
         </div>
-        <p class="testimonial-text">"¡Impresionante! El ambiente, el servicio y sobre todo el sabor. Las hamburguesas de Gula son adictivas, ya no puedo comer hamburguesas en otro sitio."</p>
-        <div class="testimonial-author">
+        <p class="gula-testimonial-text">"¡Impresionante! El ambiente, el servicio y sobre todo el sabor. Las hamburguesas de Gula son adictivas, ya no puedo comer hamburguesas en otro sitio."</p>
+        <div class="gula-testimonial-author">
           <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/avatar-2.jpg" alt="Cliente">
           <div>
             <h4>Laura Gómez</h4>
@@ -260,16 +298,16 @@
           </div>
         </div>
       </div>
-      <div class="testimonial-card">
-        <div class="testimonial-rating">
+      <div class="gula-testimonial-card">
+        <div class="gula-testimonial-rating">
           <i class="fas fa-star"></i>
           <i class="fas fa-star"></i>
           <i class="fas fa-star"></i>
           <i class="fas fa-star"></i>
           <i class="fas fa-star-half-alt"></i>
         </div>
-        <p class="testimonial-text">"Nunca había disfrutado tanto de una hamburguesa. Ingredientes frescos, carnes en su punto y un servicio excepcional. Sin duda volveré pronto."</p>
-        <div class="testimonial-author">
+        <p class="gula-testimonial-text">"Nunca había disfrutado tanto de una hamburguesa. Ingredientes frescos, carnes en su punto y un servicio excepcional. Sin duda volveré pronto."</p>
+        <div class="gula-testimonial-author">
           <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/avatar-3.jpg" alt="Cliente">
           <div>
             <h4>Miguel Ángel Ruiz</h4>
@@ -278,51 +316,22 @@
         </div>
       </div>
     </div>
-    <div class="testimonial-dots" data-aos="fade-up" data-aos-delay="300">
-      <span class="dot"></span>
-      <span class="dot active"></span>
-      <span class="dot"></span>
-    </div>
-  </section>
-
-  <!-- App Móvil -->
-  <section class="app-section">
-    <div class="app-container">
-      <div class="app-content" data-aos="fade-right">
-        <h2>Descarga nuestra <span class="resaltado">APP</span></h2>
-        <p>Pide tu hamburguesa favorita en cualquier momento y lugar. Recibe ofertas exclusivas y acumula puntos de fidelidad.</p>
-        <div class="app-buttons">
-          <a href="#" class="app-btn">
-            <i class="fab fa-apple"></i>
-            <div>
-              <small>Descárgala en</small>
-              <strong>App Store</strong>
-            </div>
-          </a>
-          <a href="#" class="app-btn">
-            <i class="fab fa-google-play"></i>
-            <div>
-              <small>Disponible en</small>
-              <strong>Google Play</strong>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="app-image" data-aos="fade-left" data-aos-delay="200">
-        <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/app-mockup.png" alt="App Móvil Gula">
-      </div>
+    <div class="gula-testimonial-dots" data-aos="fade-up" data-aos-delay="300">
+      <span class="gula-dot"></span>
+      <span class="gula-dot active"></span>
+      <span class="gula-dot"></span>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="footer-gula">
-    <div class="footer-container">
-      <div class="footer-logo">
-        <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/20250404_1704_GULA+Edgy+Burger+Logo_simple_compose_01jr0narqrebrva5ge7tefa84x.png" alt="Logo Gula" class="footer-logo-img">
+  <footer class="gula-footer">
+    <div class="gula-footer-container">
+      <div class="gula-footer-logo">
+        <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/20250404_1704_GULA+Edgy+Burger+Logo_simple_compose_01jr0narqrebrva5ge7tefa84x.png" alt="Logo Gula" class="gula-footer-logo-img">
         <p>Hamburguesas para pecadores del sabor</p>
       </div>
-      <div class="footer-links">
-        <div class="footer-column">
+      <div class="gula-footer-links">
+        <div class="gula-footer-column">
           <h3>Navegar</h3>
           <ul>
             <li><a href="index.html">Home</a></li>
@@ -331,16 +340,7 @@
             <li><a href="restaurantes.html">Restaurantes</a></li>
           </ul>
         </div>
-        <div class="footer-column">
-          <h3>Legal</h3>
-          <ul>
-            <li><a href="#">Términos y Condiciones</a></li>
-            <li><a href="#">Política de Privacidad</a></li>
-            <li><a href="#">Cookies</a></li>
-            <li><a href="#">Alérgenos</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
+        <div class="gula-footer-column">
           <h3>Contacto</h3>
           <ul>
             <li><i class="fas fa-map-marker-alt"></i> Calle Pecado, 7, Zaragoza</li>
@@ -349,28 +349,28 @@
           </ul>
         </div>
       </div>
-      <div class="footer-social">
+      <div class="gula-footer-social">
         <h3>Síguenos</h3>
-        <div class="social-icons">
-          <a href="#" class="instagram-btn"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+        <div class="gula-social-icons">
+          <a href="#" class="gula-instagram-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="gula-social-icon"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="gula-social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="gula-social-icon"><i class="fab fa-tiktok"></i></a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="gula-footer-bottom">
       <p>&copy; 2025 Gula - Todos los derechos reservados</p>
       <p>Diseñado con <i class="fas fa-heart"></i> y mucha gula</p>
     </div>
   </footer>
 
   <!-- Cookie Banner -->
-  <div class="cookie-banner">
+  <div class="gula-cookie-banner">
     <p>Utilizamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestra <a href="#">política de cookies</a>.</p>
-    <div class="cookie-buttons">
-      <button class="cookie-accept">Aceptar</button>
-      <button class="cookie-settings">Configurar</button>
+    <div class="gula-cookie-buttons">
+      <button class="gula-cookie-accept">Aceptar</button>
+      <button class="gula-cookie-settings">Configurar</button>
     </div>
   </div>
 </body>

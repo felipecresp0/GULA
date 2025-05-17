@@ -3,19 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gula FoodTruck</title>
-  <link rel="stylesheet" href="../styles/principal.css" />
+  <title>Gula FoodTruck | Pecado sobre ruedas</title>
+  
   <link rel="stylesheet" href="../styles/foodtruck.css" />
   <script defer src="../scripts/foodtruck.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- ✅ HEADER -->
+  <!-- HEADER -->
   <header>
     <div class="logo">
       <a href="index.html">
-        <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/20250404_1704_GULA+Edgy+Burger+Logo_simple_compose_01jr0narqrebrva5ge7tefa84x.png" alt="Logo Gula" class="logo-img" />
+          <img src="../imagenes/logo.png" alt="Logo Gula" class="logo-img" />
       </a>
     </div>
     <nav class="nav-links">
@@ -25,49 +28,140 @@
       <a href="restaurantes.html">Restaurantes</a>
     </nav>
     <div class="header-right">
-      <i class="fas fa-search search-icon"></i>
-      <i class="fas fa-shopping-cart cart-icon" onclick="location.href='carrito.html'"></i>
+      <i class="fas fa-search search-icon" id="search-toggle"></i>
+      <div class="search-container">
+        <input type="text" placeholder="Buscar..." class="search-input">
+        <button class="search-btn"><i class="fas fa-search"></i></button>
+      </div>
+      <i class="fas fa-shopping-cart cart-icon" onclick="location.href='carrito.html'"><span class="cart-count">0</span></i>
       <button class="sign-in-btn" onclick="location.href='acceso.html'">Sign in</button>
+      <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
     </div>
   </header>
+  
+  <!-- SEARCH OVERLAY -->
+  <div class="search-overlay">
+    <div class="search-box">
+      <input type="text" placeholder="¿Qué pecado buscas?" class="search-input-overlay">
+      <button class="search-btn-overlay"><i class="fas fa-search"></i></button>
+    </div>
+    <i class="fas fa-times close-search"></i>
+  </div>
 
-  <!-- ✅ CONTENIDO -->
+  <!-- HERO BANNER -->
+  <section class="hero-banner">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>GULA <span class="highlight">FOODTRUCK</span></h1>
+      <p>PECADO SOBRE RUEDAS</p>
+    </div>
+  </section>
+
+  <!-- CONTENIDO PRINCIPAL -->
   <main class="contenido">
 
-    <!-- 🔥 BLOQUE 1: Imagen FoodTruck + Texto -->
+    <!-- BLOQUE 1: Imagen FoodTruck + Texto -->
     <section class="foodtruck-showcase">
       <div class="showcase-img">
-        <img src="../Imagenes/caravana.webp" alt="FoodTruck GULA" />
+        <img src="../imagenes/foodtruck.webp" alt="FoodTruck GULA" />
       </div>
       <div class="showcase-text">
-        <h1 class="showcase-heading">THE TEMPTATION HITS<br>THE STREETS</h1>
-        <h2 class="showcase-subheading">🔥 THE BEASTS OF GULA ARE UNLEASHED 🔥</h2>
-        <p>Our GULA FoodTrucks are hell-powered machines, made to ignite grills and awaken forbidden cravings. No seats, no mercy — just pure sin on a bun.</p>
-        <p><strong>TWO DEMONIC TRUCKS</strong> travel the country ready to appear where hunger burns hottest. When desire is on wheels... will you resist, or surrender?</p>
+        <div class="section-heading">
+          <div class="flame-icon"><i class="fas fa-fire"></i></div>
+          <h2>LA TENTACIÓN ESTÁ EN LAS CALLES</h2>
+        </div>
+        <h3 class="showcase-subheading">LAS BESTIAS DE GULA SE DESATAN</h3>
+        <p>Nuestros GULA FoodTrucks son máquinas impulsadas por el infierno, hechas para encender parrillas y despertar antojos prohibidos. Sin asientos, sin piedad — solo puro pecado en un pan.</p>
+        <p><strong>DOS CAMIONES DEMONÍACOS</strong> recorren el país listos para aparecer donde el hambre arde con más fuerza. Cuando el deseo está sobre ruedas... ¿resistirás o te rendirás?</p>
+        <div class="cta-container">
+          <button class="cta-button" onclick="location.href='#paradas-foodtruck'">ENCUENTRA EL TRUCK <i class="fas fa-map-marker-alt"></i></button>
+        </div>
       </div>
     </section>
 
-    <!-- 👹 BLOQUE 2: Texto adicional + Ilustración -->
+    <!-- BLOQUE 2: Texto adicional + Ilustración -->
     <section class="foodtruck-info">
       <div class="foodtruck-text">
-        <p>The GULA FoodTruck tours festivals, street markets and wild events bringing flame-grilled sin wherever it goes. Our planchas don't cool down, and neither does your craving.</p>
-        <p>It doesn’t need seats — only fire, beef and hungry souls. With smoke and seduction, we’re already heating up the roads for 2025.</p>
-        <p><strong>TWO MOBILE UNITS OF TEMPTATION</strong> ready to appear wherever burgers are needed most.</p>
+        <h3 class="info-heading">IRRESISTIBLE TENTACIÓN MÓVIL</h3>
+        <p>El GULA FoodTruck recorre festivales, mercados callejeros y eventos salvajes llevando el pecado a la parrilla dondequiera que vaya. Nuestras planchas no se enfrían, y tu antojo tampoco.</p>
+        <p>No necesita asientos — solo fuego, carne y almas hambrientas. Con humo y seducción, ya estamos calentando las carreteras para 2025.</p>
+        <p><strong>DOS UNIDADES MÓVILES DE TENTACIÓN</strong> listas para aparecer donde más se necesiten las hamburguesas.</p>
       </div>
       <div class="foodtruck-img-bottom">
-        <img src="../Imagenes/devil_floating.apng" alt="Ilustración Gula" />
+        <img src="../imagenes/devil_floating.apng" alt="Ilustración Gula" />
       </div>
     </section>
 
+    <!-- PRÓXIMAS PARADAS (CARRUSEL MEJORADO) -->
+    <section class="upcoming-stops">
+      <div class="section-heading centered">
+        <div class="flame-icon"><i class="fas fa-fire"></i></div>
+        <h2>PRÓXIMAS PARADAS</h2>
+      </div>
+      <div class="carousel-container">
+        <div class="carousel-track" id="paradas-foodtruck">
+          <!-- El JS llenará este contenedor -->
+        </div>
+        <div class="carousel-controls">
+          <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+          <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- NUEVO: Reserva el foodtruck -->
+    <section class="book-foodtruck">
+      <div class="book-overlay"></div>
+      <div class="book-content">
+        <h2>¿QUIERES EL CAMIÓN DEL PECADO EN TU EVENTO?</h2>
+        <p>Reserva nuestro FoodTruck para eventos privados, festivales o celebraciones.</p>
+        <button class="book-btn" onclick="location.href='reservar.html'">RESERVAR AHORA</button>
+      </div>
+    </section>
   </main>
 
-  <!-- ✅ FOOTER PROFESIONAL -->
+  <!-- FOOTER PROFESIONAL -->
   <footer class="footer-gula">
-    <div class="footer-content">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>GULA</h4>
+        <p>Hamburguesas que despiertan pecados desde 2022.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/gulabvrgers/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>EXPLORA</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menú</a></li>
+          <li><a href="foodtruck.html">FoodTruck</a></li>
+          <li><a href="restaurantes.html">Restaurantes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>CONTACTO</h4>
+        <ul>
+          <li><i class="fas fa-envelope"></i> info@gula.es</li>
+          <li><i class="fas fa-phone"></i> +34 666 999 666</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>NEWSLETTER</h4>
+        <p>Recibe ofertas pecaminosas</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Tu email">
+          <button type="submit"><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
       <p>🔥 Sabor que enciende tus pecados. Hecho con pasión por <strong>GULA</strong> 🍔</p>
-      <a href="https://www.instagram.com/gulabvrgers/" target="_blank" class="instagram-btn" title="Síguenos en Instagram">
-        <i class="fab fa-instagram"></i>
-      </a>
+      <p class="copyright">© 2025 GULA. Todos los derechos reservados.</p>
     </div>
   </footer>
 

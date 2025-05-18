@@ -6,139 +6,139 @@ document.addEventListener('DOMContentLoaded', () => {
   const filtrosBtns = document.querySelectorAll('.filtro-btn');
   const categoriasItems = document.querySelectorAll('.categoria-item');
   
-  // Datos de bebidas
-  const bebidas = [
+  // Datos de postres
+  const postres = [
     {
-      id: 201,
-      nombre: "BATIDO PECAMINOSO",
-      descripcion: "Batido de chocolate, café y crema montada con sirope de caramelo",
-      precio: 5.95,
-      imagen: "../imagenes/batidochocolate.png",
+      id: 301,
+      nombre: "TARTA DEL PECADO",
+      descripcion: "Tarta de chocolate intenso con centro líquido y helado de vainilla",
+      precio: 7.50,
+      imagen: "../imagenes/tarta.jpg",
+      rating: 4.9,
+      badge: "new",
+      badgeText: "NUEVO",
+      calorias: "750",
+      tiempoPreparacion: "10 min",
+      chocolate: true,
+      nuevo: true,
+      vegetariano: false,
+      ingredientes: ["Chocolate negro 70%", "Mantequilla", "Huevos", "Azúcar", "Helado de vainilla", "Frutos rojos"]
+    },
+    {
+      id: 302,
+      nombre: "PECADO DE CHEESECAKE",
+      descripcion: "Cheesecake cremoso con base de galleta y topping de frutos rojos",
+      precio: 6.95,
+      imagen: "../imagenes/tarta.jpg", // Placeholder
       rating: 4.8,
       badge: "bestseller",
       badgeText: "BESTSELLER",
-      calorias: "650",
+      calorias: "580",
       tiempoPreparacion: "5 min",
-      alcoholic: false,
-      nuevo: true,
-      vegetariano: true,
-      ingredientes: ["Helado de vainilla", "Chocolate belga", "Café espresso", "Crema montada", "Sirope de caramelo"]
-    },
-    {
-      id: 202,
-      nombre: "NÉCTAR DE LUJURIA",
-      descripcion: "Smoothie de frutos rojos, plátano y yogur griego con topping de granola",
-      precio: 6.50,
-      imagen: "../imagenes/batidochocolate.png", // Placeholder
-      rating: 4.7,
-      badge: "new",
-      badgeText: "NUEVO",
-      calorias: "450",
-      tiempoPreparacion: "5 min",
-      alcoholic: false,
-      nuevo: true,
-      vegetariano: true,
-      ingredientes: ["Fresas", "Frambuesas", "Plátano", "Yogur griego", "Miel", "Granola casera"]
-    },
-    {
-      id: 203,
-      nombre: "DEMONIO ROJO",
-      descripcion: "Cóctel de vodka, licor de sandía, fresas y un toque de chile",
-      precio: 8.95,
-      imagen: "../imagenes/batidochocolate.png", // Placeholder
-      rating: 4.6,
-      badge: "spicy",
-      badgeText: "PICANTE",
-      calorias: "320",
-      tiempoPreparacion: "8 min",
-      alcoholic: true,
+      chocolate: false,
       nuevo: false,
       vegetariano: true,
-      ingredientes: ["Vodka premium", "Licor de sandía", "Puré de fresas", "Chile", "Hielo", "Decoración de fresa"]
+      ingredientes: ["Queso crema", "Azúcar", "Galleta", "Mantequilla", "Frambuesas", "Arándanos", "Moras"]
     },
     {
-      id: 204,
-      nombre: "ORGULLO CÍTRICO",
-      descripcion: "Cóctel premium de gin, tónica de cítricos, naranja y romero fresco",
-      precio: 9.95,
-      imagen: "../imagenes/batidochocolate.png", // Placeholder
+      id: 303,
+      nombre: "CREMA INFERNAL",
+      descripcion: "Crema catalana flambeada con azúcar caramelizado y esencia de naranja",
+      precio: 5.95,
+      imagen: "../imagenes/tarta.jpg", // Placeholder
+      rating: 4.6,
+      badge: "",
+      badgeText: "",
+      calorias: "450",
+      tiempoPreparacion: "15 min",
+      chocolate: false,
+      nuevo: false,
+      vegetariano: true,
+      ingredientes: ["Leche", "Yemas de huevo", "Azúcar", "Canela", "Ralladura de naranja", "Azúcar para caramelizar"]
+    },
+    {
+      id: 304,
+      nombre: "TENTACIÓN DE CHOCOLATE",
+      descripcion: "Brownie tibio con nueces, salsa de chocolate caliente y helado de vainilla",
+      precio: 7.95,
+      imagen: "../imagenes/tarta.jpg", // Placeholder
       rating: 4.9,
       badge: "bestseller",
-      badgeText: "PREMIUM",
-      calorias: "280",
-      tiempoPreparacion: "10 min",
-      alcoholic: true,
+      badgeText: "BESTSELLER",
+      calorias: "820",
+      tiempoPreparacion: "8 min",
+      chocolate: true,
       nuevo: false,
       vegetariano: true,
-      ingredientes: ["Gin premium", "Tónica de cítricos", "Naranja sanguina", "Romero fresco", "Hielo artesanal"]
+      ingredientes: ["Chocolate", "Mantequilla", "Huevos", "Azúcar", "Nueces", "Harina", "Helado de vainilla", "Salsa de chocolate"]
     },
     {
-      id: 205,
-      nombre: "PEREZA TROPICAL",
-      descripcion: "Piña colada cremosa con ron añejo, piña natural y coco",
-      precio: 8.50,
-      imagen: "../imagenes/batidochocolate.png", // Placeholder
-      rating: 4.5,
-      badge: "",
-      badgeText: "",
-      calorias: "540",
-      tiempoPreparacion: "7 min",
-      alcoholic: true,
-      nuevo: false,
-      vegetariano: true,
-      ingredientes: ["Ron añejo", "Piña natural", "Leche de coco", "Crema de coco", "Hielo pilé", "Decoración de piña"]
-    },
-    {
-      id: 206,
-      nombre: "LIMONADA VERDE",
-      descripcion: "Refrescante limonada casera con menta, pepino y un toque de jengibre",
-      precio: 4.95,
-      imagen: "../imagenes/batidochocolate.png", // Placeholder
-      rating: 4.6,
-      badge: "vegan",
-      badgeText: "VEGANA",
-      calorias: "180",
-      tiempoPreparacion: "5 min",
-      alcoholic: false,
-      nuevo: false,
-      vegetariano: true,
-      ingredientes: ["Limones frescos", "Pepino", "Menta", "Jengibre", "Azúcar de caña", "Agua mineral"]
-    },
-    {
-      id: 207,
-      nombre: "TENTACIÓN DORADA",
-      descripcion: "Cerveza artesanal tipo IPA con notas cítricas y amargor equilibrado",
-      precio: 5.50,
-      imagen: "../imagenes/batidochocolate.png", // Placeholder
+      id: 305,
+      nombre: "LUJURIA TROPICAL",
+      descripcion: "Sorbete de mango y maracuyá con crujiente de coco y salsa de fruta de la pasión",
+      precio: 6.50,
+      imagen: "../imagenes/tarta.jpg", // Placeholder
       rating: 4.7,
-      badge: "",
-      badgeText: "",
-      calorias: "220",
-      tiempoPreparacion: "1 min",
-      alcoholic: true,
-      nuevo: false,
-      vegetariano: true,
-      ingredientes: ["Cerveza artesanal", "Malta de cebada", "Lúpulos aromáticos", "Levadura especial"]
-    },
-    {
-      id: 208,
-      nombre: "CAFÉ DEL INFIERNO",
-      descripcion: "Café espresso doble con licor de avellana, canela y crema batida",
-      precio: 6.95,
-      imagen: "../imagenes/batidochocolate.png", // Placeholder
-      rating: 4.8,
-      badge: "new",
-      badgeText: "NUEVO",
-      calorias: "380",
-      tiempoPreparacion: "6 min",
-      alcoholic: true,
+      badge: "vegan",
+      badgeText: "VEGANO",
+      calorias: "320",
+      tiempoPreparacion: "5 min",
+      chocolate: false,
       nuevo: true,
       vegetariano: true,
-      ingredientes: ["Espresso doble", "Licor de avellana", "Canela", "Crema batida", "Virutas de chocolate"]
+      ingredientes: ["Mango", "Maracuyá", "Azúcar", "Coco tostado", "Fruta de la pasión", "Hojas de menta"]
+    },
+    {
+      id: 306,
+      nombre: "VOLCÁN DE ORGULLO",
+      descripcion: "Coulant de chocolate con interior fundido y tierra de chocolate amargo",
+      precio: 8.50,
+      imagen: "../imagenes/tarta.jpg", // Placeholder
+      rating: 5.0,
+      badge: "bestseller",
+      badgeText: "DESTACADO",
+      calorias: "680",
+      tiempoPreparacion: "12 min",
+      chocolate: true,
+      nuevo: false,
+      vegetariano: true,
+      ingredientes: ["Chocolate negro 85%", "Mantequilla", "Huevos", "Azúcar", "Harina", "Cacao en polvo", "Sal de mar"]
+    },
+    {
+      id: 307,
+      nombre: "PECADO DE TIRAMISÚ",
+      descripcion: "Tiramisú con café espresso, licor amaretto y cacao espolvoreado",
+      precio: 7.25,
+      imagen: "../imagenes/tarta.jpg", // Placeholder
+      rating: 4.8,
+      badge: "",
+      badgeText: "",
+      calorias: "520",
+      tiempoPreparacion: "10 min",
+      chocolate: true,
+      nuevo: false,
+      vegetariano: true,
+      ingredientes: ["Mascarpone", "Huevos", "Azúcar", "Café espresso", "Licor Amaretto", "Bizcochos de soletilla", "Cacao en polvo"]
+    },
+    {
+      id: 308,
+      nombre: "FRUTA PROHIBIDA",
+      descripcion: "Brocheta de frutas frescas con chocolate fundido y escamas de coco",
+      precio: 5.95,
+      imagen: "../imagenes/tarta.jpg", // Placeholder
+      rating: 4.5,
+      badge: "vegan",
+      badgeText: "VEGANO",
+      calorias: "280",
+      tiempoPreparacion: "7 min",
+      chocolate: true,
+      nuevo: false,
+      vegetariano: true,
+      ingredientes: ["Fresas", "Piña", "Plátano", "Chocolate negro vegano", "Coco rallado", "Menta fresca"]
     }
   ];
 
-  // Datos de hamburguesas (para que pueda existir la navegación)
+  // Datos de hamburguesas (para navegación)
   const hamburguesas = [
     {
       id: 1,
@@ -178,28 +178,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
   
-  // Datos de postres (para la navegación)
-  const postres = [
+  // Datos de bebidas (para la navegación)
+  const bebidas = [
     {
-      id: 301,
-      nombre: "TARTA DEL PECADO",
-      descripcion: "Tarta de chocolate intenso con centro líquido y helado de vainilla",
-      precio: 7.50,
-      imagen: "../imagenes/tarta.jpg",
-      rating: 4.9,
-      badge: "new",
-      badgeText: "NUEVO",
-      calorias: "750",
-      tiempoPreparacion: "10 min",
-      spicy: false,
+      id: 201,
+      nombre: "BATIDO PECAMINOSO",
+      descripcion: "Batido de chocolate, café y crema montada con sirope de caramelo",
+      precio: 5.95,
+      imagen: "../imagenes/batidochocolate.png",
+      rating: 4.8,
+      badge: "bestseller",
+      badgeText: "BESTSELLER",
+      calorias: "650",
+      tiempoPreparacion: "5 min",
+      alcoholic: false,
       nuevo: true,
       vegetariano: true,
-      ingredientes: ["Chocolate negro 70%", "Mantequilla", "Huevos", "Azúcar", "Helado de vainilla", "Frutos rojos"]
+      ingredientes: ["Helado de vainilla", "Chocolate belga", "Café espresso", "Crema montada", "Sirope de caramelo"]
     }
   ];
 
-  // Cargar productos iniciales (bebidas por defecto)
-  cargarProductos(bebidas);
+  // Cargar productos iniciales (postres por defecto)
+  cargarProductos(postres);
   
   // Setup filtros de tipos de producto
   categoriasItems.forEach(item => {
@@ -209,8 +209,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Obtener el href para determinar a qué página navegar
       const categoria = item.querySelector('.categoria-link').getAttribute('href');
       
-      // Si es bebidas.html, actualizar vista actual sin recargar
-      if (categoria.includes('bebidas')) {
+      // Si es postres.html, actualizar vista actual sin recargar
+      if (categoria.includes('postres')) {
         // Actualizar clase activa
         categoriasItems.forEach(i => i.classList.remove('active'));
         item.classList.add('active');
@@ -219,8 +219,8 @@ document.addEventListener('DOMContentLoaded', () => {
         filtrosBtns.forEach(btn => btn.classList.remove('active'));
         document.querySelector('.filtro-btn[data-filter="all"]').classList.add('active');
         
-        cargarProductos(bebidas);
-        actualizarIconoHero('fa-glass-cheers');
+        cargarProductos(postres);
+        actualizarIconoHero('fa-ice-cream');
       } else {
         // Si es otra categoría, navegar a esa página
         window.location.href = categoria;
@@ -237,12 +237,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const filtro = btn.getAttribute('data-filter');
       
       if (filtro === 'all') {
-        cargarProductos(bebidas);
+        cargarProductos(postres);
       } else {
-        const productosFiltrados = bebidas.filter(p => {
+        const productosFiltrados = postres.filter(p => {
           if (filtro === 'bestseller' && p.badge === 'bestseller') return true;
           if (filtro === 'new' && p.nuevo) return true;
-          if (filtro === 'alcoholic' && p.alcoholic) return true;
+          if (filtro === 'chocolate' && p.chocolate) return true;
           if (filtro === 'vegan' && p.vegetariano) return true;
           return false;
         });
@@ -412,7 +412,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           <div class="info-group">
             <div class="info-label">Tipo</div>
-            <div class="info-value">${producto.alcoholic ? 'Con Alcohol' : 'Sin Alcohol'}</div>
+            <div class="info-value">${producto.vegetariano ? 'Vegano' : 'Normal'}</div>
           </div>
         </div>
         
@@ -547,11 +547,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const flyingItem = document.createElement('div');
     flyingItem.className = 'flying-item';
-    flyingItem.innerHTML = '<i class="fas fa-glass-cheers"></i>';
+    flyingItem.innerHTML = '<i class="fas fa-ice-cream"></i>';
     flyingItem.style.position = 'fixed';
     flyingItem.style.zIndex = '9999';
     flyingItem.style.fontSize = '20px';
-    flyingItem.style.color = 'var(--secondary-color)';
+    flyingItem.style.color = 'var(--accent-color)';
     flyingItem.style.transition = 'all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)';
     
     // Posición inicial
@@ -623,8 +623,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Posición horizontal aleatoria
       ember.style.left = `${Math.random() * 100}%`;
       
-      // Colores aleatorios
-      const colors = ['#00ffcc', '#0099ff', '#33ccff', '#66ffff'];
+      // Colores aleatorios (tonos amarillos y naranjas para postres)
+      const colors = ['#ffcc00', '#ff9900', '#ffdd33', '#ffd700'];
       const randomColor = colors[Math.floor(Math.random() * colors.length)];
       ember.style.backgroundColor = randomColor;
       ember.style.boxShadow = `0 0 10px ${randomColor}`;

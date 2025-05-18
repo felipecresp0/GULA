@@ -1,324 +1,277 @@
-// Variables globales para elementos DOM
-const nombreRestaurante = document.getElementById('nombre-restaurante');
-const direccionRestaurante = document.getElementById('direccion-restaurante');
-const valoracionMedia = document.getElementById('valoracion-media');
-const totalResenas = document.getElementById('total-resenas');
-const fotosContainer = document.getElementById('fotos-container');
-const formularioReserva = document.getElementById('form-reserva');
-const campoFecha = document.getElementById('fecha');
-const campoHora = document.getElementById('hora');
-const campoPersonas = document.getElementById('personas');
-const campoRestauranteId = document.getElementById('restaurante_id');
-const horasContainer = document.getElementById('horas-disponibles');
-const mensajeReserva = document.getElementById('mensaje-reserva');
-const estrellasValoracion = document.querySelectorAll('.estrellas .estrella');
-const listaResenas = document.getElementById('lista-resenas');
-const estrellasInput = document.querySelectorAll('.estrella-input');
-
-// Obtener el ID del restaurante de la URL
-function obtenerRestauranteId() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get('restaurante');
-}
-
-// Cargar datos del restaurante
-async function cargarDatosRestaurante(id) {
-  try {
-    const res = await fetch(`http://localhost:3000/api/restaurantes/${id}`);
-    const data = await res.json();
-    
-    if (res.ok) {
-      // Mostrar información básica
-      nombreRestaurante.textContent = data.nombre || 'Restaurante Gula';
-      
-      // Si no tenemos dirección, mostrar solo el código postal
-      direccionRestaurante.textContent = `Código Postal: ${data.codigo_postal || 'No disponible'}`;
-      
-      // Mostrar valoración
-      if (data.valoracion) {
-        valoracionMedia.textContent = data.valoracion;
-        totalResenas.textContent = `(${data.total_resenas} reseñas)`;
-        
-        // Colorear estrellas según valoración
-        const valoracion = parseFloat(data.valoracion);
-        estrellasValoracion.forEach((estrella, i) => {
-          if (i < Math.floor(valoracion)) {
-            estrella.classList.add('active');
-          } else if (i < valoracion) {
-            // Media estrella (usando clases de Font Awesome)
-            estrella.classList.remove('fa-star');
-            estrella.classList.add('fa-star-half-alt');
-            estrella.classList.add('active');
-          }
-        });
-      }
-      
-      // Mostrar fotos
-      if (data.fotos && data.fotos.length > 0) {
-        console.log("Fotos disponibles:", data.fotos); // Para depuración
-        fotosContainer.innerHTML = '';
-        data.fotos.forEach(url => {
-          console.log("Cargando imagen:", url); // Para depuración
-          const img = document.createElement('img');
-          img.src = url;
-          img.alt = `Foto de ${data.nombre}`;
-          img.className = 'foto-restaurante';
-          img.onerror = function() {
-            console.error("Error al cargar la imagen:", url);
-            this.src = "https://gula-hamburguesas.s3.us-east-1.amazonaws.com/20250421_0130_Restaurante+Gula+de+Noche_remix_01jsarfghxeka8mrs5f6pqhmhr.png";
-          };
-          fotosContainer.appendChild(img);
-        });
-      } else {
-        console.log("No hay fotos disponibles, usando imagen por defecto"); // Para depuración
-        fotosContainer.innerHTML = `
-          <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/20250421_0130_Restaurante+Gula+de+Noche_remix_01jsarfghxeka8mrs5f6pqhmhr.png" 
-              alt="Imagen por defecto" 
-              class="foto-restaurante">
-        `;
-      }
-    } else {
-      mensajeReserva.textContent = '❌ No se pudo cargar la información del restaurante';
-    }
-  } catch (err) {
-    console.error('Error al cargar datos del restaurante:', err);
-    mensajeReserva.textContent = '❌ Error al conectar con el servidor';
-  }
-}
-
-// Cargar disponibilidad para un día
-async function cargarDisponibilidad(restauranteId, fecha) {
-  try {
-    console.log("Cargando disponibilidad para:", restauranteId, fecha); // Para depuración
-    
-    const res = await fetch(`http://localhost:3000/api/disponibilidad?restaurante_id=${restauranteId}&fecha=${fecha}`);
-    const slots = await res.json();
-    
-    console.log("Slots de disponibilidad recibidos:", slots); // Para depuración
-    
-    horasContainer.innerHTML = '';
-    
-    if (!Array.isArray(slots) || slots.length === 0) {
-      horasContainer.innerHTML = '<p>No hay horarios disponibles para esta fecha</p>';
-      return;
-    }
-    
-    slots.forEach(slot => {
-      const disponible = slot.mesas_disponibles > 0;
-      const horaFormateada = slot.hora.substring(0, 5); // Formato HH:MM
-      
-      const botonHora = document.createElement('div');
-      botonHora.className = `slot ${disponible ? '' : 'disabled'}`;
-      botonHora.textContent = horaFormateada;
-      
-      if (disponible) {
-        botonHora.addEventListener('click', () => {
-          // Deseleccionar todos los slots
-          document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
-          // Seleccionar este slot
-          botonHora.classList.add('selected');
-          // Guardar la hora en el campo oculto
-          campoHora.value = horaFormateada;
-        });
-      }
-      
-      horasContainer.appendChild(botonHora);
-    });
-  } catch (err) {
-    console.error('Error al cargar disponibilidad:', err);
-    horasContainer.innerHTML = '<p>Error al cargar los horarios disponibles</p>';
-  }
-}
-
-// Cargar reseñas del restaurante
-async function cargarResenas(restauranteId) {
-  try {
-    const res = await fetch(`http://localhost:3000/api/resenas/restaurante/${restauranteId}`);
-    const data = await res.json();
-    
-    if (res.ok && data.resenas) {
-      listaResenas.innerHTML = '';
-      
-      if (data.resenas.length === 0) {
-        listaResenas.innerHTML = '<p>No hay reseñas para este restaurante</p>';
-        return;
-      }
-      
-      data.resenas.forEach(resena => {
-        const fechaFormateada = new Date(resena.fecha_creacion).toLocaleDateString();
-        
-        const resenaElement = document.createElement('div');
-        resenaElement.className = 'resena';
-        resenaElement.innerHTML = `
-          <div class="resena-header">
-            <span class="resena-usuario">${resena.usuario_nombre}</span>
-            <span class="resena-fecha">${fechaFormateada}</span>
-          </div>
-          <div class="resena-valoracion">
-            ${'★'.repeat(resena.puntuacion)}${'☆'.repeat(5 - resena.puntuacion)}
-          </div>
-          <p class="resena-comentario">${resena.comentario || 'Sin comentario'}</p>
-        `;
-        
-        listaResenas.appendChild(resenaElement);
-      });
-    } else {
-      listaResenas.innerHTML = '<p>Error al cargar las reseñas</p>';
-    }
-  } catch (err) {
-    console.error('Error al cargar reseñas:', err);
-    listaResenas.innerHTML = '<p>Error al conectar con el servidor</p>';
-  }
-}
-
-// Enviar una nueva reseña
-async function enviarResena(restauranteId, puntuacion, comentario) {
-  const token = localStorage.getItem('token');
+document.addEventListener('DOMContentLoaded', function() {
+  // Referencias a elementos del formulario
+  const formPasos = document.querySelectorAll('.form-step');
+  const botonesNext = document.querySelectorAll('.btn-next');
+  const botonesPrev = document.querySelectorAll('.btn-prev');
+  const stepIndicators = document.querySelectorAll('.step');
+  const formulario = document.getElementById('reserva-form');
   
-  if (!token) {
-    alert('Debes iniciar sesión para dejar una reseña');
-    return;
-  }
+  // Referencias a campos del formulario
+  const campoNombre = document.getElementById('nombre');
+  const campoEmail = document.getElementById('email');
+  const campoTelefono = document.getElementById('telefono');
+  const campoPersonas = document.getElementById('personas');
+  const campoLocal = document.getElementById('local');
+  const campoFecha = document.getElementById('fecha');
+  const campoHora = document.getElementById('hora');
+  const campoComentarios = document.getElementById('comentarios');
   
-  try {
-    const res = await fetch('http://localhost:3000/api/resenas', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify({
-        restaurante_id: restauranteId,
-        puntuacion,
-        comentario
-      })
-    });
-    
-    const data = await res.json();
-    
-    if (res.ok) {
-      alert('¡Reseña enviada con éxito!');
-      // Recargar las reseñas
-      cargarResenas(restauranteId);
-      // Limpiar el formulario
-      document.getElementById('comentario-resena').value = '';
-      estrellasInput.forEach(estrella => estrella.classList.remove('active'));
-    } else {
-      alert(`Error: ${data.error || 'No se pudo enviar la reseña'}`);
-    }
-  } catch (err) {
-    console.error('Error al enviar reseña:', err);
-    alert('Error al conectar con el servidor');
-  }
-}
-
-// Hacer reserva
-async function hacerReserva(datosReserva) {
-  const token = localStorage.getItem('token');
+  // Referencias a botones de cantidad
+  const btnIncrease = document.getElementById('increase-personas');
+  const btnDecrease = document.getElementById('decrease-personas');
   
-  if (!token) {
-    mensajeReserva.textContent = '❌ Debes iniciar sesión para hacer una reserva';
-    return;
-  }
+  // Referencias a elementos de resumen
+  const resumenNombre = document.getElementById('resumen-nombre');
+  const resumenEmail = document.getElementById('resumen-email');
+  const resumenTelefono = document.getElementById('resumen-telefono');
+  const resumenPersonas = document.getElementById('resumen-personas');
+  const resumenLocal = document.getElementById('resumen-local');
+  const resumenFecha = document.getElementById('resumen-fecha');
+  const resumenHora = document.getElementById('resumen-hora');
   
-  try {
-    const res = await fetch('http://localhost:3000/api/reservas/nueva', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify(datosReserva)
-    });
-    
-    const data = await res.json();
-    
-    if (res.ok) {
-      mensajeReserva.textContent = '✅ ' + data.mensaje;
-      formularioReserva.reset();
-      document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
-    } else {
-      mensajeReserva.textContent = '❌ ' + (data.error || 'No se pudo realizar la reserva');
-    }
-  } catch (err) {
-    console.error('Error al hacer reserva:', err);
-    mensajeReserva.textContent = '❌ Error al conectar con el servidor';
-  }
-}
-
-// Al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-  const restauranteId = obtenerRestauranteId();
+  // Contenedor de horas disponibles
+  const horasContainer = document.getElementById('horas-disponibles');
   
-  if (!restauranteId) {
-    alert('No se ha especificado un restaurante');
-    window.location.href = 'restaurantes.html';
-    return;
-  }
-  
-  // Establecer el ID del restaurante en el formulario
-  campoRestauranteId.value = restauranteId;
-  
-  // Cargar datos iniciales
-  cargarDatosRestaurante(restauranteId);
-  cargarResenas(restauranteId);
+  // Notificación
+  const notificacion = document.getElementById('notification');
+  const mensajeNotificacion = document.querySelector('.notification-message');
   
   // Establecer fecha mínima (hoy)
-  const hoy = new Date().toISOString().split('T')[0];
-  campoFecha.min = hoy;
+  const hoy = new Date();
+  const fechaMin = hoy.toISOString().split('T')[0];
+  campoFecha.min = fechaMin;
   
-  // Cuando cambia la fecha, cargar disponibilidad
-  campoFecha.addEventListener('change', () => {
-    if (campoFecha.value) {
-      cargarDisponibilidad(restauranteId, campoFecha.value);
-    }
-  });
-  
-  // Manejar envío del formulario de reserva
-  formularioReserva.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    if (!campoHora.value) {
-      mensajeReserva.textContent = '❌ Debes seleccionar una hora';
-      return;
+  // ===== Funciones para navegar entre pasos =====
+  function irAlPaso(pasoActual, pasoSiguiente) {
+    // Validar el paso actual antes de continuar
+    if (pasoSiguiente > pasoActual && !validarPaso(pasoActual)) {
+      mostrarNotificacion('Por favor, completa todos los campos obligatorios', 'error');
+      return false;
     }
     
-    const datosReserva = {
-      restaurante_id: restauranteId,
-      fecha: campoFecha.value,
-      hora: campoHora.value,
-      personas: campoPersonas.value
-    };
+    // Ocultar paso actual
+    formPasos[pasoActual - 1].classList.remove('active');
     
-    hacerReserva(datosReserva);
-  });
+    // Mostrar paso siguiente
+    formPasos[pasoSiguiente - 1].classList.add('active');
+    
+    // Actualizar indicadores de paso
+    stepIndicators.forEach((step, index) => {
+      if (index + 1 <= pasoSiguiente) {
+        step.classList.add('active');
+      } else {
+        step.classList.remove('active');
+      }
+    });
+    
+    // Si vamos al paso 3 (resumen), actualizar los datos
+    if (pasoSiguiente === 3) {
+      actualizarResumen();
+    }
+    
+    return true;
+  }
   
-  // Manejar click en estrellas para reseña
-  estrellasInput.forEach(estrella => {
-    estrella.addEventListener('click', () => {
-      const valor = parseInt(estrella.getAttribute('data-valor'));
-      
-      // Actualizar visual
-      estrellasInput.forEach((e, i) => {
-        if (i < valor) {
-          e.classList.add('active');
-        } else {
-          e.classList.remove('active');
+  // ===== Validación de pasos =====
+  function validarPaso(paso) {
+    switch (paso) {
+      case 1:
+        return (
+          campoNombre.value.trim() !== '' &&
+          campoEmail.value.trim() !== '' &&
+          campoTelefono.value.trim() !== '' &&
+          campoLocal.value !== null &&
+          campoLocal.value !== ''
+        );
+      case 2:
+        return (
+          campoFecha.value !== '' &&
+          campoHora.value !== ''
+        );
+      default:
+        return true;
+    }
+  }
+  
+  // ===== Actualizar resumen =====
+  function actualizarResumen() {
+    resumenNombre.textContent = campoNombre.value;
+    resumenEmail.textContent = campoEmail.value;
+    resumenTelefono.textContent = campoTelefono.value;
+    resumenPersonas.textContent = campoPersonas.value;
+    
+    // Obtener nombre del local a partir del value
+    const localIndex = campoLocal.selectedIndex;
+    const localText = localIndex > 0 ? campoLocal.options[localIndex].text : '';
+    resumenLocal.textContent = localText;
+    
+    // Formatear fecha
+    const fecha = new Date(campoFecha.value);
+    const formatoFecha = new Intl.DateTimeFormat('es-ES', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    }).format(fecha);
+    resumenFecha.textContent = formatoFecha.charAt(0).toUpperCase() + formatoFecha.slice(1);
+    
+    resumenHora.textContent = campoHora.value;
+  }
+  
+  // ===== Generar horas disponibles =====
+  function generarHorasDisponibles(fecha) {
+    // Limpiar horas anteriores
+    horasContainer.innerHTML = '';
+    
+    // Si es un fin de semana (5 = viernes, 6 = sábado), mostrar horario extendido
+    const esFindeSemana = [5, 6].includes(new Date(fecha).getDay());
+    
+    // Generar slots de hora (simulación)
+    const horaInicio = 13; // 13:00
+    const horaFin = esFindeSemana ? 23 : 22; // 23:00 o 22:00
+    
+    for (let hora = horaInicio; hora <= horaFin; hora++) {
+      // Para cada hora, crear dos slots (XX:00 y XX:30)
+      for (let minutos of ['00', '30']) {
+        const horaCompleta = `${hora}:${minutos}`;
+        
+        // Simular disponibilidad aleatoria
+        const disponible = Math.random() > 0.3; // 70% de disponibilidad
+        
+        const horaElement = document.createElement('div');
+        horaElement.className = `hora-slot ${disponible ? '' : 'disabled'}`;
+        horaElement.textContent = horaCompleta;
+        
+        if (disponible) {
+          horaElement.addEventListener('click', () => {
+            // Deseleccionar hora anterior
+            document.querySelectorAll('.hora-slot.selected').forEach(slot => {
+              slot.classList.remove('selected');
+            });
+            
+            // Seleccionar esta hora
+            horaElement.classList.add('selected');
+            
+            // Guardar hora en campo oculto
+            campoHora.value = horaCompleta;
+          });
         }
-      });
+        
+        horasContainer.appendChild(horaElement);
+      }
+    }
+  }
+  
+  // ===== Mostrar notificación =====
+  function mostrarNotificacion(mensaje, tipo = 'success') {
+    mensajeNotificacion.textContent = mensaje;
+    
+    // Cambiar icono según tipo
+    const notificationIcon = document.querySelector('.notification-icon');
+    
+    if (tipo === 'success') {
+      notificationIcon.className = 'notification-icon fas fa-check-circle';
+    } else if (tipo === 'error') {
+      notificationIcon.className = 'notification-icon fas fa-exclamation-circle';
+    } else {
+      notificationIcon.className = 'notification-icon fas fa-info-circle';
+    }
+    
+    // Mostrar notificación
+    notificacion.classList.add('show');
+    
+    // Ocultar después de 3 segundos
+    setTimeout(() => {
+      notificacion.classList.remove('show');
+    }, 3000);
+  }
+  
+  // ===== Event Listeners =====
+  
+  // Navegación entre pasos
+  botonesNext.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const pasoActual = parseInt(this.closest('.form-step').id.split('-')[1]);
+      const pasoSiguiente = parseInt(this.dataset.next.split('-')[1]);
+      irAlPaso(pasoActual, pasoSiguiente);
     });
   });
   
-  // Manejar envío de reseña
-  document.getElementById('enviar-resena').addEventListener('click', () => {
-    const puntuacion = document.querySelectorAll('.estrella-input.active').length;
-    const comentario = document.getElementById('comentario-resena').value;
+  botonesPrev.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const pasoActual = parseInt(this.closest('.form-step').id.split('-')[1]);
+      const pasoAnterior = parseInt(this.dataset.prev.split('-')[1]);
+      irAlPaso(pasoActual, pasoAnterior);
+    });
+  });
+  
+  // Control de cantidad de personas
+  btnIncrease.addEventListener('click', () => {
+    const valorActual = parseInt(campoPersonas.value);
+    if (valorActual < 10) {
+      campoPersonas.value = valorActual + 1;
+    }
+  });
+  
+  btnDecrease.addEventListener('click', () => {
+    const valorActual = parseInt(campoPersonas.value);
+    if (valorActual > 1) {
+      campoPersonas.value = valorActual - 1;
+    }
+  });
+  
+  // Cuando cambia la fecha, generar horas disponibles
+  campoFecha.addEventListener('change', () => {
+    if (campoFecha.value) {
+      generarHorasDisponibles(campoFecha.value);
+    }
+  });
+  
+  // Envío del formulario
+  formulario.addEventListener('submit', function(event) {
+    event.preventDefault();
     
-    if (puntuacion === 0) {
-      alert('Debes seleccionar al menos una estrella');
+    // Validar términos
+    const terminosAceptados = document.getElementById('terminos').checked;
+    if (!terminosAceptados) {
+      mostrarNotificacion('Debes aceptar los términos y condiciones', 'error');
       return;
     }
     
-    enviarResena(restauranteId, puntuacion, comentario);
+    // Simular envío de formulario
+    // En un caso real, aquí enviarías los datos mediante fetch o similar
+    
+    // Mostrar notificación de éxito
+    mostrarNotificacion('¡Reserva confirmada correctamente! Recibirás un email con los detalles.');
+    
+    // Reset del formulario después de 2 segundos
+    setTimeout(() => {
+      formulario.reset();
+      
+      // Volver al primer paso
+      irAlPaso(3, 1);
+      
+      // Limpiar selección de horas
+      document.querySelectorAll('.hora-slot.selected').forEach(slot => {
+        slot.classList.remove('selected');
+      });
+      
+      // Resetear número de personas a 2
+      campoPersonas.value = 2;
+    }, 2000);
+  });
+  
+  // Generar horas disponibles por defecto para hoy
+  generarHorasDisponibles(fechaMin);
+  
+  // Cambiar color de las brasas flotantes para que combinen con el tema
+  const brasas = document.querySelectorAll('.floating-ember');
+  brasas.forEach(brasa => {
+    // Colores en tema con la hamburguesería
+    const colores = ['#ff0066', '#00ffcc', '#ffcc00', '#ff3300', '#cc9900'];
+    const colorAleatorio = colores[Math.floor(Math.random() * colores.length)];
+    
+    brasa.style.backgroundColor = colorAleatorio;
+    brasa.style.boxShadow = `0 0 10px ${colorAleatorio}`;
   });
 });

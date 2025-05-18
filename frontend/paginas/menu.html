@@ -3,113 +3,408 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gula | Carta</title>
-  <link rel="stylesheet" href="../styles/principal.css" />
+  <title>GULA | Los 7 Pecados Capitales del Sabor</title>
+  
   <link rel="stylesheet" href="../styles/menu.css" />
   <script defer src="../scripts/menu.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 <body>
 
-  <!-- ✅ HEADER NAVEGACIÓN -->
+  <!-- HEADER -->
   <header>
     <div class="logo">
       <a href="index.html">
-        <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/20250404_1704_GULA+Edgy+Burger+Logo_simple_compose_01jr0narqrebrva5ge7tefa84x.png" alt="Logo Gula" class="logo-img" />
+        <img src="../imagenes/logo.png" alt="Logo Gula" class="logo-img" />
       </a>
     </div>
     <nav class="nav-links">
       <a href="index.html">Home</a>
-      <a href="menu.html" class="active">Carta</a>
+      <a href="menu.html" class="active">Burgers</a>
       <a href="foodtruck.html">FoodTruck</a>
       <a href="restaurantes.html">Restaurantes</a>
     </nav>
     <div class="header-right">
-      <i class="fas fa-search search-icon"></i>
-      <i class="fas fa-shopping-cart cart-icon" onclick="location.href='carrito.html'"></i>
+      <i class="fas fa-search search-icon" id="search-toggle"></i>
+      <i class="fas fa-shopping-cart cart-icon" onclick="location.href='carrito.html'"><span class="cart-count">0</span></i>
       <button class="sign-in-btn" onclick="location.href='acceso.html'">Sign in</button>
+      <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
     </div>
   </header>
+  
+  <!-- SEARCH OVERLAY -->
+  <div class="search-overlay">
+    <div class="search-box">
+      <input type="text" placeholder="¿Qué pecado buscas?" class="search-input-overlay">
+      <button class="search-btn-overlay"><i class="fas fa-search"></i></button>
+    </div>
+    <i class="fas fa-times close-search"></i>
+  </div>
 
-  <!-- ✅ CONTENIDO PRINCIPAL -->
-  <main class="contenido fondo-carta">
+  <!-- HERO BANNER -->
+  <section class="menu-hero">
+    <div class="hero-flames">
+      <div class="flame flame1"></div>
+      <div class="flame flame2"></div>
+      <div class="flame flame3"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>LOS 7 PECADOS <span class="glitch-text">CAPITALES</span></h1>
+      <p>DESCUBRE NUESTRA CARTA DE TENTACIONES</p>
+    </div>
+  </section>
 
-    <!-- ✅ CATEGORÍAS -->
-    <section class="categorias-grid">
-      <div class="categoria-card" onclick="irACategoria('hamburguesas.html')">
-        <img src="../Imagenes/20250420_2054_Hamburguesa con Neón_remix_01jsa8pww0fn4rpmnpwp8w3tqe.png" alt="Hamburguesas" />
-        <h3>Hamburguesas</h3>
+  <!-- SPECIAL OFFER BANNER -->
+  <div class="special-offer">
+    <div class="special-offer-content">
+      <div class="special-tag">OFERTA ESPECIAL</div>
+      <h3>EL COMBO DEL INFIERNO</h3>
+      <p>Cualquier hamburguesa + patatas + bebida por solo <span>16,66€</span></p>
+      <a href="#" class="special-btn">VER COMBO <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <section class="menu-intro">
+      <div class="section-header">
+        <div class="section-icon"><i class="fas fa-fire"></i></div>
+        <h2>NUESTRAS CATEGORÍAS</h2>
       </div>
-      <div class="categoria-card" onclick="irACategoria('postres.html')">
-        <img src="../Imagenes/categoria-postres.webp" alt="Postres" />
-        <h3>Postres</h3>
+      <p>Selecciona tu categoría y déjate llevar por el pecado</p>
+    </section>
+
+    <!-- MENU CATEGORIES SLIDER -->
+    <div class="categories-slider-container">
+      <div class="swiper categories-slider">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="category-card hamburguesa-card" data-category="hamburguesas">
+              <div class="card-img-container">
+                <img src="../imagenes/car" alt="Hamburguesas">
+                <div class="card-overlay"></div>
+                <div class="card-icon">
+                  <i class="fas fa-hamburger"></i>
+                </div>
+              </div>
+              <div class="card-content">
+                <h3 class="neon-text">HAMBURGUESAS</h3>
+                <p>Nuestra selección de pecados entre panes</p>
+                <div class="highlight-tag">Lo más vendido</div>
+                <a href="hamburguesas.html" class="card-btn">EXPLORAR <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="swiper-slide">
+            <div class="category-card acompanantes-card" data-category="acompanantes">
+              <div class="card-img-container">
+                <img src="../imagenes/cartadeentrantes.png" alt="Acompañantes">
+                <div class="card-overlay"></div>
+                <div class="card-icon">
+                  <i class="fas fa-french-fries"></i>
+                </div>
+              </div>
+              <div class="card-content">
+                <h3 class="neon-text-alt">ACOMPAÑANTES</h3>
+                <p>El complemento perfecto para tu tentación</p>
+                <a href="acompanantes.html" class="card-btn">EXPLORAR <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="category-card bebidas-card" data-category="bebidas">
+              <div class="card-img-container">
+                <img src="../imagenes/cartabebidas.png" alt="Bebidas">
+                <div class="card-overlay"></div>
+                <div class="card-icon">
+                  <i class="fas fa-glass-cheers"></i>
+                </div>
+              </div>
+              <div class="card-content">
+                <h3 class="neon-text">BEBIDAS</h3>
+                <p>Apaga el fuego de la tentación</p>
+                <a href="bebidas.html" class="card-btn">EXPLORAR <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="category-card postres-card" data-category="postres">
+              <div class="card-img-container">
+                <img src="../imagenes/cartadepostres.png" alt="Postres">
+                <div class="card-overlay"></div>
+                <div class="card-icon">
+                  <i class="fas fa-ice-cream"></i>
+                </div>
+              </div>
+              <div class="card-content">
+                <h3 class="neon-text-alt">POSTRES</h3>
+                <p>El dulce pecado para cerrar tu experiencia</p>
+                <div class="highlight-tag">Nuevo</div>
+                <a href="postres.html" class="card-btn">EXPLORAR <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Add pagination -->
+        <div class="swiper-pagination categories-pagination"></div>
+        
+        <!-- Add navigation arrows -->
+        <div class="swiper-button-next categories-button-next"><i class="fas fa-chevron-right"></i></div>
+        <div class="swiper-button-prev categories-button-prev"><i class="fas fa-chevron-left"></i></div>
       </div>
-      <div class="categoria-card" onclick="irACategoria('bebidas.html')">
-        <img src="../Imagenes/categoria-bebidas.webp" alt="Bebidas" />
-        <h3>Bebidas</h3>
+    </div>
+
+    <!-- FEATURED BURGERS -->
+    <section class="featured-section">
+      <div class="section-header">
+        <div class="section-icon"><i class="fas fa-fire"></i></div>
+        <h2>NUESTROS PECADOS DESTACADOS</h2>
       </div>
-      <div class="categoria-card" onclick="irACategoria('acompañantes.html')">
-        <img src="../Imagenes/categoria-acompañantes.webp" alt="Acompañantes" />
-        <h3>Acompañantes</h3>
+
+      <div class="featured-slider-container">
+        <div class="swiper featured-slider">
+          <div class="swiper-wrapper">
+            <!-- Hamburguesa 1 -->
+            <div class="swiper-slide">
+              <div class="featured-item">
+                <div class="featured-img">
+                  <img src="../imagenes/la-gula.jpg" alt="La Gula">
+                  <div class="featured-badge">BESTSELLER</div>
+                </div>
+                <div class="featured-info">
+                  <h3>LA GULA</h3>
+                  <p class="burger-description">Doble smash burger, queso ahumado, bacon crujiente y salsa especial</p>
+                  <div class="price-cart">
+                    <span class="price">13.95€</span>
+                    <button class="add-to-cart-btn"><i class="fas fa-plus"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hamburguesa 2 -->
+            <div class="swiper-slide">
+              <div class="featured-item">
+                <div class="featured-img">
+                  <img src="../imagenes/la-lujuria.jpg" alt="La Lujuria">
+                  <div class="featured-badge">TENTADOR</div>
+                </div>
+                <div class="featured-info">
+                  <h3>LA LUJURIA</h3>
+                  <p class="burger-description">Carne madurada, queso brie fundido, cebolla caramelizada y mermelada de bacon</p>
+                  <div class="price-cart">
+                    <span class="price">14.95€</span>
+                    <button class="add-to-cart-btn"><i class="fas fa-plus"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hamburguesa 3 -->
+            <div class="swiper-slide">
+              <div class="featured-item">
+                <div class="featured-img">
+                  <img src="../imagenes/la-ira.jpg" alt="La Ira">
+                  <div class="featured-badge">PICANTE</div>
+                </div>
+                <div class="featured-info">
+                  <h3>LA IRA</h3>
+                  <p class="burger-description">Carne de res, jalapeños frescos, salsa picante casera, pepper jack y guacamole</p>
+                  <div class="price-cart">
+                    <span class="price">13.50€</span>
+                    <button class="add-to-cart-btn"><i class="fas fa-plus"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hamburguesa 4 -->
+            <div class="swiper-slide">
+              <div class="featured-item">
+                <div class="featured-img">
+                  <img src="../imagenes/la-soberbia.jpg" alt="La Soberbia">
+                  <div class="featured-badge">PREMIUM</div>
+                </div>
+                <div class="featured-info">
+                  <h3>LA SOBERBIA</h3>
+                  <p class="burger-description">Carne Black Angus, foie gras, trufa y reducción de Pedro Ximénez</p>
+                  <div class="price-cart">
+                    <span class="price">18.95€</span>
+                    <button class="add-to-cart-btn"><i class="fas fa-plus"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hamburguesa 5 -->
+            <div class="swiper-slide">
+              <div class="featured-item">
+                <div class="featured-img">
+                  <img src="../imagenes/la-pereza.jpg" alt="La Pereza">
+                  <div class="featured-badge">CLÁSICA</div>
+                </div>
+                <div class="featured-info">
+                  <h3>LA PEREZA</h3>
+                  <p class="burger-description">Hamburguesa sencilla con carne, queso cheddar, lechuga, tomate y salsa casera</p>
+                  <div class="price-cart">
+                    <span class="price">12.50€</span>
+                    <button class="add-to-cart-btn"><i class="fas fa-plus"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hamburguesa 6 -->
+            <div class="swiper-slide">
+              <div class="featured-item">
+                <div class="featured-img">
+                  <img src="../imagenes/la-envidia.jpg" alt="La Envidia">
+                  <div class="featured-badge">VEGETARIANA</div>
+                </div>
+                <div class="featured-info">
+                  <h3>LA ENVIDIA</h3>
+                  <p class="burger-description">Beyond meat, queso vegano, champiñones, aguacate y salsa de yogur</p>
+                  <div class="price-cart">
+                    <span class="price">15.95€</span>
+                    <button class="add-to-cart-btn"><i class="fas fa-plus"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hamburguesa 7 -->
+            <div class="swiper-slide">
+              <div class="featured-item">
+                <div class="featured-img">
+                  <img src="../imagenes/la-avaricia.jpg" alt="La Avaricia">
+                  <div class="featured-badge">TRIPLE</div>
+                </div>
+                <div class="featured-info">
+                  <h3>LA AVARICIA</h3>
+                  <p class="burger-description">Triple carne, triple queso, huevo frito, bacon y cebolla caramelizada</p>
+                  <div class="price-cart">
+                    <span class="price">19.95€</span>
+                    <button class="add-to-cart-btn"><i class="fas fa-plus"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Add pagination -->
+          <div class="swiper-pagination featured-pagination"></div>
+          
+          <!-- Add navigation arrows -->
+          <div class="swiper-button-next featured-button-next"><i class="fas fa-chevron-right"></i></div>
+          <div class="swiper-button-prev featured-button-prev"><i class="fas fa-chevron-left"></i></div>
+        </div>
       </div>
     </section>
 
+    <!-- CALL TO ACTION -->
+    <section class="menu-cta">
+      <div class="cta-overlay"></div>
+      <div class="cta-content">
+        <h2>¿TIENES EVENTOS O CELEBRACIONES?</h2>
+        <p>Nuestras tentaciones también están disponibles para catering</p>
+        <a href="contacto.html" class="cta-button">CONTACTAR <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </section>
   </main>
 
-  <!-- ✅ FOOTER CON NEWSLETTER INTEGRADA -->
-  <footer class="footer-gula">
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
     <div class="newsletter-content">
-      <h3>¿Quieres descuentos exclusivos?</h3>
-      <p>Suscríbete a nuestra newsletter y recibe promociones y novedades</p>
+      <h3 class="newsletter-title">ÚNETE AL LADO OSCURO</h3>
+      <p>Suscríbete para recibir ofertas exclusivas y ser el primero en conocer nuestras nuevas creaciones</p>
       <form class="newsletter-form">
-        <input type="email" placeholder="tu@email.com" required>
-        <button type="submit" class="btn-subscribe">Suscribirse</button>
+        <input type="email" placeholder="Tu email" required>
+        <button type="submit">SUSCRIBIRME</button>
       </form>
     </div>
+  </section>
 
-    <div class="footer-main">
-      <div class="footer-logo">
-        <img src="https://gula-hamburguesas.s3.us-east-1.amazonaws.com/20250404_1704_GULA+Edgy+Burger+Logo_simple_compose_01jr0narqrebrva5ge7tefa84x.png" alt="Logo Gula" class="footer-logo-img" />
-        <p>Sabor que enciende tus pecados</p>
-      </div>
-      <div class="footer-links">
-        <div class="footer-section">
-          <h4>Navegación</h4>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="menu.html">Carta</a></li>
-            <li><a href="foodtruck.html">FoodTruck</a></li>
-          </ul>
-        </div>
-       
-        <div class="footer-section">
-          <h4>Contacto</h4>
-          <ul>
-            <li><i class="fas fa-map-marker-alt"></i> C/ Hamburguesa, 42</li>
-            <li><i class="fas fa-phone"></i> +34 600 123 456</li>
-            <li><i class="fas fa-envelope"></i> info@gulaburger.com</li>
-          </ul>
+  <!-- FOOTER -->
+  <footer class="footer-gula">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>GULA</h4>
+        <p>Hamburguesas que despiertan pecados desde 2022.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/gulabvrgers/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
         </div>
       </div>
-      <div class="footer-social">
-        <h4>Síguenos</h4>
-        <div class="social-icons">
-          <a href="https://www.instagram.com/gula_burger" target="_blank" title="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="https://www.facebook.com/gulaburger" target="_blank" title="Facebook">
-            <i class="fab fa-facebook"></i>
-          </a>
-          <a href="https://www.tiktok.com/@gulaburger" target="_blank" title="TikTok">
-            <i class="fab fa-tiktok"></i>
-          </a>
+      <div class="footer-col">
+        <h4>EXPLORA</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menú</a></li>
+          <li><a href="foodtruck.html">FoodTruck</a></li>
+          <li><a href="restaurantes.html">Restaurantes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>CONTACTO</h4>
+        <ul>
+          <li><i class="fas fa-envelope"></i> info@gula.es</li>
+          <li><i class="fas fa-phone"></i> +34 666 999 666</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>NEWSLETTER</h4>
+        <p>Recibe ofertas pecaminosas</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Tu email">
+          <button type="submit"><i class="fas fa-paper-plane"></i></button>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2025 GULA Burgers. Todos los derechos reservados.</p>
+      <p>🔥 Sabor que enciende tus pecados. Hecho con pasión por <strong>GULA</strong> 🍔</p>
+      <p class="copyright">© 2025 GULA. Todos los derechos reservados.</p>
     </div>
   </footer>
+
+  <!-- NOTIFICATION COMPONENT -->
+  <div class="notification" id="notification">
+    <i class="notification-icon fas fa-check-circle"></i>
+    <span class="notification-message">Producto añadido al carrito</span>
+  </div>
+
+  <!-- FLOATING EMBERS -->
+  <div class="floating-embers">
+    <div class="floating-ember floating-ember1"></div>
+    <div class="floating-ember floating-ember2"></div>
+    <div class="floating-ember floating-ember3"></div>
+    <div class="floating-ember floating-ember4"></div>
+  </div>
+
+  <!-- CARRITO DESPLEGABLE -->
+  <div id="carrito-desplegable">
+    <ul id="lista-carrito"></ul>
+    <div class="carrito-total">
+      <span class="carrito-total-label">Total:</span>
+      <span class="carrito-total-precio"><span id="carrito-total">0.00</span> €</span>
+    </div>
+    <div class="carrito-botones">
+      <a href="#" class="btn-vaciar">Vaciar</a>
+      <a href="checkout.html" class="btn-checkout">Checkout</a>
+    </div>
+  </div>
 
 </body>
 </html>

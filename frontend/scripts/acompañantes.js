@@ -6,144 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const filtrosBtns = document.querySelectorAll('.filtro-btn');
   const categoriasItems = document.querySelectorAll('.categoria-item');
   
-  // Datos de ejemplo - Hamburguesas
-  const productos = [
-    {
-      id: 1,
-      nombre: "LA GULA",
-      descripcion: "Doble smash burger, queso ahumado, bacon crujiente y salsa especial",
-      precio: 13.95,
-      imagen: "../imagenes/la-gula.jpg",
-      rating: 4.8,
-      badge: "bestseller",
-      badgeText: "BESTSELLER",
-      calorias: "850",
-      tiempoPreparacion: "15 min",
-      spicy: false,
-      nuevo: false,
-      vegetariano: false,
-      ingredientes: ["Carne de ternera 100%", "Queso cheddar ahumado", "Bacon crujiente", "Salsa GULA especial", "Pan brioche"]
-    },
-    {
-      id: 2,
-      nombre: "LA LUJURIA",
-      descripcion: "Carne madurada, queso brie fundido, cebolla caramelizada y mermelada de bacon",
-      precio: 14.95,
-      imagen: "../imagenes/la-lujuria.jpg",
-      rating: 4.9,
-      badge: "bestseller",
-      badgeText: "TENTADOR",
-      calorias: "920",
-      tiempoPreparacion: "18 min",
-      spicy: false,
-      nuevo: true,
-      vegetariano: false,
-      ingredientes: ["Carne madurada 30 días", "Queso brie francés", "Cebolla caramelizada", "Mermelada de bacon", "Salsa de trufa", "Pan brioche premium"]
-    },
-    {
-      id: 3,
-      nombre: "LA IRA",
-      descripcion: "Carne de res, jalapeños frescos, salsa picante casera, pepper jack y guacamole",
-      precio: 13.50,
-      imagen: "../imagenes/la-ira.jpg",
-      rating: 4.7,
-      badge: "spicy",
-      badgeText: "PICANTE",
-      calorias: "780",
-      tiempoPreparacion: "15 min",
-      spicy: true,
-      nuevo: false,
-      vegetariano: false,
-      ingredientes: ["Carne de ternera 100%", "Jalapeños frescos", "Salsa habanero casera", "Queso pepper jack", "Guacamole", "Pan brioche"]
-    },
-    {
-      id: 4,
-      nombre: "LA SOBERBIA",
-      descripcion: "Carne Black Angus, foie gras, trufa y reducción de Pedro Ximénez",
-      precio: 18.95,
-      imagen: "../imagenes/la-soberbia.jpg",
-      rating: 5.0,
-      badge: "bestseller",
-      badgeText: "PREMIUM",
-      calorias: "980",
-      tiempoPreparacion: "20 min",
-      spicy: false,
-      nuevo: false,
-      vegetariano: false,
-      ingredientes: ["Carne Black Angus 180g", "Foie gras", "Trufa negra", "Reducción Pedro Ximénez", "Rúcula", "Cebolla crujiente", "Pan brioche de trufa"]
-    },
-    {
-      id: 5,
-      nombre: "LA PEREZA",
-      descripcion: "Hamburguesa sencilla con carne, queso cheddar, lechuga, tomate y salsa casera",
-      precio: 12.50,
-      imagen: "../imagenes/la-pereza.jpg",
-      rating: 4.5,
-      badge: "",
-      badgeText: "CLÁSICA",
-      calorias: "650",
-      tiempoPreparacion: "12 min",
-      spicy: false,
-      nuevo: false,
-      vegetariano: false,
-      ingredientes: ["Carne de ternera 180g", "Queso cheddar", "Lechuga fresca", "Tomate", "Cebolla roja", "Salsa GULA", "Pan brioche clásico"]
-    },
-    {
-      id: 6,
-      nombre: "LA ENVIDIA",
-      descripcion: "Beyond meat, queso vegano, champiñones, aguacate y salsa de yogur",
-      precio: 15.95,
-      imagen: "../imagenes/la-envidia.jpg",
-      rating: 4.6,
-      badge: "vegan",
-      badgeText: "VEGETARIANA",
-      calorias: "580",
-      tiempoPreparacion: "15 min",
-      spicy: false,
-      nuevo: false,
-      vegetariano: true,
-      ingredientes: ["Beyond meat", "Queso vegano", "Champiñones portobello", "Aguacate", "Salsa de yogur vegetal", "Rúcula", "Pan vegano"]
-    },
-    {
-      id: 7,
-      nombre: "LA AVARICIA",
-      descripcion: "Triple carne, triple queso, huevo frito, bacon y cebolla caramelizada",
-      precio: 19.95,
-      imagen: "../imagenes/la-avaricia.jpg",
-      rating: 4.8,
-      badge: "",
-      badgeText: "TRIPLE",
-      calorias: "1200",
-      tiempoPreparacion: "20 min",
-      spicy: false,
-      nuevo: false,
-      vegetariano: false,
-      ingredientes: ["Triple carne de ternera", "Queso cheddar", "Queso gouda", "Queso provolone", "Huevo frito", "Bacon", "Cebolla caramelizada", "Salsa barbacoa", "Pan brioche XL"]
-    },
-    {
-      id: 8,
-      nombre: "LA DIABLA",
-      descripcion: "Carne especiada, salsa Carolina Reaper, jalapeños, pepper jack y aros de cebolla",
-      precio: 14.95,
-      imagen: "../imagenes/la-ira.jpg", // Usar imagen de La Ira como placeholder
-      rating: 4.4,
-      badge: "spicy",
-      badgeText: "MUY PICANTE",
-      calorias: "820",
-      tiempoPreparacion: "15 min",
-      spicy: true,
-      nuevo: true,
-      vegetariano: false,
-      ingredientes: ["Carne especiada", "Salsa Carolina Reaper", "Jalapeños", "Queso pepper jack", "Aros de cebolla", "Salsa sriracha", "Pan brioche"]
-    }
-  ];
-
-  // Datos de acompañantes (ejemplo)
+  // Datos de ejemplo - Acompañantes
   const acompanantes = [
     {
       id: 101,
       nombre: "PATATAS DEL INFIERNO",
-      descripcion: "Patatas fritas crujientes con salsa picante, queso fundido y bacon",
+      descripcion: "Patatas fritas crujientes con salsa picante, queso fundido y bacon crujiente",
       precio: 6.95,
       imagen: "../imagenes/patatas.jpg",
       rating: 4.7,
@@ -159,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: 102,
       nombre: "ANILLOS DE CEBOLLA",
-      descripcion: "Anillos de cebolla rebozados y fritos hasta quedar crujientes",
+      descripcion: "Anillos de cebolla rebozados con nuestra mezcla especial y fritos hasta quedar crujientes",
       precio: 5.50,
       imagen: "../imagenes/aroscebolla.jpg",
       rating: 4.5,
@@ -170,82 +38,119 @@ document.addEventListener('DOMContentLoaded', () => {
       spicy: false,
       nuevo: false,
       vegetariano: true,
-      ingredientes: ["Cebollas frescas", "Rebozado especial", "Salsa GULA"]
-    }
-  ];
-
-  // Datos de bebidas (ejemplo)
-  const bebidas = [
+      ingredientes: ["Cebollas frescas", "Rebozado especial GULA", "Especias secretas", "Salsa GULA"]
+    },
     {
-      id: 201,
-      nombre: "BATIDO PECAMINOSO",
-      descripcion: "Batido de chocolate, café y crema montada con sirope de caramelo",
-      precio: 5.95,
-      imagen: "../imagenes/batidochocolate.png",
+      id: 103,
+      nombre: "ALITAS PICANTES",
+      descripcion: "Alitas de pollo marinadas, fritas y bañadas en nuestra salsa picante casera",
+      precio: 8.95,
+      imagen: "../imagenes/alitas.jpg",
       rating: 4.8,
+      badge: "spicy",
+      badgeText: "PICANTE",
+      calorias: "680",
+      tiempoPreparacion: "15 min",
+      spicy: true,
+      nuevo: false,
+      vegetariano: false,
+      ingredientes: ["Alitas de pollo", "Marinado especial", "Salsa picante casera", "Especias secretas", "Cilantro fresco"]
+    },
+    {
+      id: 104,
+      nombre: "NACHOS SUPREMOS",
+      descripcion: "Nachos con queso fundido, guacamole, pico de gallo, jalapeños y crema agria",
+      precio: 9.50,
+      imagen: "../imagenes/nachos.jpg",
+      rating: 4.6,
       badge: "bestseller",
       badgeText: "BESTSELLER",
-      calorias: "650",
-      tiempoPreparacion: "5 min",
+      calorias: "720",
+      tiempoPreparacion: "12 min",
       spicy: false,
-      nuevo: true,
+      nuevo: false,
       vegetariano: true,
-      ingredientes: ["Helado de vainilla", "Chocolate belga", "Café espresso", "Crema montada", "Sirope de caramelo"]
-    }
-  ];
-
-  // Datos de postres (ejemplo)
-  const postres = [
+      ingredientes: ["Nachos caseros", "Queso cheddar fundido", "Guacamole fresco", "Pico de gallo", "Jalapeños", "Crema agria", "Cilantro"]
+    },
     {
-      id: 301,
-      nombre: "TARTA DEL PECADO",
-      descripcion: "Tarta de chocolate intenso con centro líquido y helado de vainilla",
-      precio: 7.50,
-      imagen: "../imagenes/tarta.jpg",
+      id: 105,
+      nombre: "DEDOS DE QUESO",
+      descripcion: "Bastones de queso mozzarella rebozados y fritos con salsa marinara",
+      precio: 7.25,
+      imagen: "../imagenes/dedosqueso.jpg",
+      rating: 4.4,
+      badge: "",
+      badgeText: "",
+      calorias: "520",
+      tiempoPreparacion: "10 min",
+      spicy: false,
+      nuevo: false,
+      vegetariano: true,
+      ingredientes: ["Queso mozzarella", "Rebozado crujiente", "Salsa marinara casera", "Hierbas italianas"]
+    },
+    {
+      id: 106,
+      nombre: "PATATAS TRUFADAS",
+      descripcion: "Patatas fritas con aceite de trufa, queso parmesano rallado y perejil fresco",
+      precio: 8.95,
+      imagen: "../imagenes/patatastrufa.jpg",
       rating: 4.9,
       badge: "new",
       badgeText: "NUEVO",
-      calorias: "750",
-      tiempoPreparacion: "10 min",
+      calorias: "480",
+      tiempoPreparacion: "12 min",
       spicy: false,
       nuevo: true,
       vegetariano: true,
-      ingredientes: ["Chocolate negro 70%", "Mantequilla", "Huevos", "Azúcar", "Helado de vainilla", "Frutos rojos"]
+      ingredientes: ["Patatas frescas", "Aceite de trufa", "Queso parmesano", "Sal negra", "Perejil fresco", "Ajo confitado"]
+    },
+    {
+      id: 107,
+      nombre: "JALAPEÑOS RELLENOS",
+      descripcion: "Jalapeños rellenos de queso crema, empanizados y fritos con salsa de chipotle",
+      precio: 7.50,
+      imagen: "../imagenes/jalapenos.jpg",
+      rating: 4.5,
+      badge: "spicy",
+      badgeText: "PICANTE",
+      calorias: "550",
+      tiempoPreparacion: "15 min",
+      spicy: true,
+      nuevo: false,
+      vegetariano: true,
+      ingredientes: ["Jalapeños frescos", "Queso crema", "Queso cheddar", "Empanizado", "Salsa chipotle", "Cilantro fresco"]
+    },
+    {
+      id: 108,
+      nombre: "ENSALADA CÉSAR",
+      descripcion: "Lechuga romana, crutones, queso parmesano y nuestra salsa César casera",
+      precio: 6.95,
+      imagen: "../imagenes/ensalada.jpg",
+      rating: 4.3,
+      badge: "vegan",
+      badgeText: "VEGANO",
+      calorias: "320",
+      tiempoPreparacion: "8 min",
+      spicy: false,
+      nuevo: false,
+      vegetariano: true,
+      ingredientes: ["Lechuga romana", "Crutones caseros", "Queso parmesano", "Salsa César", "Limón", "Pimienta negra"]
     }
   ];
 
-  // Cargar productos iniciales (hamburguesas por defecto)
-  cargarProductos(productos);
+  // Cargar productos iniciales (acompañantes por defecto)
+  cargarProductos(acompanantes);
   
-  // Setup filtros de tipos de producto
+  // Setup navegación entre categorías
   categoriasItems.forEach(item => {
     item.addEventListener('click', (e) => {
       e.preventDefault();
       
-      // Actualizar clase activa
-      categoriasItems.forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
+      // Obtener la URL de destino
+      const destino = item.querySelector('.categoria-link').getAttribute('href');
       
-      // Restablecer filtros secundarios
-      filtrosBtns.forEach(btn => btn.classList.remove('active'));
-      document.querySelector('.filtro-btn[data-filter="all"]').classList.add('active');
-      
-      // Cargar los productos según la categoría
-      const categoria = item.querySelector('.categoria-link').getAttribute('href').split('.')[0];
-      
-      if (categoria.includes('hamburguesas')) {
-        cargarProductos(productos);
-        actualizarIconoHero('fa-hamburger');
-      } else if (categoria.includes('acompanantes')) {
-        cargarProductos(acompanantes);
-        actualizarIconoHero('fa-french-fries');
-      } else if (categoria.includes('bebidas')) {
-        cargarProductos(bebidas);
-        actualizarIconoHero('fa-glass-cheers');
-      } else if (categoria.includes('postres')) {
-        cargarProductos(postres);
-        actualizarIconoHero('fa-ice-cream');
-      }
+      // Redirigir a la página correspondiente
+      window.location.href = destino;
     });
   });
   
@@ -256,26 +161,11 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.add('active');
       
       const filtro = btn.getAttribute('data-filter');
-      let productosActuales = [];
-      
-      // Determinar qué array de productos usar según la categoría activa
-      const categoriaActiva = document.querySelector('.categoria-item.active');
-      const categoriaHref = categoriaActiva.querySelector('.categoria-link').getAttribute('href');
-      
-      if (categoriaHref.includes('hamburguesas')) {
-        productosActuales = productos;
-      } else if (categoriaHref.includes('acompanantes')) {
-        productosActuales = acompanantes;
-      } else if (categoriaHref.includes('bebidas')) {
-        productosActuales = bebidas;
-      } else if (categoriaHref.includes('postres')) {
-        productosActuales = postres;
-      }
       
       if (filtro === 'all') {
-        cargarProductos(productosActuales);
+        cargarProductos(acompanantes);
       } else {
-        const productosFiltrados = productosActuales.filter(p => {
+        const productosFiltrados = acompanantes.filter(p => {
           if (filtro === 'bestseller' && p.badge === 'bestseller') return true;
           if (filtro === 'new' && p.nuevo) return true;
           if (filtro === 'spicy' && p.spicy) return true;
@@ -287,17 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-  
-  // Función para actualizar el icono del héroe según la categoría
-  function actualizarIconoHero(iconClass) {
-    const heroIcon = document.querySelector('.sin-symbol i');
-    heroIcon.className = '';
-    heroIcon.classList.add('fas', iconClass);
-    
-    const dividerIcon = document.querySelector('.divider i');
-    dividerIcon.className = '';
-    dividerIcon.classList.add('fas', iconClass);
-  }
   
   // Cerrar modal
   closeModal.addEventListener('click', () => {
@@ -583,11 +462,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const flyingItem = document.createElement('div');
     flyingItem.className = 'flying-item';
-    flyingItem.innerHTML = '<i class="fas fa-hamburger"></i>';
+    flyingItem.innerHTML = '<i class="fas fa-french-fries"></i>';
     flyingItem.style.position = 'fixed';
     flyingItem.style.zIndex = '9999';
     flyingItem.style.fontSize = '20px';
-    flyingItem.style.color = 'var(--primary-color)';
+    flyingItem.style.color = 'var(--secondary-color)';
     flyingItem.style.transition = 'all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)';
     
     // Posición inicial
@@ -646,6 +525,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const embersContainer = document.querySelector('.floating-embers');
     if (!embersContainer) return;
     
+    // Limpiar brasas existentes
+    embersContainer.innerHTML = '';
+    
     // Crear brasas adicionales
     for (let i = 0; i < 20; i++) {
       const ember = document.createElement('div');
@@ -659,8 +541,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Posición horizontal aleatoria
       ember.style.left = `${Math.random() * 100}%`;
       
-      // Colores aleatorios
-      const colors = ['#ff3300', '#ff6600', '#ff0066', '#ff9900'];
+      // Colores aleatorios - para acompañantes usamos colores turquesa
+      const colors = ['#00ffcc', '#00ccff', '#00ffaa', '#66ffcc'];
       const randomColor = colors[Math.floor(Math.random() * colors.length)];
       ember.style.backgroundColor = randomColor;
       ember.style.boxShadow = `0 0 10px ${randomColor}`;

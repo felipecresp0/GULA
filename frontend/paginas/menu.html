@@ -4,13 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>GULA | Los 7 Pecados Capitales del Sabor</title>
-  
-  <link rel="stylesheet" href="../styles/menu.css" />
+   <link rel="stylesheet" href="../styles/menu.css" />
   <script defer src="../scripts/menu.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
@@ -50,265 +49,311 @@
 
   <!-- HERO BANNER -->
   <section class="menu-hero">
-    <div class="hero-flames">
+    <div class="flame-container">
       <div class="flame flame1"></div>
       <div class="flame flame2"></div>
       <div class="flame flame3"></div>
+      <div class="flame flame4"></div>
+      <div class="flame flame5"></div>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1>LOS 7 PECADOS <span class="glitch-text">CAPITALES</span></h1>
-      <p>DESCUBRE NUESTRA CARTA DE TENTACIONES</p>
+      <div class="sin-symbol">
+        <i class="fas fa-fire"></i>
+      </div>
+      <h1>LOS 7 <span class="glitch-text" data-text="PECADOS">PECADOS</span> CAPITALES</h1>
+      <p class="hero-subtitle">SABORES PARA CAER EN LA TENTACIÓN</p>
+      <div class="hero-divider">
+        <span></span>
+        <i class="fas fa-utensils"></i>
+        <span></span>
+      </div>
     </div>
   </section>
 
   <!-- SPECIAL OFFER BANNER -->
   <div class="special-offer">
     <div class="special-offer-content">
-      <div class="special-tag">OFERTA ESPECIAL</div>
+      <div class="special-tag pulse-element">OFERTA ESPECIAL</div>
       <h3>EL COMBO DEL INFIERNO</h3>
-      <p>Cualquier hamburguesa + patatas + bebida por solo <span>16,66€</span></p>
+      <p>Cualquier hamburguesa + patatas + bebida por solo <span class="price-tag">16,66€</span></p>
       <a href="#" class="special-btn">VER COMBO <i class="fas fa-arrow-right"></i></a>
     </div>
   </div>
 
   <!-- MAIN CONTENT -->
   <main class="main-content">
+    <!-- INTRO SECTION -->
     <section class="menu-intro">
       <div class="section-header">
         <div class="section-icon"><i class="fas fa-fire"></i></div>
-        <h2>NUESTRAS CATEGORÍAS</h2>
+        <h2>NUESTRA CARTA DIABÓLICA</h2>
       </div>
       <p>Selecciona tu categoría y déjate llevar por el pecado</p>
     </section>
 
-    <!-- MENU CATEGORIES SLIDER -->
-    <div class="categories-slider-container">
-      <div class="swiper categories-slider">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="category-card hamburguesa-card" data-category="hamburguesas">
-              <div class="card-img-container">
-                <img src="../imagenes/car" alt="Hamburguesas">
-                <div class="card-overlay"></div>
-                <div class="card-icon">
-                  <i class="fas fa-hamburger"></i>
-                </div>
-              </div>
-              <div class="card-content">
-                <h3 class="neon-text">HAMBURGUESAS</h3>
-                <p>Nuestra selección de pecados entre panes</p>
-                <div class="highlight-tag">Lo más vendido</div>
-                <a href="hamburguesas.html" class="card-btn">EXPLORAR <i class="fas fa-arrow-right"></i></a>
-              </div>
+    <!-- MENU CATEGORIES -->
+    <section class="categories-section">
+      <div class="categories-grid">
+        <!-- Hamburguesas -->
+        <div class="category-card" data-category="hamburguesas">
+          <div class="category-content">
+            <div class="category-icon">
+              <i class="fas fa-hamburger"></i>
             </div>
+            <h3 class="neon-text">HAMBURGUESAS</h3>
+            <p>Nuestra selección de pecados entre panes</p>
+            <div class="highlight-tag">Lo más vendido</div>
+            <a href="hamburguesas.html" class="card-btn">EXPLORAR <i class="fas fa-arrow-right"></i></a>
           </div>
-          
-          <div class="swiper-slide">
-            <div class="category-card acompanantes-card" data-category="acompanantes">
-              <div class="card-img-container">
-                <img src="../imagenes/cartadeentrantes.png" alt="Acompañantes">
-                <div class="card-overlay"></div>
-                <div class="card-icon">
-                  <i class="fas fa-french-fries"></i>
-                </div>
-              </div>
-              <div class="card-content">
-                <h3 class="neon-text-alt">ACOMPAÑANTES</h3>
-                <p>El complemento perfecto para tu tentación</p>
-                <a href="acompanantes.html" class="card-btn">EXPLORAR <i class="fas fa-arrow-right"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="swiper-slide">
-            <div class="category-card bebidas-card" data-category="bebidas">
-              <div class="card-img-container">
-                <img src="../imagenes/cartabebidas.png" alt="Bebidas">
-                <div class="card-overlay"></div>
-                <div class="card-icon">
-                  <i class="fas fa-glass-cheers"></i>
-                </div>
-              </div>
-              <div class="card-content">
-                <h3 class="neon-text">BEBIDAS</h3>
-                <p>Apaga el fuego de la tentación</p>
-                <a href="bebidas.html" class="card-btn">EXPLORAR <i class="fas fa-arrow-right"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="swiper-slide">
-            <div class="category-card postres-card" data-category="postres">
-              <div class="card-img-container">
-                <img src="../imagenes/cartadepostres.png" alt="Postres">
-                <div class="card-overlay"></div>
-                <div class="card-icon">
-                  <i class="fas fa-ice-cream"></i>
-                </div>
-              </div>
-              <div class="card-content">
-                <h3 class="neon-text-alt">POSTRES</h3>
-                <p>El dulce pecado para cerrar tu experiencia</p>
-                <div class="highlight-tag">Nuevo</div>
-                <a href="postres.html" class="card-btn">EXPLORAR <i class="fas fa-arrow-right"></i></a>
-              </div>
-            </div>
+          <div class="category-img">
+            <img src="../imagenes/cartahamburguesas.png" alt="Hamburguesas">
+            <div class="overlay-effect"></div>
           </div>
         </div>
-        
-        <!-- Add pagination -->
-        <div class="swiper-pagination categories-pagination"></div>
-        
-        <!-- Add navigation arrows -->
-        <div class="swiper-button-next categories-button-next"><i class="fas fa-chevron-right"></i></div>
-        <div class="swiper-button-prev categories-button-prev"><i class="fas fa-chevron-left"></i></div>
-      </div>
-    </div>
 
-    <!-- FEATURED BURGERS -->
+        <!-- Acompañantes -->
+        <div class="category-card" data-category="acompanantes">
+          <div class="category-content">
+            <div class="category-icon alt-color">
+              <i class="fas fa-french-fries"></i>
+            </div>
+            <h3 class="neon-text-alt">ACOMPAÑANTES</h3>
+            <p>El complemento perfecto para tu tentación</p>
+            <a href="acompañantes.html" class="card-btn alt-btn">EXPLORAR <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="category-img">
+            <img src="../imagenes/cartadeentrantes.png" alt="Acompañantes">
+            <div class="overlay-effect"></div>
+          </div>
+        </div>
+
+        <!-- Bebidas -->
+        <div class="category-card" data-category="bebidas">
+          <div class="category-content">
+            <div class="category-icon">
+              <i class="fas fa-glass-cheers"></i>
+            </div>
+            <h3 class="neon-text">BEBIDAS</h3>
+            <p>Apaga el fuego de la tentación</p>
+            <a href="bebidas.html" class="card-btn">EXPLORAR <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="category-img">
+            <img src="../imagenes/cartabebidas.png" alt="Bebidas">
+            <div class="overlay-effect"></div>
+          </div>
+        </div>
+
+        <!-- Postres -->
+        <div class="category-card" data-category="postres">
+          <div class="category-content">
+            <div class="category-icon alt-color">
+              <i class="fas fa-ice-cream"></i>
+            </div>
+            <h3 class="neon-text-alt">POSTRES</h3>
+            <p>El dulce pecado para cerrar tu experiencia</p>
+            <div class="highlight-tag">Nuevo</div>
+            <a href="postres.html" class="card-btn alt-btn">EXPLORAR <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="category-img">
+            <img src="../imagenes/cartadepostres.png" alt="Postres">
+            <div class="overlay-effect"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED SINS SECTION -->
     <section class="featured-section">
       <div class="section-header">
         <div class="section-icon"><i class="fas fa-fire"></i></div>
-        <h2>NUESTROS PECADOS DESTACADOS</h2>
+        <h2>PRODUCTOS DESTACADOS</h2>
+        <div class="section-subtitle"></div>
       </div>
 
-      <div class="featured-slider-container">
-        <div class="swiper featured-slider">
+      <!-- CAROUSEL OF SINS -->
+      <div class="sins-carousel-container">
+        <div class="swiper-container sins-carousel">
           <div class="swiper-wrapper">
-            <!-- Hamburguesa 1 -->
+            <!-- Hamburguesa 1 - La Gula -->
             <div class="swiper-slide">
-              <div class="featured-item">
-                <div class="featured-img">
-                  <img src="../imagenes/la-gula.jpg" alt="La Gula">
-                  <div class="featured-badge">BESTSELLER</div>
+              <div class="sin-card" data-sin="gula">
+                <div class="sin-badge">BESTSELLER</div>
+                <div class="sin-img-container">
+                  <img src="../Imagenes/gula.png" alt="La Gula">
+                  <div class="sin-overlay"></div>
+                  <div class="sin-number">1</div>
                 </div>
-                <div class="featured-info">
-                  <h3>LA GULA</h3>
-                  <p class="burger-description">Doble smash burger, queso ahumado, bacon crujiente y salsa especial</p>
-                  <div class="price-cart">
-                    <span class="price">13.95€</span>
+                <div class="sin-content">
+                  <h3 class="sin-title">LA GULA</h3>
+                  <div class="sin-description">
+                    <p>Doble smash burger, queso ahumado fundido, doble de bacon crujiente y nuestra salsa especial pecaminosa</p>
+                  </div>
+                  <div class="sin-footer">
+                    <div class="sin-price">13.95€</div>
                     <button class="add-to-cart-btn"><i class="fas fa-plus"></i></button>
                   </div>
+                  
                 </div>
               </div>
             </div>
 
-            <!-- Hamburguesa 2 -->
+            <!-- Hamburguesa 2 - La Lujuria -->
             <div class="swiper-slide">
-              <div class="featured-item">
-                <div class="featured-img">
-                  <img src="../imagenes/la-lujuria.jpg" alt="La Lujuria">
-                  <div class="featured-badge">TENTADOR</div>
+              <div class="sin-card" data-sin="lujuria">
+                <div class="sin-badge">TENTADOR</div>
+                <div class="sin-img-container">
+                  <img src="../imagenes/lujuria.png" alt="La Lujuria">
+                  <div class="sin-overlay"></div>
+                  <div class="sin-number">2</div>
                 </div>
-                <div class="featured-info">
-                  <h3>LA LUJURIA</h3>
-                  <p class="burger-description">Carne madurada, queso brie fundido, cebolla caramelizada y mermelada de bacon</p>
-                  <div class="price-cart">
-                    <span class="price">14.95€</span>
+                <div class="sin-content">
+                  <h3 class="sin-title">LA LUJURIA</h3>
+                  <div class="sin-description">
+                    <p>Carne de ternera madurada, queso brie fundido, cebolla caramelizada y mermelada de bacon casera</p>
+                  </div>
+                  <div class="sin-footer">
+                    <div class="sin-price">14.95€</div>
                     <button class="add-to-cart-btn"><i class="fas fa-plus"></i></button>
                   </div>
+                  
                 </div>
               </div>
             </div>
 
-            <!-- Hamburguesa 3 -->
+            <!-- Tarta de queso - La Ira -->
             <div class="swiper-slide">
-              <div class="featured-item">
-                <div class="featured-img">
-                  <img src="../imagenes/la-ira.jpg" alt="La Ira">
-                  <div class="featured-badge">PICANTE</div>
+              <div class="sin-card" data-sin="ira">
+                <div class="sin-badge">PICANTE</div>
+                <div class="sin-img-container">
+                  <img src="../Imagenes/tartadequeso.png" alt="La Ira">
+                  <div class="sin-overlay"></div>
+                  <div class="sin-number">3</div>
                 </div>
-                <div class="featured-info">
-                  <h3>LA IRA</h3>
-                  <p class="burger-description">Carne de res, jalapeños frescos, salsa picante casera, pepper jack y guacamole</p>
-                  <div class="price-cart">
-                    <span class="price">13.50€</span>
+                <div class="sin-content">
+                  <h3 class="sin-title">LA IRA</h3>
+                  <div class="sin-description">
+                    <p>Carne de res, jalapeños frescos picados, salsa picante casera, queso pepper jack y guacamole</p>
+                  </div>
+                  <div class="sin-footer">
+                    <div class="sin-price">13.50€</div>
                     <button class="add-to-cart-btn"><i class="fas fa-plus"></i></button>
                   </div>
+                  
                 </div>
               </div>
             </div>
 
-            <!-- Hamburguesa 4 -->
+               <!-- Batido de chocolate - La Pereza -->
             <div class="swiper-slide">
-              <div class="featured-item">
-                <div class="featured-img">
-                  <img src="../imagenes/la-soberbia.jpg" alt="La Soberbia">
-                  <div class="featured-badge">PREMIUM</div>
+              <div class="sin-card" data-sin="pereza">
+                <div class="sin-badge">CLÁSICA</div>
+                <div class="sin-img-container">
+                  <img src="../Imagenes/batidochocolate.png" alt="La Pereza">
+                  <div class="sin-overlay"></div>
+                  <div class="sin-number">5</div>
                 </div>
-                <div class="featured-info">
-                  <h3>LA SOBERBIA</h3>
-                  <p class="burger-description">Carne Black Angus, foie gras, trufa y reducción de Pedro Ximénez</p>
-                  <div class="price-cart">
-                    <span class="price">18.95€</span>
+                <div class="sin-content">
+                  <h3 class="sin-title">LA PEREZA</h3>
+                  <div class="sin-description">
+                    <p>Para los que no quieren complicarse: carne, queso cheddar, lechuga, tomate y salsa casera</p>
+                  </div>
+                  <div class="sin-footer">
+                    <div class="sin-price">12.50€</div>
                     <button class="add-to-cart-btn"><i class="fas fa-plus"></i></button>
                   </div>
+                 
                 </div>
               </div>
             </div>
 
-            <!-- Hamburguesa 5 -->
+
+            <!-- Nachos - La Soberbia -->
             <div class="swiper-slide">
-              <div class="featured-item">
-                <div class="featured-img">
-                  <img src="../imagenes/la-pereza.jpg" alt="La Pereza">
-                  <div class="featured-badge">CLÁSICA</div>
+              <div class="sin-card" data-sin="soberbia">
+                <div class="sin-badge">PREMIUM</div>
+                <div class="sin-img-container">
+                  <img src="../Imagenes/nachos.png" alt="La Soberbia">
+                  <div class="sin-overlay"></div>
+                  <div class="sin-number">4</div>
                 </div>
-                <div class="featured-info">
-                  <h3>LA PEREZA</h3>
-                  <p class="burger-description">Hamburguesa sencilla con carne, queso cheddar, lechuga, tomate y salsa casera</p>
-                  <div class="price-cart">
-                    <span class="price">12.50€</span>
+                <div class="sin-content">
+                  <h3 class="sin-title">LA SOBERBIA</h3>
+                  <div class="sin-description">
+                    <p>Carne Black Angus Premium, medallón de foie gras, láminas de trufa negra y reducción de Pedro Ximénez</p>
+                  </div>
+                  <div class="sin-footer">
+                    <div class="sin-price">18.95€</div>
                     <button class="add-to-cart-btn"><i class="fas fa-plus"></i></button>
                   </div>
+                  
                 </div>
               </div>
             </div>
 
-            <!-- Hamburguesa 6 -->
+         
+            <!-- Fingers de pollo - La Envidia -->
             <div class="swiper-slide">
-              <div class="featured-item">
-                <div class="featured-img">
-                  <img src="../imagenes/la-envidia.jpg" alt="La Envidia">
-                  <div class="featured-badge">VEGETARIANA</div>
+              <div class="sin-card" data-sin="envidia">
+                <div class="sin-badge">VEGANA</div>
+                <div class="sin-img-container">
+                  <img src="../Imagenes/fingers.png" alt="La Envidia">
+                  <div class="sin-overlay"></div>
+                  <div class="sin-number">6</div>
                 </div>
-                <div class="featured-info">
-                  <h3>LA ENVIDIA</h3>
-                  <p class="burger-description">Beyond meat, queso vegano, champiñones, aguacate y salsa de yogur</p>
-                  <div class="price-cart">
-                    <span class="price">15.95€</span>
+                <div class="sin-content">
+                  <h3 class="sin-title">LA ENVIDIA</h3>
+                  <div class="sin-description">
+                    <p>Beyond meat, queso vegano, champiñones salteados, aguacate y salsa especial de yogur</p>
+                  </div>
+                  <div class="sin-footer">
+                    <div class="sin-price">15.95€</div>
                     <button class="add-to-cart-btn"><i class="fas fa-plus"></i></button>
                   </div>
+                  
                 </div>
               </div>
             </div>
 
-            <!-- Hamburguesa 7 -->
+            <!-- Cerveza - La Avaricia -->
             <div class="swiper-slide">
-              <div class="featured-item">
-                <div class="featured-img">
-                  <img src="../imagenes/la-avaricia.jpg" alt="La Avaricia">
-                  <div class="featured-badge">TRIPLE</div>
+              <div class="sin-card" data-sin="avaricia">
+                <div class="sin-badge">TRIPLE</div>
+                <div class="sin-img-container">
+                  <img src="../Imagenes/cerveza.png" alt="La Avaricia">
+                  <div class="sin-overlay"></div>
+                  <div class="sin-number">7</div>
                 </div>
-                <div class="featured-info">
-                  <h3>LA AVARICIA</h3>
-                  <p class="burger-description">Triple carne, triple queso, huevo frito, bacon y cebolla caramelizada</p>
-                  <div class="price-cart">
-                    <span class="price">19.95€</span>
+                <div class="sin-content">
+                  <h3 class="sin-title">LA AVARICIA</h3>
+                  <div class="sin-description">
+                    <p>Triple carne, triple queso, doble bacon, huevo frito, aro de cebolla y salsa barbacoa</p>
+                  </div>
+                  <div class="sin-footer">
+                    <div class="sin-price">19.95€</div>
                     <button class="add-to-cart-btn"><i class="fas fa-plus"></i></button>
                   </div>
+                  
+                    
                 </div>
               </div>
             </div>
           </div>
           
-          <!-- Add pagination -->
-          <div class="swiper-pagination featured-pagination"></div>
+          <!-- Custom Navigation -->
+          <div class="swiper-button-next sins-button-next">
+            <div class="neon-arrow">
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+          <div class="swiper-button-prev sins-button-prev">
+            <div class="neon-arrow">
+              <i class="fas fa-chevron-left"></i>
+            </div>
+          </div>
           
-          <!-- Add navigation arrows -->
-          <div class="swiper-button-next featured-button-next"><i class="fas fa-chevron-right"></i></div>
-          <div class="swiper-button-prev featured-button-prev"><i class="fas fa-chevron-left"></i></div>
+          <!-- Custom Pagination -->
+          <div class="swiper-pagination sins-pagination"></div>
         </div>
       </div>
     </section>
@@ -317,9 +362,12 @@
     <section class="menu-cta">
       <div class="cta-overlay"></div>
       <div class="cta-content">
+        <div class="cta-icon">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
         <h2>¿TIENES EVENTOS O CELEBRACIONES?</h2>
         <p>Nuestras tentaciones también están disponibles para catering</p>
-        <a href="contacto.html" class="cta-button">CONTACTAR <i class="fas fa-arrow-right"></i></a>
+        <a href="contacto.html" class="cta-button">RESERVAR AHORA <i class="fas fa-arrow-right"></i></a>
       </div>
     </section>
   </main>
@@ -331,7 +379,7 @@
       <p>Suscríbete para recibir ofertas exclusivas y ser el primero en conocer nuestras nuevas creaciones</p>
       <form class="newsletter-form">
         <input type="email" placeholder="Tu email" required>
-        <button type="submit">SUSCRIBIRME</button>
+        <button type="submit" class="pulse-element">SUSCRIBIRME</button>
       </form>
     </div>
   </section>
@@ -361,7 +409,7 @@
         <h4>CONTACTO</h4>
         <ul>
           <li><i class="fas fa-envelope"></i> info@gula.es</li>
-          <li><i class="fas fa-phone"></i> +34 666 999 666</li>
+          <li><i class="fas fa-phone"></i> +34 666 666 666</li>
         </ul>
       </div>
       <div class="footer-col">
@@ -391,11 +439,20 @@
     <div class="floating-ember floating-ember2"></div>
     <div class="floating-ember floating-ember3"></div>
     <div class="floating-ember floating-ember4"></div>
+    <div class="floating-ember floating-ember5"></div>
+    <div class="floating-ember floating-ember6"></div>
+    <div class="floating-ember floating-ember7"></div>
   </div>
 
   <!-- CARRITO DESPLEGABLE -->
   <div id="carrito-desplegable">
-    <ul id="lista-carrito"></ul>
+    <div class="carrito-header">
+      <h4>TU PEDIDO</h4>
+      <button class="carrito-close"><i class="fas fa-times"></i></button>
+    </div>
+    <ul id="lista-carrito">
+      <li class="carrito-empty">Tu carrito está vacío</li>
+    </ul>
     <div class="carrito-total">
       <span class="carrito-total-label">Total:</span>
       <span class="carrito-total-precio"><span id="carrito-total">0.00</span> €</span>
@@ -406,5 +463,7 @@
     </div>
   </div>
 
+  <!-- JavaScript -->
+  <script src="scripts/menu.js"></script>
 </body>
 </html>

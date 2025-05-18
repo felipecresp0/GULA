@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GULA | Los 7 Pecados Capitales - Acompañantes</title>
+  
+  <link rel="stylesheet" href="../styles/acompañantes.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="../imagenes/logo.png" alt="Logo Gula" class="logo-img" />
+      </a>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Carta</a>
+      <a href="foodtruck.html">FoodTruck</a>
+      <a href="restaurantes.html">Restaurantes</a>
+    </nav>
+    <div class="header-right">
+      <i class="fas fa-search search-icon" id="search-toggle"></i>
+      <i class="fas fa-shopping-cart cart-icon"><span class="cart-count">0</span></i>
+      <button class="sign-in-btn" onclick="location.href='acceso.html'">Sign in</button>
+      <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <div class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="sin-symbol">
+        <i class="fas fa-french-fries"></i>
+      </div>
+      <h1>NUESTROS <span class="glitch-text">ACOMPAÑANTES</span></h1>
+      <div class="divider">
+        <span></span>
+        <i class="fas fa-french-fries"></i>
+        <span></span>
+      </div>
+      <p>El complemento perfecto para tus pecados</p>
+    </div>
+  </div>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="productos-container">
+    <!-- CATEGORÍAS PRINCIPALES -->
+    <div class="categorias-principales">
+      <ul class="categorias-nav">
+        <li class="categoria-item">
+          <div class="categoria-icon"><i class="fas fa-hamburger"></i></div>
+          <a href="hamburguesas.html" class="categoria-link">Hamburguesas</a>
+        </li>
+        <li class="categoria-item active">
+          <div class="categoria-icon"><i class="fas fa-french-fries"></i></div>
+          <a href="acompañantes.html" class="categoria-link">Acompañantes</a>
+        </li>
+        <li class="categoria-item">
+          <div class="categoria-icon"><i class="fas fa-glass-cheers"></i></div>
+          <a href="bebidas.html" class="categoria-link">Bebidas</a>
+        </li>
+        <li class="categoria-item">
+          <div class="categoria-icon"><i class="fas fa-ice-cream"></i></div>
+          <a href="postres.html" class="categoria-link">Postres</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- FILTROS SECUNDARIOS -->
+    <div class="filtros">
+      <button class="filtro-btn active" data-filter="all">Todos</button>
+      <button class="filtro-btn" data-filter="bestseller">Más Vendidos</button>
+      <button class="filtro-btn" data-filter="new">Novedades</button>
+      <button class="filtro-btn" data-filter="spicy">Picantes</button>
+      <button class="filtro-btn" data-filter="vegan">Veganos</button>
+    </div>
+
+    <!-- PRODUCTOS GRID -->
+    <div id="productos-grid">
+      <!-- Los productos se cargan con JavaScript -->
+    </div>
+
+    <!-- PRODUCTO MODAL -->
+    <div id="producto-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-body">
+          <!-- El contenido del modal se llena con JavaScript -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- NOTIFICATION -->
+  <div class="notification" id="notification">
+    <i class="notification-icon fas fa-check-circle"></i>
+    <span class="notification-message">Producto añadido al carrito</span>
+  </div>
+
+  <!-- FLOATING EMBERS -->
+  <div class="floating-embers">
+    <div class="floating-ember floating-ember1"></div>
+    <div class="floating-ember floating-ember2"></div>
+    <div class="floating-ember floating-ember3"></div>
+    <div class="floating-ember floating-ember4"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer-gula">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>GULA</h4>
+        <p>Hamburguesas que despiertan pecados desde 2022.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/gulabvrgers/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>EXPLORA</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menú</a></li>
+          <li><a href="foodtruck.html">FoodTruck</a></li>
+          <li><a href="restaurantes.html">Restaurantes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>CONTACTO</h4>
+        <ul>
+          <li><i class="fas fa-envelope"></i> info@gula.es</li>
+          <li><i class="fas fa-phone"></i> +34 666 999 666</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>NEWSLETTER</h4>
+        <p>Recibe ofertas pecaminosas</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Tu email">
+          <button type="submit"><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>🔥 Sabor que enciende tus pecados. Hecho con pasión por <strong>GULA</strong> 🍔</p>
+      <p class="copyright">© 2025 GULA. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="../scripts/acompañantes.js"></script>
+</body>
+</html>

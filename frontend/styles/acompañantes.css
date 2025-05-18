@@ -223,12 +223,12 @@ header {
   width: 80px;
   height: 80px;
   margin: 0 auto 20px;
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--glow-effect);
+  box-shadow: var(--glow-effect-turquoise);
 }
 
 .sin-symbol i {
@@ -241,12 +241,12 @@ header {
   text-transform: uppercase;
   margin: 0 0 10px;
   letter-spacing: 3px;
-  text-shadow: 0 0 20px var(--primary-color), 0 0 40px var(--primary-color);
+  text-shadow: 0 0 20px var(--secondary-color), 0 0 40px var(--secondary-color);
 }
 
 .glitch-text {
   position: relative;
-  color: var(--primary-color);
+  color: var(--secondary-color);
   animation: glitch 3s infinite;
 }
 
@@ -260,13 +260,13 @@ header {
 .divider span {
   height: 2px;
   width: 80px;
-  background-color: var(--primary-color);
-  box-shadow: var(--glow-effect);
+  background-color: var(--secondary-color);
+  box-shadow: var(--glow-effect-turquoise);
 }
 
 .divider i {
   margin: 0 15px;
-  color: var(--primary-color);
+  color: var(--secondary-color);
   font-size: 20px;
 }
 
@@ -456,7 +456,7 @@ header {
 .filtro-btn {
   background-color: transparent;
   color: var(--text-color);
-  border: 2px solid var(--primary-color);
+  border: 2px solid var(--secondary-color);
   padding: 8px 20px;
   border-radius: 30px;
   font-size: 0.9rem;
@@ -467,9 +467,10 @@ header {
 
 .filtro-btn:hover,
 .filtro-btn.active {
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   transform: translateY(-3px);
-  box-shadow: var(--glow-effect);
+  box-shadow: var(--glow-effect-turquoise);
+  color: black;
 }
 
 /* =========== PRODUCTOS GRID =========== */
@@ -502,27 +503,27 @@ header {
 
 .producto-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 0, 102, 0.2);
-  border-color: var(--primary-color);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 255, 204, 0.2);
+  border-color: var(--secondary-color);
 }
 
 .producto-badge {
   position: absolute;
   top: 15px;
   left: 15px;
-  background-color: var(--primary-color);
-  color: white;
+  background-color: var(--secondary-color);
+  color: black;
   font-size: 0.7rem;
   font-weight: bold;
   padding: 5px 12px;
   border-radius: 3px;
   z-index: 2;
-  box-shadow: 0 0 10px rgba(255, 0, 102, 0.7);
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.7);
 }
 
-.badge-bestseller { background-color: var(--primary-color); }
-.badge-new { background-color: var(--secondary-color); color: black; }
-.badge-spicy { background-color: var(--ira-color); }
+.badge-bestseller { background-color: var(--secondary-color); color: black; }
+.badge-new { background-color: var(--accent-color); }
+.badge-spicy { background-color: var(--ira-color); color: white; }
 .badge-vegan { background-color: var(--envidia-color); }
 
 .producto-img-container {
@@ -570,8 +571,8 @@ header {
 }
 
 .producto-card:hover .producto-nombre {
-  color: var(--primary-color);
-  text-shadow: 0 0 10px rgba(255, 0, 102, 0.7);
+  color: var(--secondary-color);
+  text-shadow: 0 0 10px rgba(0, 255, 204, 0.7);
 }
 
 .estrellas-container {
@@ -600,26 +601,26 @@ header {
 .producto-precio {
   font-size: 1.3rem;
   font-weight: bold;
-  color: var(--primary-color);
-  text-shadow: 0 0 5px rgba(255, 0, 102, 0.5);
+  color: var(--secondary-color);
+  text-shadow: 0 0 5px rgba(0, 255, 204, 0.5);
 }
 
 .add-btn {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background-color: var(--primary-color);
-  color: white;
+  background-color: var(--secondary-color);
+  color: black;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: var(--transition);
-  box-shadow: 0 0 10px rgba(255, 0, 102, 0.5);
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
 }
 
 .add-btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(255, 0, 102, 0.7);
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
 }
 
 /* =========== MODAL =========== */
@@ -643,8 +644,8 @@ header {
   width: 90%;
   max-width: 900px;
   border-radius: var(--box-radius);
-  box-shadow: 0 0 30px rgba(255, 0, 102, 0.3), 0 0 50px rgba(0, 0, 0, 0.5);
-  border: 1px solid var(--primary-color);
+  box-shadow: 0 0 30px rgba(0, 255, 204, 0.3), 0 0 50px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--secondary-color);
   overflow: hidden;
   animation: modalFadeIn 0.4s ease;
 }
@@ -680,7 +681,7 @@ header {
 }
 
 .close-modal:hover {
-  color: var(--primary-color);
+  color: var(--secondary-color);
   background-color: black;
   transform: rotate(90deg);
 }
@@ -729,8 +730,8 @@ header {
 
 .modal-title {
   font-size: 2.5rem;
-  color: var(--primary-color);
-  text-shadow: 0 0 15px rgba(255, 0, 102, 0.7);
+  color: var(--secondary-color);
+  text-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
   margin-bottom: 10px;
 }
 
@@ -749,7 +750,7 @@ header {
 }
 
 .info-group {
-  border-left: 2px solid var(--primary-color);
+  border-left: 2px solid var(--secondary-color);
   padding-left: 15px;
 }
 
@@ -767,7 +768,7 @@ header {
 }
 
 .info-value.highlight {
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 .ingredients-list {
@@ -778,8 +779,8 @@ header {
 }
 
 .ingredient-tag {
-  background-color: rgba(255, 0, 102, 0.15);
-  border: 1px solid rgba(255, 0, 102, 0.3);
+  background-color: rgba(0, 255, 204, 0.15);
+  border: 1px solid rgba(0, 255, 204, 0.3);
   padding: 5px 12px;
   border-radius: 30px;
   font-size: 0.85rem;
@@ -789,7 +790,7 @@ header {
 }
 
 .ingredient-tag i {
-  color: var(--primary-color);
+  color: var(--secondary-color);
   font-size: 0.8rem;
 }
 
@@ -824,7 +825,7 @@ header {
 
 .already-rated {
   font-size: 0.85rem;
-  color: var(--primary-color);
+  color: var(--secondary-color);
   margin-top: 5px;
 }
 
@@ -856,7 +857,7 @@ header {
 }
 
 .quantity-btn:hover {
-  background-color: rgba(255, 0, 102, 0.5);
+  background-color: rgba(0, 255, 204, 0.5);
 }
 
 .quantity-input {
@@ -872,8 +873,8 @@ header {
 
 .add-to-cart-btn {
   flex: 1;
-  background-color: var(--primary-color);
-  color: white;
+  background-color: var(--secondary-color);
+  color: black;
   padding: 0 30px;
   height: 40px;
   border-radius: var(--border-radius);
@@ -884,13 +885,13 @@ header {
   text-transform: uppercase;
   gap: 10px;
   transition: var(--transition);
-  box-shadow: 0 0 15px rgba(255, 0, 102, 0.3);
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
 }
 
 .add-to-cart-btn:hover {
-  background-color: var(--primary-dark);
+  background-color: var(--secondary-dark);
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(255, 0, 102, 0.5);
+  box-shadow: 0 5px 15px rgba(0, 255, 204, 0.5);
 }
 
 .add-to-cart-btn i {
@@ -910,8 +911,8 @@ header {
   align-items: center;
   gap: 10px;
   z-index: 1000;
-  box-shadow: 0 0 20px rgba(255, 0, 102, 0.3);
-  border-left: 3px solid var(--primary-color);
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+  border-left: 3px solid var(--secondary-color);
   transform: translateY(100px);
   opacity: 0;
   transition: var(--transition);
@@ -923,7 +924,7 @@ header {
 }
 
 .notification-icon {
-  color: var(--primary-color);
+  color: var(--secondary-color);
   font-size: 1.2rem;
 }
 
@@ -942,10 +943,10 @@ header {
   position: absolute;
   width: 10px;
   height: 10px;
-  background-color: #ff3300;
+  background-color: #00ffcc;
   border-radius: 50%;
   filter: blur(1px);
-  box-shadow: 0 0 10px #ff3300;
+  box-shadow: 0 0 10px #00ffcc;
   animation: float-up 5s infinite ease-out;
   opacity: 0;
 }
@@ -993,23 +994,23 @@ header {
 
 @keyframes glitch {
   0%, 5%, 95%, 100% {
-    text-shadow: 0 0 20px var(--primary-color), 0 0 40px var(--primary-color);
+    text-shadow: 0 0 20px var(--secondary-color), 0 0 40px var(--secondary-color);
     transform: none;
   }
   1%, 4% {
-    text-shadow: 1px 0 0 red, -1px 0 0 blue;
+    text-shadow: 1px 0 0 cyan, -1px 0 0 blue;
     transform: translateX(-5px);
   }
   2%, 3% {
-    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+    text-shadow: -1px 0 0 cyan, 1px 0 0 blue;
     transform: translateX(5px);
   }
   96%, 99% {
-    text-shadow: 1px 0 0 red, -1px 0 0 blue;
+    text-shadow: 1px 0 0 cyan, -1px 0 0 blue;
     transform: translateX(-5px);
   }
   97%, 98% {
-    text-shadow: -1px 0 0 red, 1px 0 0 blue;
+    text-shadow: -1px 0 0 cyan, 1px 0 0 blue;
     transform: translateX(5px);
   }
 }
@@ -1239,4 +1240,33 @@ header {
   .quantity-selector {
     width: 100%;
   }
+}
+
+/* =========== MENSAJE SIN PRODUCTOS =========== */
+.no-productos {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: var(--box-radius);
+  border: 1px solid rgba(0, 255, 204, 0.3);
+}
+
+.no-productos i {
+  font-size: 3rem;
+  color: var(--secondary-color);
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
+
+.no-productos h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: var(--secondary-color);
+}
+
+.no-productos p {
+  color: var(--text-dark);
+  max-width: 400px;
+  margin: 0 auto;
 }

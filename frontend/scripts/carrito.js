@@ -22,15 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeModal = document.querySelector('.close-modal');
   const cartCountElement = document.querySelector('.cart-count');
   const notificationElement = document.getElementById('notification');
-  
-  // Obtener token de autenticación
-  const token = localStorage.getItem('token');
-  
-  // Verificar si el usuario está autenticado
-  if (!token) {
-    window.location.href = 'acceso.html';
-    return;
-  }
+ 
   
   // Inicializar efectos visuales
   initVisualEffects();

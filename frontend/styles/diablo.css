@@ -1,0 +1,309 @@
+/* Estilos para el diablo flotante y modal de descuento */
+:root {
+  --devil-primary: #ff0066;
+  --devil-secondary: #ff3300;
+  --devil-glow: 0 0 15px rgba(255, 51, 0, 0.7), 0 0 30px rgba(255, 0, 102, 0.4);
+}
+
+/* Diablo flotante */
+.floating-devil {
+  position: fixed;
+  width: 50px; /* Tamaño reducido para que sea más pequeño */
+  height: 50px; /* Tamaño reducido para que sea más pequeño */
+  z-index: 9999;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  animation: devilFloat 3s ease-in-out infinite;
+}
+
+.floating-devil img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.6));
+}
+
+.floating-devil.hidden {
+  display: none;
+}
+
+.floating-devil:hover {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.devil-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 0, 0, 0.3) 0%, rgba(255, 0, 0, 0) 70%);
+  animation: pulse 2s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Animaciones del diablo */
+@keyframes devilFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes devilAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(-45deg);
+  }
+  70% {
+    transform: scale(1.2) rotate(10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes devilDisappear {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(45deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+}
+
+/* Modal de descuento */
+.discount-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(8px);
+}
+
+.discount-modal-content {
+  background: linear-gradient(135deg, #1a1a1a, #000000);
+  width: 90%;
+  max-width: 500px;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.5), 0 0 60px rgba(255, 0, 102, 0.3);
+  border: 2px solid var(--devil-primary);
+  animation: modalPopIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.discount-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.discount-close:hover {
+  color: var(--devil-primary);
+  transform: rotate(90deg);
+}
+
+.discount-header {
+  background: linear-gradient(135deg, var(--devil-primary), var(--devil-secondary));
+  padding: 25px 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.discount-header h2 {
+  color: white;
+  font-size: 1.8rem;
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.discount-header i {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  animation: fireFlicker 1.5s ease-in-out infinite alternate;
+}
+
+.discount-body {
+  padding: 30px;
+  text-align: center;
+  color: white;
+}
+
+.discount-body p {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.discount-amount {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--devil-primary);
+  margin: 20px 0;
+  text-shadow: var(--devil-glow);
+  animation: pulseText 2s infinite;
+}
+
+.discount-code {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  max-width: 280px;
+  border: 1px dashed rgba(255, 0, 102, 0.5);
+  position: relative;
+}
+
+.discount-code span {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-family: monospace;
+  color: #fff;
+}
+
+#copy-code-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+#copy-code-btn:hover {
+  background: var(--devil-primary);
+  transform: scale(1.1);
+}
+
+.discount-valid {
+  font-size: 0.9rem !important;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 20px;
+}
+
+.discount-btn {
+  display: block;
+  width: 80%;
+  margin: 0 auto 30px;
+  padding: 15px;
+  background: linear-gradient(135deg, var(--devil-primary), var(--devil-secondary));
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+}
+
+.discount-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 0, 0, 0.5);
+}
+
+/* Animaciones para el modal */
+@keyframes modalPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fireFlicker {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 15px rgba(255, 153, 0, 0.7);
+  }
+  50% {
+    opacity: 0.8;
+    text-shadow: 0 0 5px rgba(255, 153, 0, 0.5);
+  }
+}
+
+@keyframes pulseText {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .floating-devil {
+    width: 40px; /* Aún más pequeño en móviles */
+    height: 40px; /* Aún más pequeño en móviles */
+  }
+  
+  .discount-header h2 {
+    font-size: 1.4rem;
+  }
+  
+  .discount-amount {
+    font-size: 2.8rem;
+  }
+  
+  .discount-code span {
+    font-size: 1.2rem;
+  }
+}

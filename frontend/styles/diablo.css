@@ -12,8 +12,8 @@
   height: 50px; /* Tamaño reducido para que sea más pequeño */
   z-index: 9999;
   cursor: pointer;
-  transition: transform 0.3s ease;
-  animation: devilFloat 3s ease-in-out infinite;
+  transition: transform 0.5s ease; /* Transición más lenta */
+  animation: devilFloat 4s ease-in-out infinite; /* Float más lento (4s) */
 }
 
 .floating-devil img {
@@ -29,6 +29,7 @@
 
 .floating-devil:hover {
   transform: scale(1.2) rotate(10deg);
+  filter: brightness(1.2);
 }
 
 .devil-glow {
@@ -39,12 +40,12 @@
   height: 100%;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 0, 0, 0.3) 0%, rgba(255, 0, 0, 0) 70%);
-  animation: pulse 2s ease-in-out infinite;
+  animation: pulse 3s ease-in-out infinite; /* Pulso más lento (3s) */
   pointer-events: none;
   z-index: -1;
 }
 
-/* Animaciones del diablo */
+/* Animaciones del diablo - MODIFICADAS PARA SER MÁS LENTAS */
 @keyframes devilFloat {
   0% {
     transform: translateY(0) rotate(0deg);

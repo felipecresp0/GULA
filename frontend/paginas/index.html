@@ -6,8 +6,10 @@
   <title>GULA | Los 7 Pecados Capitales del Sabor</title>
   <link rel="stylesheet" href="../styles/principal.css" />
   <link rel="stylesheet" href="../styles/diablo.css" />
+  <link rel="stylesheet" href="../styles/game.css" />
   <script defer src="../scripts/main.js"></script>
   <script defer src="../scripts/diablo.js"></script>
+  <script defer src="../scripts/game.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +19,7 @@
 <body>
   <!-- Diablo flotante -->
   <div id="floating-devil" class="floating-devil hidden">
-    <img src="../Imagenes/20250404_1748_Hamburguesa Decadente Neon_remix_01jr0qtc7veqparaxsv43mrbv5.png" alt="Diablo GULA">
+    <img src="../Imagenes/diablo.png" alt="Diablo GULA">
     <div class="devil-glow"></div>
   </div>
 
@@ -109,7 +111,7 @@
         <div class="sin-card" data-sin="gula">
           <div class="sin-badge">BESTSELLER</div>
           <div class="sin-img-container">
-            <img src="imagenes/gula.png" alt="La Gula">
+            <img src="../Imagenes/gula.png" alt="La Gula">
             <div class="sin-overlay"></div>
             <div class="sin-number">1</div>
           </div>
@@ -129,7 +131,7 @@
         <div class="sin-card" data-sin="lujuria">
           <div class="sin-badge">TENTADOR</div>
           <div class="sin-img-container">
-            <img src="imagenes/lujuria.png" alt="La Lujuria">
+            <img src="../Imagenes/lujuria.png" alt="La Lujuria">
             <div class="sin-overlay"></div>
             <div class="sin-number">2</div>
           </div>
@@ -149,7 +151,7 @@
         <div class="sin-card" data-sin="ira">
           <div class="sin-badge">PICANTE</div>
           <div class="sin-img-container">
-            <img src="imagenes/ira.png" alt="La Ira">
+            <img src="../Imagenes/ira.png" alt="La Ira">
             <div class="sin-overlay"></div>
             <div class="sin-number">3</div>
           </div>
@@ -201,22 +203,61 @@
       </div>
     </section>
 
-    <!-- FOODTRUCK SECTION -->
-    <section class="foodtruck-section" data-aos="fade-up">
-      <div class="foodtruck-content">
-        <div class="foodtruck-text">
+    <!-- FOODTRUCK SECTION (REDUCIDA) -->
+    <section class="foodtruck-section-mini" data-aos="fade-up">
+      <div class="foodtruck-content-mini">
+        <div class="foodtruck-text-mini">
           <h2>NUESTRO FOODTRUCK</h2>
           <p>Lleva la tentación a tus eventos</p>
-          <ul class="foodtruck-features">
-            <li><i class="fas fa-check"></i> Eventos privados</li>
-            <li><i class="fas fa-check"></i> Fiestas corporativas</li>
-            <li><i class="fas fa-check"></i> Bodas y celebraciones</li>
-            <li><i class="fas fa-check"></i> Festivales y ferias</li>
-          </ul>
           <a href="foodtruck.html" class="foodtruck-btn">RESERVAR AHORA <i class="fas fa-arrow-right"></i></a>
         </div>
-        <div class="foodtruck-image" data-aos="fade-left" data-aos-delay="200">
+        <div class="foodtruck-image-mini" data-aos="fade-left" data-aos-delay="200">
           <img src="../Imagenes/foodtruck.webp" alt="GULA Foodtruck">
+        </div>
+      </div>
+    </section>
+
+    <!-- JUEGO SECTION (REEMPLAZA CTA) -->
+    <section id="game-section" class="game-section" data-aos="fade-up">
+      <div class="section-header">
+        <div class="section-icon"><i class="fas fa-gamepad"></i></div>
+        <h2>¡CAZA EL DESCUENTO!</h2>
+      </div>
+      <div class="game-description">
+        <p>Juega con nuestro diablito GULA y consigue un cupón de descuento. Recoge hamburguesas y evita los obstáculos.</p>
+      </div>
+      
+      <div class="game-container">
+        <div class="game-overlay">
+          <div class="game-start">
+            <h3>GULA RUNNER</h3>
+            <p>Recoge 10 hamburguesas para ganar un cupón de descuento</p>
+            <button id="start-game" class="game-btn">¡JUGAR AHORA!</button>
+          </div>
+          <div class="game-over hidden">
+            <h3>¡FIN DEL JUEGO!</h3>
+            <p id="game-result">Has recogido: <span id="final-score">0</span> hamburguesas</p>
+            <div id="coupon-container" class="hidden">
+              <p>¡Felicidades! Tu código de descuento es:</p>
+              <div class="coupon-code">GULAPLAYER25</div>
+              <button id="copy-coupon" class="game-btn">COPIAR CÓDIGO</button>
+            </div>
+            <button id="restart-game" class="game-btn">JUGAR DE NUEVO</button>
+          </div>
+        </div>
+        <canvas id="game-canvas" width="800" height="400"></canvas>
+        <div class="game-controls">
+          <div class="game-score">
+            <span>Hamburguesas: </span><span id="score-value">0</span>
+          </div>
+          <div class="mobile-controls">
+            <button id="btn-left"><i class="fas fa-arrow-left"></i></button>
+            <button id="btn-jump"><i class="fas fa-arrow-up"></i></button>
+            <button id="btn-right"><i class="fas fa-arrow-right"></i></button>
+          </div>
+          <div class="game-instructions">
+            <p>Controles: A/D para moverse, W o ESPACIO para saltar</p>
+          </div>
         </div>
       </div>
     </section>
@@ -284,7 +325,7 @@
       <div class="locations-grid">
         <div class="location-card" data-aos="fade-up" data-aos-delay="100">
           <div class="location-img">
-            <img src="imagenes/local1.jpg" alt="GULA Centro">
+            <img src="../Imagenes/local1.jpg" alt="GULA Centro">
           </div>
           <div class="location-info">
             <h3>GULA CENTRO</h3>
@@ -294,7 +335,7 @@
         </div>
         <div class="location-card" data-aos="fade-up" data-aos-delay="200">
           <div class="location-img">
-            <img src="imagenes/local2.jpg" alt="GULA Actur">
+            <img src="../Imagenes/local2.jpg" alt="GULA Actur">
           </div>
           <div class="location-info">
             <h3>GULA ACTUR</h3>
@@ -302,19 +343,6 @@
             <a href="https://maps.google.com" target="_blank" class="location-btn">CÓMO LLEGAR <i class="fas fa-map-marker-alt"></i></a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- CALL TO ACTION -->
-    <section class="cta-section" data-aos="fade-up">
-      <div class="cta-overlay"></div>
-      <div class="cta-content">
-        <div class="cta-icon">
-          <i class="fas fa-calendar-alt"></i>
-        </div>
-        <h2>¿TIENES EVENTOS O CELEBRACIONES?</h2>
-        <p>Nuestras tentaciones también están disponibles para catering</p>
-        <a href="contacto.html" class="cta-button">RESERVAR AHORA <i class="fas fa-arrow-right"></i></a>
       </div>
     </section>
   </main>
@@ -410,21 +438,7 @@
     </div>
   </div>
 
-  <!-- Modal de descuento -->
-<div id="discount-modal" class="discount-modal">
-  <div class="modal-content">
-    <span id="close-modal" class="close">&times;</span>
-    <h2>🔥 ¡Has atrapado al Diablo GULA! 🔥</h2>
-    <p>Tu código de descuento:</p>
-    <strong id="discount-code">GULA5</strong>
-    <button id="copy-code">Copiar código</button>
-    <button id="go-to-menu">Usar en el menú</button>
-  </div>
-</div>
-</body>
-</html>
-
-<!-- Modal de Descuento 
+  <!-- Modal de Descuento -->
   <div id="discount-modal" class="discount-modal">
     <div class="discount-modal-content">
       <span class="discount-close">&times;</span>
@@ -445,4 +459,6 @@
       </div>
       <button class="discount-btn">¡Aprovechar ahora!</button>
     </div>
-  </div>-->
+  </div>
+</body>
+</html>

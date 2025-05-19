@@ -1,0 +1,299 @@
+/* ESTILOS PARA LA SECCIÓN DE FOODTRUCK REDUCIDA */
+.foodtruck-section-mini {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: var(--spacing-md);
+  margin: var(--spacing-md) 0;
+  border-radius: var(--box-radius);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 20px rgba(255, 0, 102, 0.3);
+}
+
+.foodtruck-section-mini::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../imagenes/pattern.png');
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.foodtruck-content-mini {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  position: relative;
+  z-index: 1;
+}
+
+.foodtruck-text-mini {
+  flex: 1;
+  text-align: center;
+}
+
+.foodtruck-text-mini h2 {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-xs);
+  color: var(--primary-color);
+}
+
+.foodtruck-image-mini {
+  flex: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.foodtruck-image-mini img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--box-radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: var(--transition);
+}
+
+/* ESTILOS PARA EL JUEGO */
+.game-section {
+  padding: var(--spacing-md);
+  margin: var(--spacing-lg) 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: var(--box-radius);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 30px rgba(255, 0, 102, 0.4);
+  border: 1px solid var(--primary-color);
+}
+
+.game-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 0, 102, 0.1), rgba(0, 0, 0, 0.2), rgba(255, 204, 0, 0.1));
+  background-size: 400% 400%;
+  animation: gameGradient 15s ease infinite;
+  z-index: 0;
+}
+
+@keyframes gameGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.game-description {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto var(--spacing-md);
+  position: relative;
+  z-index: 1;
+}
+
+.game-description p {
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+
+.game-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  z-index: 1;
+  border: 3px solid var(--primary-color);
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(255, 0, 102, 0.5), inset 0 0 20px rgba(255, 0, 102, 0.3);
+  overflow: hidden;
+}
+
+#game-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background-color: #000;
+}
+
+.game-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.game-start, .game-over {
+  text-align: center;
+  padding: var(--spacing-md);
+  max-width: 80%;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: var(--box-radius);
+  border: 2px solid var(--primary-color);
+  box-shadow: 0 0 20px rgba(255, 0, 102, 0.5);
+}
+
+.game-start h3, .game-over h3 {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-sm);
+  color: var(--primary-color);
+  text-shadow: 0 0 10px rgba(255, 0, 102, 0.7);
+}
+
+.game-start p, .game-over p {
+  margin-bottom: var(--spacing-md);
+  font-size: 1.1rem;
+}
+
+.game-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 0 15px rgba(255, 0, 102, 0.5);
+  margin: 10px 5px;
+}
+
+.game-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(255, 0, 102, 0.5);
+  background-color: var(--primary-dark);
+}
+
+.game-controls {
+  padding: var(--spacing-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-top: 1px solid var(--primary-color);
+}
+
+.game-score {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+  text-shadow: 0 0 5px rgba(255, 0, 102, 0.7);
+}
+
+.mobile-controls {
+  display: none;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.mobile-controls button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 0, 102, 0.8);
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 0 10px rgba(255, 0, 102, 0.5);
+}
+
+.mobile-controls button:active {
+  transform: scale(0.95);
+  background-color: rgba(204, 0, 82, 0.8);
+}
+
+.game-instructions {
+  font-size: 0.9rem;
+  text-align: center;
+  color: var(--text-dark);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Animaciones para elementos del juego */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.coupon-code {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 15px;
+  margin: 15px auto;
+  max-width: 200px;
+  background-color: rgba(255, 0, 102, 0.2);
+  border: 2px dashed var(--primary-color);
+  border-radius: 5px;
+  color: var(--primary-color);
+  text-shadow: 0 0 5px rgba(255, 0, 102, 0.7);
+  animation: pulse 2s infinite alternate;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+/* Responsive para el juego */
+@media (max-width: 992px) {
+  .game-section {
+    padding: var(--spacing-sm);
+  }
+  
+  .game-start h3, .game-over h3 {
+    font-size: 2rem;
+  }
+  
+  .mobile-controls {
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .foodtruck-content-mini {
+    flex-direction: column;
+  }
+  
+  .foodtruck-image-mini {
+    order: -1;
+  }
+  
+  .mobile-controls button {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .game-start h3, .game-over h3 {
+    font-size: 1.5rem;
+  }
+}

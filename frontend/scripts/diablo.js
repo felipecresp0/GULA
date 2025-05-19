@@ -3,24 +3,21 @@
  * Este script controla la aparición aleatoria del diablo y el sistema de descuento
  */
 
-document.addEventListener("DOMContentLoaded", () => {
-  const devil = document.getElementById("floating-devil");
-  const modal = document.getElementById("discount-modal");
-  const closeBtn = document.getElementById("close-modal");
-  const copyBtn = document.getElementById("copy-code");
-  const discountCode = document.getElementById("discount-code");
-  const goToMenuBtn = document.getElementById("go-to-menu");
-
-  const CODES = ["GULA5", "PECADO10", "INFIERNO15"];
-  const randomCode = CODES[Math.floor(Math.random() * CODES.length)];
-  discountCode.textContent = randomCode;
+document.addEventListener('DOMContentLoaded', function() {
+  // Referencias a elementos del DOM
+  const floatingDevil = document.getElementById('floating-devil');
+  const discountModal = document.getElementById('discount-modal');
+  const closeDiscountBtn = document.querySelector('.discount-close');
+  const copyCodeBtn = document.getElementById('copy-code-btn');
+  const discountCode = document.getElementById('discount-code-text');
+  const discountBtn = document.querySelector('.discount-btn');
   
-  // Configuración del diablo
+  // Configuración del diablo - TIEMPOS MODIFICADOS PARA HACERLO MÁS LENTO
   const devilConfig = {
-    minDelay: 10000,    // Tiempo mínimo entre apariciones (10 segundos) - Reducido para testing
-    maxDelay: 30000,    // Tiempo máximo entre apariciones (30 segundos) - Reducido para testing
-    minDuration: 5000,  // Duración mínima de aparición (5 segundos)
-    maxDuration: 10000, // Duración máxima de aparición (10 segundos)
+    minDelay: 20000,    // Tiempo mínimo entre apariciones (20 segundos)
+    maxDelay: 60000,    // Tiempo máximo entre apariciones (1 minuto)
+    minDuration: 8000,  // Duración mínima de aparición (8 segundos) - Aumentado
+    maxDuration: 15000, // Duración máxima de aparición (15 segundos) - Aumentado
     margin: 50,         // Margen desde los bordes de la ventana
     devilCaught: false, // Controlar si ya se ha capturado al diablo
     appearCount: 0,     // Contador de apariciones del diablo
@@ -35,34 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
     'INFIERNO25OFF',
     'CAPTURA25DIABLO'
   ];
-  // ⏱️ Mostrar el diablo automáticamente después de unos segundos
-  setTimeout(() => {
-    devil.classList.remove("hidden");
-    devil.classList.add("show");
-  }, 3000); // cambia el tiempo si quieres
-  // 😈 Clic en el diablo
-  devil.addEventListener("click", () => {
-    devil.classList.add("hidden");
-    modal.classList.add("show");
-  });
-   // ❌ Cerrar el modal
-  closeBtn.addEventListener("click", () => {
-    modal.classList.remove("show");
-  });
-   // 📋 Copiar código al portapapeles
-  copyBtn.addEventListener("click", () => {
-    navigator.clipboard.writeText(randomCode);
-    copyBtn.textContent = "¡Copiado!";
-    setTimeout(() => {
-      copyBtn.textContent = "Copiar código";
-    }, 2000);
-  });
-  // 🍔 Ir al menú
-  goToMenuBtn.addEventListener("click", () => {
-    window.location.href = "menu.html";
-  });
-
-
   
   // Verificar si el usuario ya ha capturado al diablo (almacenado en localStorage)
   if (localStorage.getItem('gulaDevilCaught')) {
@@ -116,8 +85,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Calcular tiempo aleatorio para la próxima aparición
     const delay = Math.floor(Math.random() * (devilConfig.maxDelay - devilConfig.minDelay + 1)) + devilConfig.minDelay;
     
-    // En desarrollo, usar un delay más corto para testing
-    // const delay = 5000; // 5 segundos para testing
+    // Para propósitos de demostración, puedes usar un tiempo más corto
+    // const delay = 5000; // 5 segundos para demo
     
     setTimeout(showDevil, delay);
     
@@ -147,9 +116,11 @@ document.addEventListener("DOMContentLoaded", () => {
     floatingDevil.style.left = `${randomX}px`;
     floatingDevil.style.top = `${randomY}px`;
     
-    // Mostrar el diablo con animación
+    // Mostrar el diablo con animación más lenta
     floatingDevil.classList.remove('hidden');
-    floatingDevil.style.animation = 'devilAppear 0.5s ease-out, devilFloat 3s ease-in-out infinite';
+    
+    // Animación más lenta - 1.5s para aparecer y 4s para el float
+    floatingDevil.style.animation = 'devilAppear 1.5s ease-out, devilFloat 4s ease-in-out infinite';
     
     // Calcular duración aleatoria de aparición
     const duration = Math.floor(Math.random() * (devilConfig.maxDuration - devilConfig.minDuration + 1)) + devilConfig.minDuration;
@@ -169,10 +140,10 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     
-    // Animar desaparición
-    floatingDevil.style.animation = 'devilDisappear 0.5s ease-out forwards';
+    // Animar desaparición más lenta (1.5s)
+    floatingDevil.style.animation = 'devilDisappear 1.5s ease-out forwards';
     
-    // Ocultar después de la animación
+    // Ocultar después de la animación (ajustar según la duración de la animación)
     setTimeout(() => {
       floatingDevil.classList.add('hidden');
       
@@ -180,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
       scheduleDevilAppearance();
       
       console.log('🔥 Diablo desapareció. Programando nueva aparición...');
-    }, 500);
+    }, 1500); // 1500ms para que coincida con la duración de la animación
   }
 
   /**
@@ -193,8 +164,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Almacenar en localStorage
     localStorage.setItem('gulaDevilCaught', 'true');
     
-    // Ocultar el diablo con animación
-    floatingDevil.style.animation = 'devilDisappear 0.5s ease-out forwards';
+    // Ocultar el diablo con animación más lenta (1.5s)
+    floatingDevil.style.animation = 'devilDisappear 1.5s ease-out forwards';
     
     // Seleccionar un código de descuento aleatorio
     const randomCode = discountCodes[Math.floor(Math.random() * discountCodes.length)];
@@ -202,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
       discountCode.textContent = randomCode;
     }
     
-    // Mostrar modal con pequeño retraso
+    // Mostrar modal con pequeño retraso (ajustar según la duración de la animación)
     setTimeout(() => {
       floatingDevil.classList.add('hidden');
       if (discountModal) {
@@ -223,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       
       console.log('🔥 ¡Diablo capturado! Modal de descuento mostrado');
-    }, 500);
+    }, 1500); // 1500ms para que coincida con la duración de la animación
   }
 
   /**

@@ -1,53 +1,53 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("🔥 Página FoodTruck cargada correctamente - Modo Infernal activado");
+  console.log("🔥 FoodTruck Page Successfully Loaded - Infernal Mode Activated");
   
-  // Referencias a elementos DOM
+  // DOM element references
   const searchToggle = document.getElementById("search-toggle");
   const searchOverlay = document.querySelector(".search-overlay");
   const closeSearch = document.querySelector(".close-search");
   const menuToggle = document.querySelector(".menu-toggle");
   const navLinks = document.querySelector(".nav-links");
   
-  // Datos de próximas paradas del foodtruck - con info más detallada
-  const paradasFoodtruck = [
+  // Foodtruck upcoming stops data - with more detailed info
+  const upcomingStops = [
     {
-      ciudad: "Madrid",
-      fecha: "12 de mayo",
+      city: "Madrid",
+      date: "May 12",
       img: "../imagenes/madrid.webp",
-      ubicacion: "Mercado de San Miguel",
-      horario: "18:00 - 00:00"
+      location: "San Miguel Market",
+      hours: "6:00 PM - 12:00 AM"
     },
     {
-      ciudad: "Valencia",
-      fecha: "20 de mayo",
+      city: "Valencia",
+      date: "May 20",
       img: "../imagenes/valencia.jpg",
-      ubicacion: "Plaza de la Reina",
-      horario: "19:00 - 01:00"
+      location: "Plaza de la Reina",
+      hours: "7:00 PM - 1:00 AM"
     },
     {
-      ciudad: "Sevilla",
-      fecha: "5 de junio",
+      city: "Seville",
+      date: "June 5",
       img: "../imagenes/sevilla.jpg",
-      ubicacion: "Parque de María Luisa",
-      horario: "18:30 - 23:30"
+      location: "María Luisa Park",
+      hours: "6:30 PM - 11:30 PM"
     },
     {
-      ciudad: "Barcelona",
-      fecha: "15 de junio",
+      city: "Barcelona",
+      date: "June 15",
       img: "../imagenes/barcelona.webp",
-      ubicacion: "Playa de la Barceloneta",
-      horario: "19:00 - 02:00"
+      location: "Barceloneta Beach",
+      hours: "7:00 PM - 2:00 AM"
     },
     {
-      ciudad: "Zaragoza",
-      fecha: "30 de junio",
+      city: "Zaragoza",
+      date: "June 30",
       img: "../imagenes/zaragoza.jpg",
-      ubicacion: "Plaza del Pilar",
-      horario: "18:00 - 23:00"
+      location: "Plaza del Pilar",
+      hours: "6:00 PM - 11:00 PM"
     }
   ];
   
-  // Funcionalidad Search Overlay
+  // Search Overlay Functionality
   if (searchToggle && searchOverlay && closeSearch) {
     searchToggle.addEventListener("click", () => {
       searchOverlay.classList.add("active");
@@ -61,20 +61,41 @@ document.addEventListener("DOMContentLoaded", () => {
       searchOverlay.classList.remove("active");
       document.body.style.overflow = "";
     });
-  }
-  
-  // Funcionalidad del menú móvil
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
+    
+    // Close search with ESC key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
+        searchOverlay.classList.remove('active');
+        document.body.style.overflow = "";
+      }
     });
   }
   
-  // Carrusel mejorado con selección clara y automática
+  // Mobile menu functionality
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      
+      // Add close button if it doesn't exist
+      if (!navLinks.querySelector('.close-menu')) {
+        const closeButton = document.createElement('button');
+        closeButton.className = 'close-menu';
+        closeButton.innerHTML = '<i class="fas fa-times"></i>';
+        navLinks.prepend(closeButton);
+        
+        // Event to close
+        closeButton.addEventListener('click', () => {
+          navLinks.classList.remove('active');
+        });
+      }
+    });
+  }
+  
+  // Initialize improved carousel
   initImprovedCarousel();
   
-  // Animaciones al scroll
-  const elementos = document.querySelectorAll('.foodtruck-showcase, .foodtruck-info, .upcoming-stops, .book-foodtruck');
+  // Scroll animations
+  const elements = document.querySelectorAll('.foodtruck-showcase, .foodtruck-info, .upcoming-stops, .book-foodtruck');
   
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -87,18 +108,18 @@ document.addEventListener("DOMContentLoaded", () => {
     threshold: 0.2
   });
   
-  elementos.forEach(elemento => {
-    elemento.classList.add('animate-on-scroll');
-    observer.observe(elemento);
+  elements.forEach(element => {
+    element.classList.add('animate-on-scroll');
+    observer.observe(element);
   });
   
-  // Inicializar contadores de carrito
+  // Initialize cart counter
   const cartCountElement = document.querySelector('.cart-count');
   if (cartCountElement) {
     updateCartCount();
   }
   
-  // Añadir efectos hover a la navegación
+  // Add hover effects to navigation
   const navItems = document.querySelectorAll('.nav-links a');
   navItems.forEach(item => {
     item.addEventListener('mouseenter', () => {
@@ -115,10 +136,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   
-  // Crear efecto de partículas de fuego
-  crearEfectoFuego();
+  // Create fire particle effect
+  createFireEffect();
   
-  // Efecto neón aleatorio en elementos del header
+  // Floating devil appearance
+  setTimeout(() => {
+    const floatingDevil = document.getElementById('floating-devil');
+    if (floatingDevil) {
+      floatingDevil.classList.remove('hidden');
+      
+      floatingDevil.addEventListener('click', () => {
+        showDiscountModal();
+      });
+    }
+  }, 5000);
+  
+  // Random neon effect in header elements
   setInterval(() => {
     const randomElement = document.querySelectorAll('.nav-links a, .header-right i')[Math.floor(Math.random() * 5)];
     if (randomElement) {
@@ -131,97 +164,97 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 2000);
 });
 
-// Función para el carrusel mejorado
+// Function for improved carousel
 function initImprovedCarousel() {
   const track = document.getElementById('paradas-foodtruck');
   if (!track) return;
   
-  const paradasFoodtruck = [
+  const upcomingStops = [
     {
-      ciudad: "Madrid",
-      fecha: "12 de mayo",
+      city: "Madrid",
+      date: "May 12",
       img: "../imagenes/madrid.webp",
-      ubicacion: "Mercado de San Miguel",
-      horario: "18:00 - 00:00"
+      location: "San Miguel Market",
+      hours: "6:00 PM - 12:00 AM"
     },
     {
-      ciudad: "Valencia",
-      fecha: "20 de mayo",
+      city: "Valencia",
+      date: "May 20",
       img: "../imagenes/valencia.jpg",
-      ubicacion: "Plaza de la Reina",
-      horario: "19:00 - 01:00"
+      location: "Plaza de la Reina",
+      hours: "7:00 PM - 1:00 AM"
     },
     {
-      ciudad: "Sevilla",
-      fecha: "5 de junio",
+      city: "Seville",
+      date: "June 5",
       img: "../imagenes/sevilla.jpg",
-      ubicacion: "Parque de María Luisa",
-      horario: "18:30 - 23:30"
+      location: "María Luisa Park",
+      hours: "6:30 PM - 11:30 PM"
     },
     {
-      ciudad: "Barcelona",
-      fecha: "15 de junio",
+      city: "Barcelona",
+      date: "June 15",
       img: "../imagenes/barcelona.webp",
-      ubicacion: "Playa de la Barceloneta",
-      horario: "19:00 - 02:00"
+      location: "Barceloneta Beach",
+      hours: "7:00 PM - 2:00 AM"
     },
     {
-      ciudad: "Zaragoza",
-      fecha: "30 de junio",
+      city: "Zaragoza",
+      date: "June 30",
       img: "../imagenes/zaragoza.jpg",
-      ubicacion: "Plaza del Pilar",
-      horario: "18:00 - 23:00"
+      location: "Plaza del Pilar",
+      hours: "6:00 PM - 11:00 PM"
     }
   ];
   
-  // Crear items del carrusel
-  paradasFoodtruck.forEach((parada, index) => {
+  // Create carousel items
+  upcomingStops.forEach((stop, index) => {
     const card = document.createElement("div");
     card.className = "carousel-item";
     card.dataset.index = index;
     
     card.innerHTML = `
-      <img src="${parada.img}" alt="${parada.ciudad}" class="item-image" />
-      <h3 class="item-title">${parada.ciudad}</h3>
-      <p class="item-price">${parada.fecha}</p>
-      <p class="item-location"><i class="fas fa-map-marker-alt"></i> ${parada.ubicacion}</p>
-      <p class="item-location"><i class="fas fa-clock"></i> ${parada.horario}</p>
-      <button class="order-btn" data-ciudad="${parada.ciudad}" data-fecha="${parada.fecha}">RESERVAR</button>
+      <img src="${stop.img}" alt="${stop.city}" class="item-image" />
+      <h3 class="item-title">${stop.city}</h3>
+      <p class="item-price">${stop.date}</p>
+      <p class="item-location"><i class="fas fa-map-marker-alt"></i> ${stop.location}</p>
+      <p class="item-location"><i class="fas fa-clock"></i> ${stop.hours}</p>
+      <button class="order-btn" data-city="${stop.city}" data-date="${stop.date}">BOOK</button>
     `;
     
     track.appendChild(card);
   });
   
-  // Agregar listeners a botones de reserva
-  const reservarBtns = track.querySelectorAll('.order-btn');
-  reservarBtns.forEach(btn => {
+  // Add listeners to booking buttons
+  const bookButtons = track.querySelectorAll('.order-btn');
+  bookButtons.forEach(btn => {
     btn.addEventListener('click', function() {
-      const ciudad = this.getAttribute('data-ciudad');
-      const fecha = this.getAttribute('data-fecha');
-      reservarParada(ciudad, fecha);
+      const city = this.getAttribute('data-city');
+      const date = this.getAttribute('data-date');
+      bookStop(city, date);
     });
   });
   
-  // Variables del carrusel
+  // Carousel variables
   const items = track.querySelectorAll('.carousel-item');
   const prevBtn = document.querySelector('.prev-btn');
   const nextBtn = document.querySelector('.next-btn');
-  const itemWidth = 320; // Ancho + margen del item
+  const itemWidth = 320; // Width + margin of item
   const totalItems = items.length;
   let currentIndex = 0;
   let isTransitioning = false;
   let autoplayInterval;
   
-  // Función para actualizar la posición del carrusel
+  // Function to update carousel position
   function updateCarousel(withAnimation = true) {
     if (isTransitioning) return;
     
-    // Calcular desplazamiento para centrar el elemento actual
-    const trackWidth = track.offsetWidth;
+    // Calculate offset to center current element
+    const trackWidth = track.parentElement.offsetWidth;
     const centerOffset = (trackWidth - itemWidth) / 2;
     const newPosition = (currentIndex * -itemWidth) + centerOffset;
     
-    // Aplicar transición o no según el parámetro
+    // Apply transition based on parameter
     if (withAnimation) {
       isTransitioning = true;
       track.style.transition = 'transform 0.5s ease-out';
@@ -231,7 +264,7 @@ function initImprovedCarousel() {
     
     track.style.transform = `translateX(${newPosition}px)`;
     
-    // Actualizar clases activas
+    // Update active classes
     items.forEach((item, i) => {
       if (i === currentIndex) {
         item.classList.add('active');
@@ -240,7 +273,7 @@ function initImprovedCarousel() {
       }
     });
     
-    // Restablecer la transición después
+    // Reset transition after
     if (!withAnimation) {
       setTimeout(() => {
         track.style.transition = 'transform 0.5s ease-out';
@@ -248,25 +281,25 @@ function initImprovedCarousel() {
     }
   }
   
-  // Event listener para finalizar transición
+  // Event listener for transition end
   track.addEventListener('transitionend', () => {
     isTransitioning = false;
   });
   
-  // Inicializar el carrusel
+  // Initialize carousel
   updateCarousel(false);
   
-  // Avanzar al siguiente elemento automáticamente
+  // Automatically advance to next element
   function startAutoplay() {
     if (autoplayInterval) clearInterval(autoplayInterval);
     
     autoplayInterval = setInterval(() => {
       currentIndex = (currentIndex + 1) % totalItems;
       updateCarousel();
-    }, 3000); // Cambiar cada 3 segundos
+    }, 3000); // Change every 3 seconds
   }
   
-  // Pausar autoplay cuando el ratón está sobre el carrusel
+  // Pause autoplay when mouse is over carousel
   const carouselContainer = track.closest('.carousel-container');
   carouselContainer.addEventListener('mouseenter', () => {
     clearInterval(autoplayInterval);
@@ -276,7 +309,7 @@ function initImprovedCarousel() {
     startAutoplay();
   });
   
-  // Botones de navegación
+  // Navigation buttons
   prevBtn.addEventListener('click', () => {
     clearInterval(autoplayInterval);
     currentIndex = (currentIndex - 1 + totalItems) % totalItems;
@@ -291,65 +324,122 @@ function initImprovedCarousel() {
     startAutoplay();
   });
   
-  // Iniciar autoplay
+  // Start autoplay
   startAutoplay();
 }
 
-// Función para crear el efecto de partículas de fuego
-function crearEfectoFuego() {
+// Function to create fire particle effect
+function createFireEffect() {
   setInterval(() => {
-    // Crear partícula
+    // Create particle
     const particle = document.createElement('div');
     particle.className = 'fire-particle';
     
-    // Posición random en la parte inferior de la pantalla
+    // Random position at bottom of screen
     const posX = Math.random() * window.innerWidth;
     particle.style.left = `${posX}px`;
     particle.style.bottom = '0';
     
-    // Color random entre rojo y naranja
+    // Random color between red and orange
     const hue = Math.floor(Math.random() * 30);
     const saturation = 90 + Math.floor(Math.random() * 10);
     const lightness = 50 + Math.floor(Math.random() * 10);
     particle.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
     
-    // Tamaño random
+    // Random size
     const size = 5 + Math.random() * 10;
     particle.style.width = `${size}px`;
     particle.style.height = `${size}px`;
     
-    // Añadir al DOM
+    // Add to DOM
     document.body.appendChild(particle);
     
-    // Eliminar después de la animación
+    // Remove after animation
     setTimeout(() => {
       particle.remove();
     }, 3000);
   }, 300);
 }
 
-// Función para reservar parada de foodtruck - ahora redirige a reservar.html
-function reservarParada(ciudad, fecha) {
-  // Guardar información de reserva en sessionStorage
-  sessionStorage.setItem('ciudad_reserva', ciudad);
-  sessionStorage.setItem('fecha_reserva', fecha);
+// Function to book foodtruck stop - redirects to booking page
+function bookStop(city, date) {
+  // Save booking information in sessionStorage
+  sessionStorage.setItem('booking_city', city);
+  sessionStorage.setItem('booking_date', date);
   
-  // Redireccionar a la página de reserva
-  window.location.href = 'reservar.html';
+  // Redirect to booking page
+  window.location.href = 'book.html';
 }
 
-// Actualizar contador del carrito
+// Update cart counter
 function updateCartCount() {
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
   const cartCountElement = document.querySelector('.cart-count');
   if (cartCountElement) {
     cartCountElement.textContent = cart.length;
     
-    // Agregar clase de resaltado si hay elementos
+    // Add highlight class if there are items
     if (cart.length > 0) {
       cartCountElement.classList.add('highlighted');
     } else {
       cartCountElement.classList.remove('highlighted');
     }
   }
+}
+
+// Show discount modal when clicking the devil
+function showDiscountModal() {
+  // Create modal if it doesn't exist
+  if (!document.getElementById('discount-modal')) {
+    const modal = document.createElement('div');
+    modal.id = 'discount-modal';
+    modal.className = 'discount-modal';
+    
+    modal.innerHTML = `
+      <div class="discount-modal-content">
+        <span class="discount-close">&times;</span>
+        <div class="discount-header">
+          <i class="fas fa-fire"></i>
+          <h2>YOU'VE CAUGHT THE DEVIL!</h2>
+          <i class="fas fa-fire"></i>
+        </div>
+        <div class="discount-body">
+          <p>Congratulations! You've earned a special discount of</p>
+          <div class="discount-amount">25% OFF</div>
+          <p>Use this code on your next purchase:</p>
+          <div class="discount-code">
+            <span id="discount-code-text">DIABLOGULA25</span>
+            <button id="copy-code-btn"><i class="fas fa-copy"></i></button>
+          </div>
+          <p class="discount-valid">Valid until 06/30/2025</p>
+        </div>
+        <button class="discount-btn">Use it now!</button>
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Add event listeners to modal
+    const closeBtn = modal.querySelector('.discount-close');
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+    
+    const copyBtn = modal.querySelector('#copy-code-btn');
+    copyBtn.addEventListener('click', () => {
+      const codeText = document.getElementById('discount-code-text').textContent;
+      navigator.clipboard.writeText(codeText).then(() => {
+        alert('Discount code copied to clipboard!');
+      });
+    });
+    
+    const useBtn = modal.querySelector('.discount-btn');
+    useBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+      window.location.href = 'menu.html';
+    });
+  }
+  
+  // Show the modal
+  document.getElementById('discount-modal').style.display = 'block';
 }

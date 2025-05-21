@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (restaurantesCercanos.length === 0) {
           // Crear una notificación personalizada
-          mostrarNotificacion("No se encontraron restaurantes en tu zona. Prueba con otro código postal.", "error");
+         mostrarNotificacion("No restaurants found in your area. Try a different postal code.", "error");
           return;
         }
         
@@ -233,7 +233,8 @@ document.addEventListener('DOMContentLoaded', () => {
           mapa.setView([restaurantesCercanos[0].latitud, restaurantesCercanos[0].longitud], 13);
           
           // Mostrar notificación de éxito
-          mostrarNotificacion(`Se encontraron ${restaurantesCercanos.length} restaurantes en tu zona.`, "success");
+          mostrarNotificacion(`Found ${restaurantesCercanos.length} restaurants in your area.`, "success");
+
         }
         
       } catch (error) {

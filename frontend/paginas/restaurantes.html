@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Restaurantes GULA | Encuenta tu Infierno</title>
+  <title>GULA Restaurants | Find your Hell</title>
   
   <link rel="stylesheet" href="../styles/restaurantes.css" />
   <script defer src="../scripts/restaurantes.js"></script>
@@ -20,19 +20,19 @@
   <header>
     <div class="logo">
       <a href="index.html">
-          <img src="../imagenes/logo.png" alt="Logo Gula" class="logo-img" />
+          <img src="../imagenes/logo.png" alt="Gula Logo" class="logo-img" />
       </a>
     </div>
     <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="menu.html">Burgers</a>
       <a href="foodtruck.html">FoodTruck</a>
-      <a href="restaurantes.html" class="active">Restaurantes</a>
+      <a href="restaurantes.html" class="active">Restaurants</a>
     </nav>
     <div class="header-right">
       <i class="fas fa-search search-icon" id="search-toggle"></i>
       <div class="search-container">
-        <input type="text" placeholder="Buscar..." class="search-input">
+        <input type="text" placeholder="Search..." class="search-input">
         <button class="search-btn"><i class="fas fa-search"></i></button>
       </div>
       <i class="fas fa-shopping-cart cart-icon" onclick="location.href='carrito.html'"><span class="cart-count">0</span></i>
@@ -46,7 +46,7 @@
   <!-- SEARCH OVERLAY -->
   <div class="search-overlay">
     <div class="search-box">
-      <input type="text" placeholder="¿Qué pecado buscas?" class="search-input-overlay">
+      <input type="text" placeholder="What sin are you looking for?" class="search-input-overlay">
       <button class="search-btn-overlay"><i class="fas fa-search"></i></button>
     </div>
     <i class="fas fa-times close-search"></i>
@@ -56,31 +56,31 @@
   <section class="hero-banner">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1>TEMPLOS DEL <span class="highlight">PECADO</span></h1>
-      <p>ENCUENTRA TU INFIERNO MÁS CERCANO</p>
+      <h1>TEMPLES OF <span class="highlight">SIN</span></h1>
+      <p>FIND YOUR NEAREST HELL</p>
     </div>
   </section>
 
-  <!-- CONTENIDO PRINCIPAL -->
+  <!-- MAIN CONTENT -->
   <main class="contenido">
 
-    <!-- INTRO SECCIÓN -->
+    <!-- INTRO SECTION -->
     <section class="intro-section">
       <div class="section-heading">
         <div class="flame-icon"><i class="fas fa-fire"></i></div>
-        <h2>NUESTROS ANTROS DE PERDICIÓN</h2>
+        <h2>OUR DENS OF PERDITION</h2>
       </div>
-      <p class="intro-text">Descubre dónde caer en la tentación. Nuestros restaurantes son templos donde la carne se adora y el placer culinario no conoce límites. Introduce tu código postal y encuentra el camino a la perdición más cercano.</p>
+      <p class="intro-text">Discover where to fall into temptation. Our restaurants are temples where meat is worshipped and culinary pleasure knows no limits. Enter your zip code and find the nearest path to perdition.</p>
       
       <form id="busqueda-form" class="search-form">
         <div class="input-group">
-          <input type="text" id="codigo-postal" placeholder="INTRODUCE TU CÓDIGO POSTAL" required />
-          <button type="submit" class="search-btn-cp">BUSCAR <i class="fas fa-search"></i></button>
+          <input type="text" id="codigo-postal" placeholder="ENTER YOUR ZIP CODE" required />
+          <button type="submit" class="search-btn-cp">SEARCH <i class="fas fa-search"></i></button>
         </div>
       </form>
     </section>
 
-    <!-- MAPA INTERACTIVO -->
+    <!-- INTERACTIVE MAP -->
     <section class="map-section">
       <div class="map-container">
         <div id="restaurantes-mapa"></div>
@@ -93,11 +93,11 @@
       </div>
     </section>
 
-    <!-- RESTAURANTES DESTACADOS -->
+    <!-- FEATURED RESTAURANTS -->
     <section class="featured-restaurants">
       <div class="section-heading centered">
         <div class="flame-icon"><i class="fas fa-fire"></i></div>
-        <h2>RESTAURANTES DESTACADOS</h2>
+        <h2>FEATURED RESTAURANTS</h2>
       </div>
       
       <div class="restaurant-grid">
@@ -116,7 +116,7 @@
               <span><i class="fas fa-wifi"></i> WiFi</span>
               <span><i class="fas fa-glass-cheers"></i> Bar</span>
             </div>
-            <button class="reserve-btn" data-restaurant="madrid" onclick="window.location.href='reservas.html?restaurante=madrid'">RESERVAR MESA</button>
+            <button class="reserve-btn" data-restaurant="madrid" onclick="window.location.href='reservas.html?restaurante=madrid'">RESERVE TABLE</button>
           </div>
         </div>
         
@@ -135,7 +135,7 @@
               <span><i class="fas fa-wifi"></i> WiFi</span>
               <span><i class="fas fa-glass-cheers"></i> Bar</span>
             </div>
-            <button class="reserve-btn" data-restaurant="barcelona" onclick="window.location.href='reservas.html?restaurante=barcelona'">RESERVAR MESA</button>
+            <button class="reserve-btn" data-restaurant="barcelona" onclick="window.location.href='reservas.html?restaurante=barcelona'">RESERVE TABLE</button>
           </div>
         </div>
         
@@ -152,60 +152,60 @@
             <div class="restaurant-features">
               <span><i class="fas fa-parking"></i> Parking</span>
               <span><i class="fas fa-wifi"></i> WiFi</span>
-              <span><i class="fas fa-utensils"></i> Terraza</span>
+              <span><i class="fas fa-utensils"></i> Terrace</span>
             </div>
-            <button class="reserve-btn" data-restaurant="valencia" onclick="window.location.href='reservas.html?restaurante=valencia'">RESERVAR MESA</button>
+            <button class="reserve-btn" data-restaurant="valencia" onclick="window.location.href='reservas.html?restaurante=valencia'">RESERVE TABLE</button>
           </div>
         </div>
       </div>
     </section>
     
-    <!-- INFORMACIÓN RESTAURANTES -->
+    <!-- RESTAURANT INFORMATION -->
     <section class="restaurant-info-section">
       <div class="info-container">
         <div class="info-card">
           <div class="info-icon">
             <i class="fas fa-calendar-alt"></i>
           </div>
-          <h3>RESERVA TU MESA</h3>
-          <p>Asegura tu lugar en el infierno gastronómico. Reservas disponibles todos los días. Para grupos grandes, contacta directamente con el restaurante.</p>
+          <h3>BOOK YOUR TABLE</h3>
+          <p>Secure your place in culinary hell. Reservations available every day. For large groups, contact the restaurant directly.</p>
         </div>
         
         <div class="info-card">
           <div class="info-icon">
             <i class="fas fa-concierge-bell"></i>
           </div>
-          <h3>EXPERIENCIA EXCLUSIVA</h3>
-          <p>Cada restaurante GULA está diseñado para ofrecerte una experiencia única. Personal infernal a tu servicio para hacer de tu visita un pecado inolvidable.</p>
+          <h3>EXCLUSIVE EXPERIENCE</h3>
+          <p>Each GULA restaurant is designed to offer you a unique experience. Infernal staff at your service to make your visit an unforgettable sin.</p>
         </div>
         
         <div class="info-card">
           <div class="info-icon">
             <i class="fas fa-gift"></i>
           </div>
-          <h3>EVENTOS Y CELEBRACIONES</h3>
-          <p>¿Quieres celebrar tu cumpleaños o evento especial en GULA? Ofrecemos paquetes personalizados y áreas privadas. Consulta en tu restaurante.</p>
+          <h3>EVENTS AND CELEBRATIONS</h3>
+          <p>Want to celebrate your birthday or special event at GULA? We offer customized packages and private areas. Check with your local restaurant.</p>
         </div>
       </div>
     </section>
     
-    <!-- OVERLAY DE DETALLES DE RESTAURANTE -->
+    <!-- RESTAURANT DETAILS OVERLAY -->
     <div id="restaurant-details-overlay" class="restaurant-overlay">
       <div class="overlay-content">
         <span class="close-overlay"><i class="fas fa-times"></i></span>
         <div id="restaurant-details-content">
-          <!-- El contenido se rellena dinámicamente con JS -->
+          <!-- Content is dynamically filled with JS -->
         </div>
       </div>
     </div>
   </main>
 
-  <!-- FOOTER PROFESIONAL -->
+  <!-- PROFESSIONAL FOOTER -->
   <footer class="footer-gula">
     <div class="footer-top">
       <div class="footer-col">
         <h4>GULA</h4>
-        <p>Hamburguesas que despiertan pecados desde 2022.</p>
+        <p>Burgers that awaken sins since 2022.</p>
         <div class="social-links">
           <a href="https://www.instagram.com/gulabvrgers/" target="_blank"><i class="fab fa-instagram"></i></a>
           <a href="#"><i class="fab fa-facebook"></i></a>
@@ -213,16 +213,16 @@
         </div>
       </div>
       <div class="footer-col">
-        <h4>EXPLORA</h4>
+        <h4>EXPLORE</h4>
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="menu.html">Menú</a></li>
+          <li><a href="menu.html">Menu</a></li>
           <li><a href="foodtruck.html">FoodTruck</a></li>
-          <li><a href="restaurantes.html">Restaurantes</a></li>
+          <li><a href="restaurantes.html">Restaurants</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>CONTACTO</h4>
+        <h4>CONTACT</h4>
         <ul>
           <li><i class="fas fa-envelope"></i> info@gula.es</li>
           <li><i class="fas fa-phone"></i> +34 666 666 666</li>
@@ -230,16 +230,16 @@
       </div>
       <div class="footer-col">
         <h4>NEWSLETTER</h4>
-        <p>Recibe ofertas pecaminosas</p>
+        <p>Receive sinful offers</p>
         <div class="newsletter-form">
-          <input type="email" placeholder="Tu email">
+          <input type="email" placeholder="Your email">
           <button type="submit"><i class="fas fa-paper-plane"></i></button>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>🔥 Sabor que enciende tus pecados. Hecho con pasión por <strong>GULA</strong> 🍔</p>
-      <p class="copyright">© 2025 GULA. Todos los derechos reservados.</p>
+      <p>🔥 Flavor that ignites your sins. Made with passion by <strong>GULA</strong> 🍔</p>
+      <p class="copyright">© 2025 GULA. All rights reserved.</p>
     </div>
   </footer>
 

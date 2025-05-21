@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Reserva FoodTruck | GULA | Los 7 Pecados Capitales del Sabor</title>
-  <link rel="stylesheet" href="../styles/principal.css" />
+  <link rel="stylesheet" href="..//styles/principal.css" />
   <link rel="stylesheet" href="../styles/reservar.css" />
   <script defer src="../scripts/main.js"></script>
   <script defer src="../scripts/reservar.js"></script>
@@ -19,7 +19,7 @@
   <header class="header">
     <div class="logo">
       <a href="index.html">
-        <img src="../Imagenes/logo.png" alt="Logo Gula" class="logo-img" />
+        <img src="imagenes/logo.png" alt="Logo Gula" class="logo-img" />
       </a>
     </div>
     <nav class="nav-links">
@@ -61,7 +61,6 @@
       <div class="sin-symbol">
         <i class="fas fa-truck"></i>
       </div>
-      <h1>RESERVA NUESTRO <span class="glitch-text" data-text="FOODTRUCK">FOODTRUCK</span></h1>
       <p class="hero-subtitle">LLEVA LOS PECADOS A TU EVENTO</p>
       <div class="hero-divider">
         <span></span>
@@ -90,6 +89,9 @@
         <div class="floating-ember floating-ember2"></div>
         <div class="floating-ember floating-ember3"></div>
         <div class="floating-ember floating-ember4"></div>
+        <div class="floating-ember floating-ember5"></div>
+        <div class="floating-ember floating-ember6"></div>
+        <div class="floating-ember floating-ember7"></div>
       </div>
       
       <div class="reserva-container">
@@ -104,7 +106,7 @@
             <li><i class="fas fa-check-circle"></i> Menú personalizable</li>
           </ul>
           <div class="reserva-image">
-            <img src="../Imagenes/foodtruck.webp" alt="GULA Foodtruck">
+            <img src="../Imagenes/foodtruck2.png" alt="GULA Foodtruck">
             <div class="image-overlay"></div>
             <div class="image-badge pulse-element">FOODTRUCK GULA</div>
           </div>
@@ -120,111 +122,176 @@
             <h3>FORMULARIO DE RESERVA</h3>
           </div>
           
-          <!-- El indicador de progreso se insertará aquí mediante JavaScript -->
+          <div class="form-progress">
+            <div class="progress-step active" data-step="1">
+              <div class="step-number">1</div>
+              <div class="step-label">DATOS DE CONTACTO</div>
+            </div>
+            <div class="progress-step" data-step="2">
+              <div class="step-number">2</div>
+              <div class="step-label">DATOS DEL EVENTO</div>
+            </div>
+            <div class="progress-step" data-step="3">
+              <div class="step-number">3</div>
+              <div class="step-label">MENÚ Y UBICACIÓN</div>
+            </div>
+          </div>
           
           <form id="reserva-form" class="reserva-form">
-            <div class="form-group">
-              <label for="nombre">Nombre completo *</label>
-              <input type="text" id="nombre" name="nombre" required>
-              <span class="error-message" id="error-nombre"></span>
+            <!-- PASO 1: DATOS DE CONTACTO -->
+            <div class="form-step" id="step-1">
+              <div class="form-group">
+                <label for="nombre">Nombre completo *</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <span class="error-message" id="error-nombre"></span>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Email *</label>
+                  <input type="email" id="email" name="email" required>
+                  <span class="error-message" id="error-email"></span>
+                </div>
+                
+                <div class="form-group">
+                  <label for="telefono">Teléfono *</label>
+                  <input type="tel" id="telefono" name="telefono" required>
+                  <span class="error-message" id="error-telefono"></span>
+                </div>
+              </div>
+              
+              <div class="form-nav">
+                <button type="button" class="step-btn next-btn">
+                  SIGUIENTE <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
             </div>
             
-            <div class="form-row">
+            <!-- PASO 2: DATOS DEL EVENTO -->
+            <div class="form-step" id="step-2" style="display: none;">
               <div class="form-group">
-                <label for="email">Email *</label>
-                <input type="email" id="email" name="email" required>
-                <span class="error-message" id="error-email"></span>
+                <label for="tipo-evento">Tipo de evento *</label>
+                <select id="tipo-evento" name="tipo-evento" required>
+                  <option value="">Selecciona una opción</option>
+                  <option value="corporativo">Evento corporativo</option>
+                  <option value="boda">Boda</option>
+                  <option value="cumpleanos">Cumpleaños</option>
+                  <option value="festival">Festival o feria</option>
+                  <option value="otro">Otro</option>
+                </select>
+                <span class="error-message" id="error-tipo-evento"></span>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fecha">Fecha del evento *</label>
+                  <input type="date" id="fecha" name="fecha" required>
+                  <span class="error-message" id="error-fecha"></span>
+                </div>
+                
+                <div class="form-group">
+                  <label for="hora">Hora del evento *</label>
+                  <input type="time" id="hora" name="hora" required>
+                  <span class="error-message" id="error-hora"></span>
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="duracion">Duración (horas) *</label>
+                  <input type="number" id="duracion" name="duracion" min="2" max="8" required>
+                  <span class="error-message" id="error-duracion"></span>
+                </div>
+                
+                <div class="form-group">
+                  <label for="invitados">Número de invitados *</label>
+                  <input type="number" id="invitados" name="invitados" min="20" required>
+                  <span class="error-message" id="error-invitados"></span>
+                </div>
+              </div>
+              
+              <div class="form-nav">
+                <button type="button" class="step-btn prev-btn">
+                  <i class="fas fa-arrow-left"></i> ANTERIOR
+                </button>
+                <button type="button" class="step-btn next-btn">
+                  SIGUIENTE <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+            
+            <!-- PASO 3: MENÚ Y UBICACIÓN -->
+            <div class="form-step" id="step-3" style="display: none;">
+              <div class="menu-selector-compact">
+                <div class="menu-selector-header">
+                  <i class="fas fa-utensils"></i>
+                  <h3>SELECCIONA UN MENÚ</h3>
+                </div>
+                <div class="menu-options">
+                  <div class="menu-option" data-menu="basico">
+                    <div class="menu-name">MENÚ BÁSICO</div>
+                    <div class="menu-price">14€/persona</div>
+                    <div class="menu-items">
+                      <span>1 hamburguesa + patatas + bebida</span>
+                    </div>
+                  </div>
+                  <div class="menu-option" data-menu="tentacion">
+                    <div class="menu-badge">POPULAR</div>
+                    <div class="menu-name">TENTACIÓN</div>
+                    <div class="menu-price">19€/persona</div>
+                    <div class="menu-items">
+                      <span>1 hamburguesa + patatas deluxe + entrante + bebida + postre</span>
+                    </div>
+                  </div>
+                  <div class="menu-option" data-menu="pecado">
+                    <div class="menu-name">PECADO CAPITAL</div>
+                    <div class="menu-price">25€/persona</div>
+                    <div class="menu-items">
+                      <span>Experiencia completa + barra libre + café</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="custom-menu-container">
+                  <textarea id="custom-menu" name="custom-menu" class="custom-menu-textarea" placeholder="Especificaciones, alergias o intolerancias..."></textarea>
+                </div>
+                <input type="hidden" id="menu-seleccionado" name="menu-seleccionado" value="">
               </div>
               
               <div class="form-group">
-                <label for="telefono">Teléfono *</label>
-                <input type="tel" id="telefono" name="telefono" required>
-                <span class="error-message" id="error-telefono"></span>
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label for="tipo-evento">Tipo de evento *</label>
-              <select id="tipo-evento" name="tipo-evento" required>
-                <option value="">Selecciona una opción</option>
-                <option value="corporativo">Evento corporativo</option>
-                <option value="boda">Boda</option>
-                <option value="cumpleanos">Cumpleaños</option>
-                <option value="festival">Festival o feria</option>
-                <option value="otro">Otro</option>
-              </select>
-              <span class="error-message" id="error-tipo-evento"></span>
-            </div>
-            
-            <div class="form-row">
-              <div class="form-group">
-                <label for="fecha">Fecha del evento *</label>
-                <input type="date" id="fecha" name="fecha" required>
-                <span class="error-message" id="error-fecha"></span>
-                <!-- La vista previa de fecha se insertará aquí mediante JavaScript -->
+                <label for="direccion">Dirección del evento *</label>
+                <input type="text" id="direccion" name="direccion" required>
+                <span class="error-message" id="error-direccion"></span>
               </div>
               
-              <div class="form-group">
-                <label for="hora">Hora del evento *</label>
-                <input type="time" id="hora" name="hora" required>
-                <span class="error-message" id="error-hora"></span>
-              </div>
-            </div>
-            
-            <div class="form-row">
-              <div class="form-group">
-                <label for="duracion">Duración (horas) *</label>
-                <input type="number" id="duracion" name="duracion" min="2" max="8" required>
-                <span class="error-message" id="error-duracion"></span>
-              </div>
-              
-              <div class="form-group">
-                <label for="invitados">Número de invitados *</label>
-                <input type="number" id="invitados" name="invitados" min="20" required>
-                <span class="error-message" id="error-invitados"></span>
-              </div>
-            </div>
-            
-            <!-- El selector de menús se insertará aquí mediante JavaScript -->
-            
-            <div class="form-group">
-              <label for="direccion">Dirección del evento *</label>
-              <input type="text" id="direccion" name="direccion" required>
-              <span class="error-message" id="error-direccion"></span>
-            </div>
-            
-            <div class="form-row">
-              <div class="form-group">
-                <label for="ciudad">Ciudad *</label>
-                <input type="text" id="ciudad" name="ciudad" required>
-                <span class="error-message" id="error-ciudad"></span>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="ciudad">Ciudad *</label>
+                  <input type="text" id="ciudad" name="ciudad" required>
+                  <span class="error-message" id="error-ciudad"></span>
+                </div>
+                
+                <div class="form-group">
+                  <label for="codigo-postal">Código Postal *</label>
+                  <input type="text" id="codigo-postal" name="codigo-postal" required>
+                  <span class="error-message" id="error-codigo-postal"></span>
+                </div>
               </div>
               
-              <div class="form-group">
-                <label for="codigo-postal">Código Postal *</label>
-                <input type="text" id="codigo-postal" name="codigo-postal" required>
-                <span class="error-message" id="error-codigo-postal"></span>
+              <div class="form-group checkbox-group">
+                <input type="checkbox" id="terminos" name="terminos" required>
+                <label for="terminos">Acepto los <a href="#" class="terms-link">términos y condiciones</a> *</label>
+                <span class="error-message" id="error-terminos"></span>
               </div>
-            </div>
-            
-            <!-- El contenedor del mapa se insertará aquí mediante JavaScript -->
-            
-            <div class="form-group">
-              <label for="mensaje">Detalles adicionales o requisitos especiales</label>
-              <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos más sobre tu evento y cualquier petición especial..."></textarea>
-            </div>
-            
-            <div class="form-group checkbox-group">
-              <input type="checkbox" id="terminos" name="terminos" required>
-              <label for="terminos">Acepto los <a href="#" class="terms-link">términos y condiciones</a> *</label>
-              <span class="error-message" id="error-terminos"></span>
-            </div>
-            
-            <div class="form-actions">
-              <button type="submit" class="submit-btn pulse-element">
-                <span class="btn-text">ENVIAR SOLICITUD</span>
-                <i class="fas fa-arrow-right"></i>
-              </button>
+              
+              <div class="form-nav">
+                <button type="button" class="step-btn prev-btn">
+                  <i class="fas fa-arrow-left"></i> ANTERIOR
+                </button>
+                <button type="submit" class="submit-btn pulse-element">
+                  <span class="btn-text">ENVIAR SOLICITUD</span>
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
             </div>
           </form>
           
@@ -250,7 +317,7 @@
             <span class="faq-icon"><i class="fas fa-plus"></i></span>
           </div>
           <div class="faq-answer">
-            <p>Recomendamos reservar con al menos 2 semanas de antelación para garantizar disponibilidad, especialmente en temporada alta (mayo-septiembre). Para eventos grandes o fechas especiales, mejor con 1-2 meses de antelación.</p>
+            <p>Recomendamos reservar con al menos 2 semanas de antelación para garantizar disponibilidad, especialmente en temporada alta (mayo-septiembre). Para eventos grandes o fechas especiales como bodas, mejor con 1-2 meses de antelación. ¡Cuanto antes nos contactes, más opciones tendrás para asegurar tu fecha ideal!</p>
           </div>
         </div>
         
@@ -260,7 +327,7 @@
             <span class="faq-icon"><i class="fas fa-plus"></i></span>
           </div>
           <div class="faq-answer">
-            <p>El precio varía según varios factores: número de invitados, duración del evento, distancia a recorrer, y opciones de menú. Después de recibir tu solicitud, te enviaremos un presupuesto personalizado sin compromiso.</p>
+            <p>El precio varía según varios factores: número de invitados, duración del evento, distancia a recorrer, y opciones de menú. Nuestros packs comienzan desde 14€/persona para el menú básico, 19€/persona para el menú Tentación y 25€/persona para la experiencia Pecado Capital. Después de recibir tu solicitud, te enviaremos un presupuesto personalizado completamente sin compromiso.</p>
           </div>
         </div>
         
@@ -270,7 +337,7 @@
             <span class="faq-icon"><i class="fas fa-plus"></i></span>
           </div>
           <div class="faq-answer">
-            <p>Nuestro servicio incluye: el FoodTruck completamente equipado, personal de cocina y servicio, todas las hamburguesas solicitadas, acompañamientos, bebidas, materiales desechables (servilletas, envases, etc.), transporte y montaje/desmontaje.</p>
+            <p>Nuestro servicio incluye todo lo necesario para una experiencia GULA completa: el FoodTruck completamente equipado, personal de cocina y servicio, todas las hamburguesas según el menú seleccionado, acompañamientos, bebidas, materiales desechables (servilletas, envases, etc.), transporte y montaje/desmontaje. Nos encargamos de todo para que tú solo tengas que disfrutar de la experiencia con tus invitados.</p>
           </div>
         </div>
         
@@ -280,7 +347,7 @@
             <span class="faq-icon"><i class="fas fa-plus"></i></span>
           </div>
           <div class="faq-answer">
-            <p>¡Por supuesto! Podemos adaptar nuestro menú a tus necesidades específicas, incluyendo opciones vegetarianas, veganas o sin gluten. También podemos crear una hamburguesa temática especial para tu evento.</p>
+            <p>¡Por supuesto! Podemos adaptar nuestro menú a tus necesidades específicas, incluyendo opciones vegetarianas (como nuestra "La Pereza Veggie"), opciones veganas con Beyond Meat o sin gluten con pan especial. También podemos crear una hamburguesa temática especial para tu evento, como hemos hecho con "La Hamburguesa de los Novios" para bodas o "La Corporate" para eventos empresariales. Cuéntanos tu idea y haremos que sea realidad.</p>
           </div>
         </div>
         
@@ -290,7 +357,7 @@
             <span class="faq-icon"><i class="fas fa-plus"></i></span>
           </div>
           <div class="faq-answer">
-            <p>Necesitamos un espacio plano de al menos 8x4 metros para el FoodTruck y la zona de servicio, acceso para un vehículo de tamaño medio, y preferiblemente una toma de corriente (aunque disponemos de generador por si no fuera posible).</p>
+            <p>Necesitamos un espacio plano de al menos 8x4 metros para el FoodTruck y la zona de servicio, acceso para un vehículo de tamaño medio (nuestro FoodTruck mide 6m de largo x 2.2m de ancho x 2.8m de alto), y preferiblemente una toma de corriente eléctrica de 3500W (aunque disponemos de generador silencioso por si no fuera posible). También necesitamos permisos para acceder al recinto si es un espacio privado o con restricciones.</p>
           </div>
         </div>
         
@@ -300,7 +367,27 @@
             <span class="faq-icon"><i class="fas fa-plus"></i></span>
           </div>
           <div class="faq-answer">
-            <p>Nuestro FoodTruck opera principalmente en Cataluña, con base en Terrassa. Podemos desplazarnos hasta 150km sin coste adicional. Para distancias mayores, consulta con nosotros para un presupuesto personalizado.</p>
+            <p>Nuestro FoodTruck opera principalmente en Cataluña, con base en Terrassa. Podemos desplazarnos hasta 150km sin coste adicional, cubriendo Barcelona, Girona, Tarragona y sus provincias. Para distancias mayores o servicios en otras comunidades como Madrid, Valencia o Zaragoza, consulta con nosotros para un presupuesto personalizado que incluya los gastos de desplazamiento. ¡Hemos llevado nuestras hamburguesas pecaminosas a todo tipo de eventos por toda España!</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>¿Hay un número mínimo de invitados?</h3>
+            <span class="faq-icon"><i class="fas fa-plus"></i></span>
+          </div>
+          <div class="faq-answer">
+            <p>Sí, generalmente requerimos un mínimo de 50 personas para eventos estándar. Sin embargo, para eventos especiales como bodas o eventos corporativos premium, podemos hacer excepciones y aceptar grupos de 25-30 personas con un presupuesto personalizado. Para grupos más pequeños, te recomendamos nuestro servicio de catering donde preparamos las hamburguesas en tu ubicación sin el FoodTruck.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>¿Cómo es el proceso de reserva y pago?</h3>
+            <span class="faq-icon"><i class="fas fa-plus"></i></span>
+          </div>
+          <div class="faq-answer">
+            <p>El proceso es muy sencillo: 1) Rellena el formulario de reserva en esta página; 2) Te enviaremos un presupuesto personalizado en 24h; 3) Si lo aceptas, solicitamos un 30% de depósito para confirmar la fecha; 4) Un mes antes del evento, realizaremos una reunión final para ultimar detalles; 5) Una semana antes se abona el 50% restante, dejando un 20% para el día del evento o hasta 3 días después. Aceptamos transferencias bancarias, tarjetas de crédito y Bizum para mayor comodidad.</p>
           </div>
         </div>
       </div>
@@ -321,7 +408,7 @@
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
           </div>
-          <p>"Contratamos el FoodTruck para una boda, y los invitados todavía hablan de las hamburguesas. Un servicio impecable y un toque único y diferente para la celebración."</p>
+          <p>"Contratamos el FoodTruck para nuestra boda, y los invitados todavía hablan de las hamburguesas. Un servicio impecable y un toque único y diferente para la celebración. El menú personalizado con nuestros nombres fue la guinda del pastel."</p>
           <div class="testimonial-author">
             <span>Laura y Miguel</span>
           </div>
@@ -334,7 +421,7 @@
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
           </div>
-          <p>"Para nuestro evento corporativo necesitábamos algo diferente. GULA no solo ofreció una comida excepcional, sino que se adaptó perfectamente a nuestras necesidades particulares."</p>
+          <p>"Para nuestro evento corporativo necesitábamos algo diferente. GULA no solo ofreció una comida excepcional, sino que se adaptó perfectamente a nuestras necesidades particulares. El proceso de reserva fue sencillo y profesional. ¡Repetiremos!"</p>
           <div class="testimonial-author">
             <span>Carlos G. - Director de Eventos</span>
           </div>
@@ -347,7 +434,7 @@
             <i class="fas fa-star"></i>
             <i class="fas fa-star-half-alt"></i>
           </div>
-          <p>"El FoodTruck de GULA fue la estrella de nuestro festival de verano. El menú personalizado, el servicio ágil y la estética del truck encajaron perfectamente con el evento."</p>
+          <p>"El FoodTruck de GULA fue la estrella de nuestro festival de verano. El menú personalizado, el servicio ágil y la estética del truck encajaron perfectamente con el evento. Las hamburguesas temáticas que crearon especialmente para nosotros fueron todo un éxito entre los asistentes."</p>
           <div class="testimonial-author">
             <span>Festival SummerNights</span>
           </div>
@@ -428,9 +515,27 @@
     <div class="floating-ember floating-ember3"></div>
     <div class="floating-ember floating-ember4"></div>
     <div class="floating-ember floating-ember5"></div>
+    <div class="floating-ember floating-ember6"></div>
+    <div class="floating-ember floating-ember7"></div>
   </div>
 
-  <!-- Scripts -->
-  <script src="../scripts/reservar.js"></script>
+  <!-- CARRITO DESPLEGABLE -->
+  <div id="carrito-desplegable">
+    <div class="carrito-header">
+      <h4>TU PEDIDO</h4>
+      <button class="carrito-close"><i class="fas fa-times"></i></button>
+    </div>
+    <ul id="lista-carrito">
+      <li class="carrito-empty">Tu carrito está vacío</li>
+    </ul>
+    <div class="carrito-total">
+      <span class="carrito-total-label">Total:</span>
+      <span class="carrito-total-precio"><span id="carrito-total">0.00</span> €</span>
+    </div>
+    <div class="carrito-botones">
+      <a href="#" class="btn-vaciar">Vaciar</a>
+      <a href="checkout.html" class="btn-checkout">Checkout</a>
+    </div>
+  </div>
 </body>
 </html>

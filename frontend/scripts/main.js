@@ -1,12 +1,12 @@
 /**
- * GULA Hamburguesas - JavaScript Principal
- * Este script maneja todas las funcionalidades básicas de la web y se conecta con el script del diablo
+ * GULA Burgers - Main JavaScript
+ * This script handles all the basic functionality of the website and connects with the devil script
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log("🔥 GULA: Los 7 Pecados Capitales del Sabor - v1.0");
+  console.log("🔥 GULA: The 7 Deadly Sins of Flavor - v1.0");
 
-  // Inicializar AOS (Animate On Scroll)
+  // Initialize AOS (Animate On Scroll)
   if (typeof AOS !== 'undefined') {
     AOS.init({
       duration: 800,
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Variables globales
+  // Global Variables
   const searchIcon = document.querySelector('.search-icon');
   const searchOverlay = document.querySelector('.search-overlay');
   const closeSearch = document.querySelector('.close-search');
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const testimonialDots = document.querySelectorAll('.dot');
   const testimonialCards = document.querySelectorAll('.testimonial-card');
   
-  // Inicializar componentes
+  // Initialize components
   initAnimations();
   setupSearchOverlay();
   setupMobileMenu();
@@ -37,10 +37,46 @@ document.addEventListener('DOMContentLoaded', () => {
   setupParallaxEffects();
   setupCartFunctionality();
   setupTestimonials();
+  setupBurgerCounter();
 
-  // Inicialización de efectos
+  // Initialize burger counter (NEW)
+  function setupBurgerCounter() {
+    const counterElement = document.getElementById('burger-counter');
+    if (!counterElement) return;
+    
+    // Set the target value - The number of burgers sold this year
+    const targetValue = 247635; // Example value
+    
+    // Start from 0 and animate to the target
+    let currentValue = 0;
+    const duration = 3000; // Animation duration in ms
+    const interval = 20; // Update interval in ms
+    const increment = Math.ceil(targetValue / (duration / interval));
+    
+    const counterInterval = setInterval(() => {
+      currentValue += increment;
+      
+      if (currentValue >= targetValue) {
+        currentValue = targetValue;
+        clearInterval(counterInterval);
+      }
+      
+      // Format the number with commas
+      counterElement.textContent = currentValue.toLocaleString();
+      
+      // Add pulse effect when counter hits milestone values
+      if (currentValue % 50000 === 0 || currentValue === targetValue) {
+        counterElement.classList.add('pulse-element');
+        setTimeout(() => {
+          counterElement.classList.remove('pulse-element');
+        }, 1000);
+      }
+    }, interval);
+  }
+
+  // Initialization of effects
   function initAnimations() {
-    // Animaciones de entrada
+    // Entry animations
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -50,48 +86,48 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, { threshold: 0.2 });
 
-    // Elementos a animar en scroll
-    document.querySelectorAll('.featured-section, .intro-section, .about-section, .foodtruck-section, .testimonials-section, .locations-section, .cta-section').forEach(el => {
+    // Elements to animate on scroll
+    document.querySelectorAll('.featured-section, .intro-section, .about-section, .testimonials-section, .game-section').forEach(el => {
       el.classList.add('animate-ready');
       observer.observe(el);
     });
 
-    // Simular carga para entrada gradual de elementos
+    // Simulate loading for gradual entry of elements
     document.body.classList.add('page-loaded');
     
-    // Animar flamas del hero
+    // Animate hero flames
     animateHeroFlames();
     
-    // Letrero efecto glitch
+    // Glitch effect
     setupGlitchEffect();
   }
 
-  // Configuración de efectos parallax
+  // Setup of parallax effects
   function setupParallaxEffects() {
     window.addEventListener('scroll', () => {
       const scrollPosition = window.scrollY;
       
-      // Parallax en hero
+      // Parallax on hero
       const hero = document.querySelector('.hero-section');
       if (hero) {
         hero.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
       }
       
-      // Parallax en elementos de flama
+      // Parallax on flame elements
       const flames = document.querySelectorAll('.flame');
       flames.forEach((flame, index) => {
         const speed = 0.2 + (index * 0.1);
         flame.style.transform = `translateY(${scrollPosition * speed}px)`;
       });
 
-      // Parallax en elementos flotantes
+      // Parallax on floating elements
       const embers = document.querySelectorAll('.floating-ember');
       embers.forEach((ember, index) => {
         const speed = 0.1 + (index * 0.05);
         ember.style.transform = `translateY(${-scrollPosition * speed}px)`;
       });
       
-      // Rotar elementos de tarjetas al hacer scroll
+      // Rotate card elements on scroll
       document.querySelectorAll('.sin-card').forEach((card, index) => {
         const rotateAmount = (scrollPosition * 0.01) % 5;
         const direction = index % 2 === 0 ? 1 : -1;
@@ -100,50 +136,50 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Animaciones para las flamas del hero
+  // Animations for hero flames
   function animateHeroFlames() {
     const flames = document.querySelectorAll('.flame');
     
     flames.forEach((flame, index) => {
-      // Posición aleatoria horizontal
-      const randomX = Math.floor(Math.random() * 80) + 10; // Entre 10% y 90%
+      // Random horizontal position
+      const randomX = Math.floor(Math.random() * 80) + 10; // Between 10% and 90%
       flame.style.left = `${randomX}%`;
       
-      // Tamaño aleatorio
-      const randomSize = Math.floor(Math.random() * 100) + 150; // Entre 150px y 250px
+      // Random size
+      const randomSize = Math.floor(Math.random() * 100) + 150; // Between 150px and 250px
       flame.style.width = `${randomSize}px`;
       flame.style.height = `${randomSize * 1.5}px`;
       
-      // Demora aleatoria en la animación
+      // Random animation delay
       const randomDelay = Math.random() * 3;
       flame.style.animationDelay = `${randomDelay}s`;
       
-      // Duración aleatoria de la animación
-      const randomDuration = Math.random() * 2 + 3; // Entre 3s y 5s
+      // Random animation duration
+      const randomDuration = Math.random() * 2 + 3; // Between 3s and 5s
       flame.style.animationDuration = `${randomDuration}s`;
     });
   }
 
-  // Configuración del efecto glitch
+  // Setup of glitch effect
   function setupGlitchEffect() {
     const glitchElements = document.querySelectorAll('.glitch-text');
     
     glitchElements.forEach(element => {
-      // Configurar intervalo para activar el efecto ocasionalmente
+      // Setup interval to activate the effect occasionally
       setInterval(() => {
         element.classList.add('active-glitch');
         setTimeout(() => {
           element.classList.remove('active-glitch');
         }, 1000);
-      }, Math.random() * 5000 + 5000); // Entre 5s y 10s
+      }, Math.random() * 5000 + 5000); // Between 5s and 10s
     });
   }
 
-  // Configuración del buscador
+  // Search overlay configuration
   function setupSearchOverlay() {
     if (!searchIcon || !searchOverlay || !closeSearch) return;
 
-    // Abrir búsqueda con efecto
+    // Open search with effect
     searchIcon.addEventListener('click', () => {
       document.body.classList.add('overlay-open');
       searchOverlay.classList.add('active');
@@ -152,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 300);
     });
 
-    // Cerrar búsqueda con efecto
+    // Close search with effect
     closeSearch.addEventListener('click', () => {
       searchOverlay.classList.remove('active');
       setTimeout(() => {
@@ -160,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 300);
     });
 
-    // Cerrar búsqueda con ESC
+    // Close search with ESC
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
         searchOverlay.classList.remove('active');
@@ -170,15 +206,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Animación del placeholder
+    // Placeholder animation
     const placeholders = [
-      "¿Buscas una hamburguesa?",
-      "¿Quieres probar La Lujuria?",
-      "¿Te atreves con La Ira?",
-      "¿Hambre de pecar?",
-      "¿Qué pecado te tienta hoy?",
-      "¿Buscas acompañamientos?",
-      "¿Algo para beber?"
+      "Looking for a burger?",
+      "Want to try The Lust?",
+      "Dare to try The Wrath?",
+      "Hungry to sin?",
+      "Which sin tempts you today?",
+      "Looking for sides?",
+      "Something to drink?"
     ];
     
     let placeholderIndex = 0;
@@ -187,12 +223,12 @@ document.addEventListener('DOMContentLoaded', () => {
       placeholderIndex = (placeholderIndex + 1) % placeholders.length;
     }, 3000);
 
-    // Enviar búsqueda
+    // Submit search
     searchOverlay.querySelector('.search-box').addEventListener('submit', e => {
       e.preventDefault();
       const query = searchInput.value.trim();
       if (query) {
-        // Animación de búsqueda
+        // Search animation
         searchInput.style.transition = 'all 0.3s ease';
         searchInput.style.transform = 'scale(1.05)';
         searchInput.style.boxShadow = '0 0 30px var(--primary-color)';
@@ -201,41 +237,41 @@ document.addEventListener('DOMContentLoaded', () => {
           searchInput.style.transform = '';
           searchInput.style.boxShadow = '';
           
-          // Cerrar overlay y mostrar notificación
+          // Close overlay and show notification
           searchOverlay.classList.remove('active');
           setTimeout(() => {
             document.body.classList.remove('overlay-open');
-            mostrarNotificacion(`Buscando: "${query}"`, 'info');
-            // Aquí implementarías la redirección a resultados de búsqueda
+            showNotification(`Searching: "${query}"`, 'info');
+            // Here you would implement redirection to search results
           }, 300);
         }, 500);
       }
     });
   }
 
-  // Configuración del menú móvil
+  // Mobile menu configuration
   function setupMobileMenu() {
     if (!menuToggle) return;
 
-    // Crear menú móvil si no existe
+    // Create mobile menu if it doesn't exist
     let mobileNav = document.querySelector('.nav-links');
     
-    // Toggle del menú móvil con animación
+    // Toggle mobile menu with animation
     menuToggle.addEventListener('click', () => {
       mobileNav.classList.add('active');
       
-      // Añadir botón de cierre si no existe
+      // Add close button if it doesn't exist
       if (!mobileNav.querySelector('.close-menu')) {
         const closeButton = document.createElement('button');
         closeButton.className = 'close-menu';
         closeButton.innerHTML = '<i class="fas fa-times"></i>';
         mobileNav.prepend(closeButton);
         
-        // Evento para cerrar
+        // Event to close
         closeButton.addEventListener('click', closeMobileMenu);
       }
       
-      // Animar entrada de elementos
+      // Animate entry of elements
       const items = mobileNav.querySelectorAll('a');
       items.forEach((item, index) => {
         item.style.transitionDelay = `${0.1 + (index * 0.05)}s`;
@@ -249,17 +285,17 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Función para cerrar el menú móvil
+    // Function to close mobile menu
     function closeMobileMenu() {
       mobileNav.classList.remove('active');
     }
 
-    // Cerrar menú móvil al hacer clic en un enlace
+    // Close mobile menu when clicking a link
     mobileNav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', closeMobileMenu);
     });
 
-    // Cerrar menú móvil al hacer clic fuera
+    // Close mobile menu when clicking outside
     document.addEventListener('click', e => {
       if (mobileNav.classList.contains('active') && 
           !mobileNav.contains(e.target) && 
@@ -270,68 +306,68 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Configurar testimoniales
+  // Setup testimonials
   function setupTestimonials() {
     if (testimonialDots.length && testimonialCards.length) {
-      // Cambiar testimonial al hacer clic en los dots
+      // Change testimonial when clicking on dots
       testimonialDots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
-          // Remover active de todos
+          // Remove active from all
           testimonialDots.forEach(d => d.classList.remove('active'));
           testimonialCards.forEach(card => card.classList.remove('active'));
           
-          // Añadir active al seleccionado
+          // Add active to selected
           dot.classList.add('active');
           testimonialCards[index].classList.add('active');
         });
       });
       
-      // Rotación automática de testimoniales
+      // Automatic rotation of testimonials
       let currentIndex = 0;
       
       setInterval(() => {
         currentIndex = (currentIndex + 1) % testimonialCards.length;
         
-        // Remover active de todos
+        // Remove active from all
         testimonialDots.forEach(d => d.classList.remove('active'));
         testimonialCards.forEach(card => card.classList.remove('active'));
         
-        // Añadir active al siguiente
+        // Add active to next
         testimonialDots[currentIndex].classList.add('active');
         testimonialCards[currentIndex].classList.add('active');
       }, 5000);
     }
   }
 
-  // Configuración botones de añadir al carrito
+  // Setup add to cart buttons
   function setupAddToCartButtons() {
     document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
       btn.addEventListener('click', e => {
         e.preventDefault();
         e.stopPropagation();
         
-        // Obtener información del producto
+        // Get product information
         const sinCard = btn.closest('.sin-card');
         const sinTitle = sinCard.querySelector('.sin-title')?.textContent;
         const sinPrice = sinCard.querySelector('.sin-price')?.textContent;
         const sinType = sinCard.getAttribute('data-sin');
         
-        // Vibración táctil (en dispositivos que lo soporten)
+        // Tactile vibration (on devices that support it)
         if (window.navigator.vibrate) {
           window.navigator.vibrate(100);
         }
         
-        // Efectos visuales
+        // Visual effects
         btn.classList.add('btn-pulse');
         sinCard.classList.add('card-added');
         
-        // Animación de "vuelo" hacia el carrito
+        // "Flight" animation to the cart
         const flyingElement = document.createElement('div');
         flyingElement.className = 'flying-item';
         flyingElement.innerHTML = `<i class="fas fa-hamburger"></i>`;
         document.body.appendChild(flyingElement);
         
-        // Estilizar elemento volador
+        // Style flying element
         Object.assign(flyingElement.style, {
           position: 'fixed',
           zIndex: '9999',
@@ -341,14 +377,14 @@ document.addEventListener('DOMContentLoaded', () => {
           filter: 'drop-shadow(0 0 8px rgba(255, 0, 102, 0.8))'
         });
         
-        // Posicionar elemento volador
+        // Position flying element
         const btnRect = btn.getBoundingClientRect();
         const cartIconRect = document.querySelector('.cart-icon').getBoundingClientRect();
         
         flyingElement.style.top = `${btnRect.top}px`;
         flyingElement.style.left = `${btnRect.left}px`;
         
-        // Animar vuelo
+        // Animate flight
         setTimeout(() => {
           flyingElement.style.top = `${cartIconRect.top}px`;
           flyingElement.style.left = `${cartIconRect.left}px`;
@@ -359,67 +395,67 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
           flyingElement.remove();
           
-          // Resetear botón
+          // Reset button
           btn.classList.remove('btn-pulse');
           sinCard.classList.remove('card-added');
           
-          // Actualizar contador y mostrar notificación
-          actualizarContadorCarrito(1);
-          mostrarNotificacion(`${sinTitle} añadido al carrito`, 'success');
+          // Update counter and show notification
+          updateCartCounter(1);
+          showNotification(`${sinTitle} added to cart`, 'success');
         }, 700);
       });
     });
   }
 
-  // Configuración del carrito
+  // Cart functionality
   function setupCartFunctionality() {
-    const carritoDesp = document.getElementById('carrito-desplegable');
+    const cartDropdown = document.getElementById('carrito-desplegable');
     
-    if (!btnCarrito || !carritoDesp) return;
+    if (!btnCarrito || !cartDropdown) return;
     
-    // Abrir/cerrar carrito
+    // Open/close cart
     btnCarrito.addEventListener('click', e => {
       e.preventDefault();
       e.stopPropagation();
       
-      toggleCarrito();
+      toggleCart();
       
-      if (carritoDesp.classList.contains('mostrar')) {
-        cargarResumenCarrito();
+      if (cartDropdown.classList.contains('mostrar')) {
+        loadCartSummary();
       }
     });
     
-    // Cerrar carrito con botón
-    const closeCartButton = carritoDesp.querySelector('.carrito-close');
+    // Close cart with button
+    const closeCartButton = cartDropdown.querySelector('.carrito-close');
     if (closeCartButton) {
       closeCartButton.addEventListener('click', () => {
-        carritoDesp.classList.remove('mostrar');
+        cartDropdown.classList.remove('mostrar');
       });
     }
     
-    // Cerrar carrito al hacer clic fuera
+    // Close cart when clicking outside
     document.addEventListener('click', e => {
-      if (carritoDesp.classList.contains('mostrar') && 
-          !carritoDesp.contains(e.target) && 
+      if (cartDropdown.classList.contains('mostrar') && 
+          !cartDropdown.contains(e.target) && 
           e.target !== btnCarrito &&
           !btnCarrito.contains(e.target)) {
-        carritoDesp.classList.remove('mostrar');
+        cartDropdown.classList.remove('mostrar');
       }
     });
     
-    // Vaciar carrito
-    const btnVaciar = carritoDesp.querySelector('.btn-vaciar');
-    if (btnVaciar) {
-      btnVaciar.addEventListener('click', e => {
+    // Empty cart
+    const btnEmpty = cartDropdown.querySelector('.btn-vaciar');
+    if (btnEmpty) {
+      btnEmpty.addEventListener('click', e => {
         e.preventDefault();
         
-        // Añadir confirmación
-        if (!confirm('¿Estás seguro de vaciar tu carrito?')) return;
+        // Add confirmation
+        if (!confirm('Are you sure you want to empty your cart?')) return;
         
-        // Animación de vaciado
-        const items = carritoDesp.querySelectorAll('.carrito-item');
+        // Empty animation
+        const items = cartDropdown.querySelectorAll('.carrito-item');
         
-        // Si hay items, animarlos saliendo
+        // If there are items, animate them out
         if (items.length > 0) {
           items.forEach((item, index) => {
             setTimeout(() => {
@@ -428,100 +464,100 @@ document.addEventListener('DOMContentLoaded', () => {
             }, index * 100);
           });
           
-          // Esperar a que termine la animación
+          // Wait for animation to end
           setTimeout(() => {
             document.getElementById('lista-carrito').innerHTML = 
-              '<li class="carrito-empty">Tu carrito está vacío</li>';
+              '<li class="carrito-empty">Your cart is empty</li>';
             document.getElementById('carrito-total').textContent = '0.00';
             contadorCarrito.textContent = '0';
             contadorCarrito.style.display = 'none';
-            mostrarNotificacion('Carrito vaciado correctamente', 'success');
+            showNotification('Cart successfully emptied', 'success');
           }, items.length * 100 + 300);
         }
       });
     }
     
-    // Inicializar contador
-    actualizarContadorCarrito();
+    // Initialize counter
+    updateCartCounter();
   }
 
-  // Función para alternar visibilidad del carrito
-  function toggleCarrito() {
-    const carritoDesp = document.getElementById('carrito-desplegable');
+  // Function to toggle cart visibility
+  function toggleCart() {
+    const cartDropdown = document.getElementById('carrito-desplegable');
     
-    if (carritoDesp) {
-      // Si ya está abierto, cerrarlo con animación
-      if (carritoDesp.classList.contains('mostrar')) {
-        carritoDesp.style.transform = 'translateY(0)';
-        carritoDesp.style.opacity = '1';
+    if (cartDropdown) {
+      // If already open, close with animation
+      if (cartDropdown.classList.contains('mostrar')) {
+        cartDropdown.style.transform = 'translateY(0)';
+        cartDropdown.style.opacity = '1';
         
         setTimeout(() => {
-          carritoDesp.style.transform = 'translateY(-20px)';
-          carritoDesp.style.opacity = '0';
+          cartDropdown.style.transform = 'translateY(-20px)';
+          cartDropdown.style.opacity = '0';
           
           setTimeout(() => {
-            carritoDesp.classList.remove('mostrar');
-            carritoDesp.style.transform = '';
-            carritoDesp.style.opacity = '';
+            cartDropdown.classList.remove('mostrar');
+            cartDropdown.style.transform = '';
+            cartDropdown.style.opacity = '';
           }, 300);
         }, 10);
       } 
-      // Si está cerrado, abrirlo con animación
+      // If closed, open with animation
       else {
-        carritoDesp.classList.add('mostrar');
-        carritoDesp.style.transform = 'translateY(-20px)';
-        carritoDesp.style.opacity = '0';
+        cartDropdown.classList.add('mostrar');
+        cartDropdown.style.transform = 'translateY(-20px)';
+        cartDropdown.style.opacity = '0';
         
         setTimeout(() => {
-          carritoDesp.style.transform = 'translateY(0)';
-          carritoDesp.style.opacity = '1';
+          cartDropdown.style.transform = 'translateY(0)';
+          cartDropdown.style.opacity = '1';
         }, 10);
       }
     }
   }
 
-  // Cargar resumen del carrito
-  function cargarResumenCarrito() {
-    const listaCarrito = document.getElementById('lista-carrito');
-    const totalCarrito = document.getElementById('carrito-total');
+  // Load cart summary
+  function loadCartSummary() {
+    const cartList = document.getElementById('lista-carrito');
+    const cartTotal = document.getElementById('carrito-total');
     
-    // Comprobar si el usuario está autenticado
+    // Check if user is authenticated
     const isAuthenticated = localStorage.getItem('token') !== null;
     
     if (!isAuthenticated) {
-      listaCarrito.innerHTML = '<li class="carrito-empty">Inicia sesión para ver tu carrito</li>';
-      if (totalCarrito) totalCarrito.textContent = '0.00';
+      cartList.innerHTML = '<li class="carrito-empty">Sign in to see your cart</li>';
+      if (cartTotal) cartTotal.textContent = '0.00';
       return;
     }
     
-    // Mostrar animación de carga
-    listaCarrito.innerHTML = `
+    // Show loading animation
+    cartList.innerHTML = `
       <li class="carrito-loading">
         <div class="loader-container">
           <div class="loader-flame"></div>
-          <span>Cargando carrito...</span>
+          <span>Loading cart...</span>
         </div>
       </li>`;
     
-    // Simulamos una carga de carrito (en un proyecto real, esto llamaría a tu API)
+    // Simulate cart loading (in a real project, this would call your API)
     setTimeout(() => {
-      // Datos de ejemplo - Los 7 pecados
+      // Example data - The 7 sins
       const cartItems = [
-        { id: 1, nombre: 'LA GULA', cantidad: 1, precio: 13.95, imagen: 'gula.jpg' },
-        { id: 2, nombre: 'LA LUJURIA', cantidad: 1, precio: 14.95, imagen: 'lujuria.jpg' },
-        { id: 3, nombre: 'LA IRA', cantidad: 1, precio: 13.50, imagen: 'ira.jpg' }
+        { id: 1, nombre: 'THE GLUTTONY', cantidad: 1, precio: 13.95, imagen: 'gula.jpg' },
+        { id: 2, nombre: 'THE LUST', cantidad: 1, precio: 14.95, imagen: 'lujuria.jpg' },
+        { id: 3, nombre: 'THE WRATH', cantidad: 1, precio: 13.50, imagen: 'ira.jpg' }
       ];
       
       if (!cartItems.length) {
-        listaCarrito.innerHTML = '<li class="carrito-empty">Tu carrito está vacío</li>';
-        if (totalCarrito) totalCarrito.textContent = '0.00';
+        cartList.innerHTML = '<li class="carrito-empty">Your cart is empty</li>';
+        if (cartTotal) cartTotal.textContent = '0.00';
         return;
       }
       
-      listaCarrito.innerHTML = '';
+      cartList.innerHTML = '';
       let total = 0;
       
-      // Añadir items con animación secuencial
+      // Add items with sequential animation
       cartItems.forEach((item, index) => {
         const precio = parseFloat(item.precio);
         total += precio * item.cantidad;
@@ -544,33 +580,33 @@ document.addEventListener('DOMContentLoaded', () => {
         
         li.querySelector('.btn-eliminar')?.addEventListener('click', e => {
           e.preventDefault();
-          eliminarDelCarrito(item.id);
+          removeFromCart(item.id);
         });
         
-        listaCarrito.appendChild(li);
+        cartList.appendChild(li);
         
-        // Animación secuencial de entrada
+        // Sequential entry animation
         setTimeout(() => {
           li.style.opacity = '1';
           li.style.transform = 'translateX(0)';
         }, index * 100);
       });
       
-      // Actualizar total con animación
-      if (totalCarrito) {
-        const currentTotal = parseFloat(totalCarrito.textContent || '0');
+      // Update total with animation
+      if (cartTotal) {
+        const currentTotal = parseFloat(cartTotal.textContent || '0');
         
-        // Animación del total
+        // Total animation
         if (currentTotal !== total) {
-          animateValue(totalCarrito, currentTotal, total, 500);
+          animateValue(cartTotal, currentTotal, total, 500);
         } else {
-          totalCarrito.textContent = total.toFixed(2);
+          cartTotal.textContent = total.toFixed(2);
         }
       }
     }, 800);
   }
 
-  // Animación para valores numéricos
+  // Animation for numeric values
   function animateValue(element, start, end, duration) {
     let startTimestamp = null;
     const step = (timestamp) => {
@@ -585,38 +621,38 @@ document.addEventListener('DOMContentLoaded', () => {
     window.requestAnimationFrame(step);
   }
 
-  // Eliminar producto del carrito
-  function eliminarDelCarrito(id) {
-    const listaCarrito = document.getElementById('lista-carrito');
-    const items = listaCarrito.querySelectorAll('.carrito-item');
+  // Remove product from cart
+  function removeFromCart(id) {
+    const cartList = document.getElementById('lista-carrito');
+    const items = cartList.querySelectorAll('.carrito-item');
     
-    // Simulamos la eliminación (en un proyecto real, esto llamaría a tu API)
+    // Simulate removal (in a real project, this would call your API)
     items.forEach(item => {
-      const btnEliminar = item.querySelector('.btn-eliminar');
-      if (btnEliminar && btnEliminar.dataset.id == id) {
-        // Animación de eliminación
+      const btnRemove = item.querySelector('.btn-eliminar');
+      if (btnRemove && btnRemove.dataset.id == id) {
+        // Removal animation
         item.style.height = `${item.offsetHeight}px`;
         item.style.overflow = 'hidden';
         
-        // Primera fase: rotar y desaparecer
+        // First phase: rotate and disappear
         item.style.transform = 'translateX(20px) rotateY(30deg)';
         item.style.opacity = '0';
         
         setTimeout(() => {
-          // Segunda fase: colapsar
+          // Second phase: collapse
           item.style.height = '0';
           item.style.padding = '0';
           item.style.margin = '0';
           
           setTimeout(() => {
             item.remove();
-            actualizarTotalCarrito();
-            actualizarContadorCarrito(-1);
-            mostrarNotificacion('Producto eliminado del carrito', 'success');
+            updateCartTotal();
+            updateCartCounter(-1);
+            showNotification("Product removed from cart", "success");
             
-            // Si el carrito está vacío
-            if (listaCarrito.children.length === 0) {
-              listaCarrito.innerHTML = '<li class="carrito-empty">Tu carrito está vacío</li>';
+            // If cart is empty
+            if (cartList.children.length === 0) {
+              cartList.innerHTML = '<li class="carrito-empty">Your cart is empty</li>';
               document.getElementById('carrito-total').textContent = '0.00';
             }
           }, 300);
@@ -625,19 +661,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Actualizar el total del carrito
-  function actualizarTotalCarrito() {
+  // Update cart total
+  function updateCartTotal() {
     const items = document.querySelectorAll('.carrito-item');
     let total = 0;
     
     items.forEach(item => {
-      const precioEl = item.querySelector('.item-precio');
-      const cantidadEl = item.querySelector('.item-cantidad');
+      const priceEl = item.querySelector('.item-precio');
+      const quantityEl = item.querySelector('.item-cantidad');
       
-      if (precioEl && cantidadEl) {
-        const precio = parseFloat(precioEl.textContent);
-        const cantidad = parseInt(cantidadEl.textContent.replace('x', ''));
-        total += precio * cantidad;
+      if (priceEl && quantityEl) {
+        const price = parseFloat(priceEl.textContent);
+        const quantity = parseInt(quantityEl.textContent.replace('x', ''));
+        total += price * quantity;
       }
     });
     
@@ -647,21 +683,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Actualizar contador del carrito
-  function actualizarContadorCarrito(change = 0) {
+  // Update cart counter
+  function updateCartCounter(change = 0) {
     if (!contadorCarrito) return;
     
-    // Si se proporciona un cambio, actualizar el contador
+    // If a change is provided, update the counter
     if (change !== 0) {
-      let actual = parseInt(contadorCarrito.textContent) || 0;
-      actual += change;
+      let current = parseInt(contadorCarrito.textContent) || 0;
+      current += change;
       
-      // Animación de cambio
+      // Change animation
       contadorCarrito.classList.add('contador-pulse');
       
       setTimeout(() => {
-        contadorCarrito.textContent = actual;
-        contadorCarrito.style.display = actual > 0 ? 'flex' : 'none';
+        contadorCarrito.textContent = current;
+        contadorCarrito.style.display = current > 0 ? 'flex' : 'none';
         
         setTimeout(() => {
           contadorCarrito.classList.remove('contador-pulse');
@@ -671,11 +707,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     
-    // Simulamos la obtención del contador (en proyecto real, llamaría a tu API)
+    // Simulate counter retrieval (in a real project, would call your API)
     setTimeout(() => {
-      const cantidad = 3; // Número de ejemplo
-      contadorCarrito.textContent = cantidad;
-      contadorCarrito.style.display = cantidad > 0 ? 'flex' : 'none';
+      const quantity = 3; // Example number
+      contadorCarrito.textContent = quantity;
+      contadorCarrito.style.display = quantity > 0 ? 'flex' : 'none';
     }, 500);
   }
 
@@ -688,9 +724,9 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const email = form.querySelector('input[type="email"]').value;
       if (!email || !validateEmail(email)) {
-        mostrarNotificacion('Por favor, introduce un email válido', 'error');
+        showNotification('Please enter a valid email', 'error');
         
-        // Efecto de sacudida en el campo
+        // Shake effect on field
         const emailInput = form.querySelector('input[type="email"]');
         emailInput.classList.add('shake-error');
         setTimeout(() => {
@@ -700,41 +736,41 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Animación del botón
+      // Button animation
       const btnSubmit = form.querySelector('button[type="submit"]');
       const originalText = btnSubmit.textContent;
       btnSubmit.disabled = true;
-      btnSubmit.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+      btnSubmit.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
       
-      // Simular envío
+      // Simulate sending
       setTimeout(() => {
-        // Animar transición
+        // Animate transition
         form.classList.add('form-success');
-        btnSubmit.innerHTML = '<i class="fas fa-check"></i> ¡Enviado!';
+        btnSubmit.innerHTML = '<i class="fas fa-check"></i> Sent!';
         
         setTimeout(() => {
-          // Resetear formulario con animación
+          // Reset form with animation
           form.classList.remove('form-success');
           btnSubmit.disabled = false;
           btnSubmit.textContent = originalText;
           form.reset();
           
-          // Mostrar notificación de éxito
-          mostrarNotificacion('¡Te has suscrito correctamente!', 'success');
+          // Show success notification
+          showNotification('You have successfully subscribed!', 'success');
           
-          // Efecto de confeti
+          // Confetti effect
           createConfetti();
         }, 1500);
       }, 1500);
     });
   }
 
-  // Validación de email
+  // Email validation
   function validateEmail(email) {
     return /^\S+@\S+\.\S+$/.test(email);
   }
 
-  // Efecto de confeti
+  // Confetti effect
   function createConfetti() {
     const container = document.createElement('div');
     container.className = 'confetti-container';
@@ -749,11 +785,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.body.appendChild(container);
     
-    // Crear 50 piezas de confeti
+    // Create 50 confetti pieces
     for (let i = 0; i < 50; i++) {
       const confetti = document.createElement('div');
       
-      // Estilizar confeti
+      // Style confetti
       Object.assign(confetti.style, {
         position: 'absolute',
         bottom: '0',
@@ -769,12 +805,12 @@ document.addEventListener('DOMContentLoaded', () => {
       container.appendChild(confetti);
     }
     
-    // Eliminar confeti después de la animación
+    // Remove confetti after animation
     setTimeout(() => {
       container.remove();
     }, 5000);
     
-    // Añadir estilos de la animación si no existen
+    // Add animation styles if they don't exist
     if (!document.getElementById('confetti-styles')) {
       const style = document.createElement('style');
       style.id = 'confetti-styles';
@@ -794,42 +830,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Configuración de brasas flotantes
+  // Setup floating embers
   function setupFloatingEmbers() {
     const embersContainer = document.querySelector('.floating-embers');
     if (!embersContainer) return;
     
-    // Limpiar brasas existentes
+    // Clear existing embers
     embersContainer.innerHTML = '';
     
-    // Crear brasas con propiedades aleatorias
+    // Create embers with random properties
     for (let i = 0; i < 30; i++) {
       const ember = document.createElement('div');
       ember.className = 'floating-ember';
       
-      // Tamaño aleatorio
-      const size = Math.random() * 6 + 4; // Entre 4px y 10px
+      // Random size
+      const size = Math.random() * 6 + 4; // Between 4px and 10px
       ember.style.width = `${size}px`;
       ember.style.height = `${size}px`;
       
-      // Posición aleatoria
+      // Random position
       ember.style.left = `${Math.random() * 100}%`;
       ember.style.bottom = `-${size}px`;
       
-      // Retraso aleatorio
+      // Random delay
       ember.style.animationDelay = `${Math.random() * 10}s`;
       
-      // Duración aleatoria
-      const duration = Math.random() * 8 + 7; // Entre 7s y 15s
+      // Random duration
+      const duration = Math.random() * 8 + 7; // Between 7s and 15s
       ember.style.animationDuration = `${duration}s`;
       
-      // Color aleatorio
+      // Random color
       const colors = [
-        'rgba(255, 51, 0, 0.8)',    // Rojo anaranjado
-        'rgba(255, 102, 0, 0.8)',   // Naranja
-        'rgba(255, 153, 0, 0.8)',   // Ámbar
-        'rgba(255, 0, 102, 0.7)',   // Rosa neón
-        'rgba(255, 204, 0, 0.8)'    // Amarillo
+        'rgba(255, 51, 0, 0.8)',    // Orange red
+        'rgba(255, 102, 0, 0.8)',   // Orange
+        'rgba(255, 153, 0, 0.8)',   // Amber
+        'rgba(255, 0, 102, 0.7)',   // Neon pink
+        'rgba(255, 204, 0, 0.8)'    // Yellow
       ];
       const color = colors[Math.floor(Math.random() * colors.length)];
       ember.style.backgroundColor = color;
@@ -837,81 +873,81 @@ document.addEventListener('DOMContentLoaded', () => {
       
       embersContainer.appendChild(ember);
       
-      // Reiniciar animación cuando termine
+      // Restart animation when it ends
       ember.addEventListener('animationend', () => {
-        // Reposicionar en la parte inferior
+        // Reposition at the bottom
         ember.style.left = `${Math.random() * 100}%`;
         
-        // Nuevos retrasos y duraciones
+        // New delays and durations
         ember.style.animationDelay = '0s';
         const newDuration = Math.random() * 8 + 7;
         ember.style.animationDuration = `${newDuration}s`;
         
-        // Reiniciar animación
+        // Restart animation
         ember.style.animation = 'none';
-        ember.offsetHeight; // Forzar reflow
+        ember.offsetHeight; // Force reflow
         ember.style.animation = `float-up ${newDuration}s ease-out`;
       });
     }
   }
 
-  // Notificaciones
-  function mostrarNotificacion(mensaje, tipo = 'info') {
-    let notificacion = document.querySelector('.notification');
-    if (!notificacion) {
-      notificacion = document.createElement('div');
-      notificacion.className = 'notification';
-      document.body.appendChild(notificacion);
+  // Notifications
+  function showNotification(message, type = 'info') {
+    let notification = document.querySelector('.notification');
+    if (!notification) {
+      notification = document.createElement('div');
+      notification.className = 'notification';
+      document.body.appendChild(notification);
     }
 
-    // Definir icono según tipo
+    // Define icon based on type
     let iconClass = 'info-circle';
-    if (tipo === 'success') iconClass = 'check-circle';
-    else if (tipo === 'error') iconClass = 'exclamation-circle';
-    else if (tipo === 'warning') iconClass = 'exclamation-triangle';
+    if (type === 'success') iconClass = 'check-circle';
+    else if (type === 'error') iconClass = 'exclamation-circle';
+    else if (type === 'warning') iconClass = 'exclamation-triangle';
 
-    // Actualizar contenido
-    notificacion.className = `notification ${tipo}`;
-    notificacion.innerHTML = `
+    // Update content
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
       <div class="notification-icon">
         <i class="fas fa-${iconClass}"></i>
       </div>
-      <span class="notification-message">${mensaje}</span>
+      <span class="notification-message">${message}</span>
       <button class="notification-close"><i class="fas fa-times"></i></button>
     `;
 
-    // Añadir evento de cierre
-    notificacion.querySelector('.notification-close').addEventListener('click', () => {
-      notificacion.classList.remove('show');
-      setTimeout(() => notificacion.remove(), 300);
+    // Add close event
+    notification.querySelector('.notification-close').addEventListener('click', () => {
+      notification.classList.remove('show');
+      setTimeout(() => notification.remove(), 300);
     });
 
-    // Mostrar con animación
-    setTimeout(() => notificacion.classList.add('show'), 10);
+    // Show with animation
+    setTimeout(() => notification.classList.add('show'), 10);
     
-    // Auto-ocultar después de un tiempo
+    // Auto-hide after a while
     const timeout = setTimeout(() => {
-      notificacion.classList.remove('show');
-      setTimeout(() => notificacion.remove(), 300);
+      notification.classList.remove('show');
+      setTimeout(() => notification.remove(), 300);
     }, 4000);
 
-    // Pausar el timeout al pasar el ratón
-    notificacion.addEventListener('mouseenter', () => {
+    // Pause timeout on hover
+    notification.addEventListener('mouseenter', () => {
       clearTimeout(timeout);
     });
 
-    // Reiniciar el timeout al salir
-    notificacion.addEventListener('mouseleave', () => {
+    // Restart timeout on mouse out
+    notification.addEventListener('mouseleave', () => {
       setTimeout(() => {
-        notificacion.classList.remove('show');
-        setTimeout(() => notificacion.remove(), 300);
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
       }, 2000);
     });
   }
 
-  // Transición entre páginas
-  window.irACategoria = function(pagina) {
-    // Crear efecto de transición
+  // Page transitions
+  window.goToCategory = function(page) {
+    // Create transition effect
     const transitionOverlay = document.createElement('div');
     transitionOverlay.className = 'page-transition-overlay';
     Object.assign(transitionOverlay.style, {
@@ -927,13 +963,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.body.appendChild(transitionOverlay);
     
-    // Animar entrada
+    // Animate entry
     setTimeout(() => {
       transitionOverlay.style.opacity = '1';
       
-      // Navegar después de la animación
+      // Navigate after animation
       setTimeout(() => {
-        window.location.href = pagina;
+        window.location.href = page;
       }, 600);
     }, 50);
   };

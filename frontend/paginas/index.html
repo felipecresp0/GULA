@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GULA | Los 7 Pecados Capitales del Sabor</title>
+  <title>GULA | The 7 Deadly Sins of Flavor</title>
   <link rel="stylesheet" href="../styles/principal.css" />
   <link rel="stylesheet" href="../styles/diablo.css" />
   <link rel="stylesheet" href="../styles/game.css" />
@@ -17,9 +17,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 </head>
 <body>
-  <!-- Diablo flotante -->
+  <!-- Floating Devil -->
   <div id="floating-devil" class="floating-devil hidden">
-    <img src="../Imagenes/diablo.png" alt="Diablo GULA">
+    <img src="../Imagenes/diablo.png" alt="GULA Devil">
     <div class="devil-glow"></div>
   </div>
 
@@ -32,14 +32,14 @@
     </div>
     <nav class="nav-links">
       <a href="index.html" class="active">Home</a>
-      <a href="menu.html">Menú</a>
+      <a href="menu.html">Menu</a>
       <a href="foodtruck.html">FoodTruck</a>
-      <a href="restaurantes.html">Restaurantes</a>
+      <a href="restaurantes.html">Restaurants</a>
     </nav>
     <div class="header-right">
       <i class="fas fa-search search-icon" id="search-toggle"></i>
       <i class="fas fa-shopping-cart cart-icon" onclick="location.href='carrito.html'"><span class="cart-count">0</span></i>
-      <button class="sign-in-btn" onclick="location.href='acceso.html'">INICIA SESIÓN</button>
+      <button class="sign-in-btn" onclick="location.href='acceso.html'">SIGN IN</button>
       <div class="menu-toggle">
         <i class="fas fa-bars"></i>
       </div>
@@ -49,7 +49,7 @@
   <!-- SEARCH OVERLAY -->
   <div class="search-overlay">
     <div class="search-box">
-      <input type="text" placeholder="¿Qué pecado buscas?" class="search-input-overlay">
+      <input type="text" placeholder="Which sin are you looking for?" class="search-input-overlay">
       <button class="search-btn-overlay"><i class="fas fa-search"></i></button>
     </div>
     <i class="fas fa-times close-search"></i>
@@ -69,11 +69,11 @@
       <div class="sin-symbol">
         <i class="fas fa-fire"></i>
       </div>
-      <h1>SIENTE LA <span class="glitch-text" data-text="TENTACIÓN">TENTACIÓN</span></h1>
-      <p class="hero-subtitle">LOS 7 PECADOS CAPITALES DEL SABOR</p>
+      <h1>FEEL THE <span class="glitch-text" data-text="TEMPTATION">TEMPTATION</span></h1>
+      <p class="hero-subtitle">THE 7 DEADLY SINS OF FLAVOR</p>
       <div class="hero-buttons">
-        <a href="menu.html" class="hero-btn-primary">VER CARTA <i class="fas fa-arrow-right"></i></a>
-        <a href="#about" class="hero-btn-secondary">DESCÚBRENOS <i class="fas fa-info-circle"></i></a>
+        <a href="menu.html" class="hero-btn-primary">VIEW MENU <i class="fas fa-arrow-right"></i></a>
+        <a href="#about" class="hero-btn-secondary">DISCOVER US <i class="fas fa-info-circle"></i></a>
       </div>
       <div class="hero-divider">
         <span></span>
@@ -86,22 +86,28 @@
   <!-- SPECIAL OFFER BANNER -->
   <div class="special-offer">
     <div class="special-offer-content">
-      <div class="special-tag pulse-element">OFERTA ESPECIAL</div>
-      <h3>EL COMBO DEL INFIERNO</h3>
-      <p>Cualquier hamburguesa + patatas + bebida por solo <span class="price-tag">16,66€</span></p>
-      <a href="#" class="special-btn">PEDIR AHORA <i class="fas fa-arrow-right"></i></a>
+      <div class="special-tag pulse-element">SPECIAL OFFER</div>
+      <h3>THE HELL COMBO</h3>
+      <p>Any burger + fries + drink for only <span class="price-tag">16.66€</span></p>
+      <a href="#" class="special-btn">ORDER NOW <i class="fas fa-arrow-right"></i></a>
     </div>
   </div>
 
   <!-- MAIN CONTENT -->
   <main class="main-content">
-    <!-- INTRO SECTION -->
+    <!-- HAMBURGER COUNTER SECTION (Replacing INTRO SECTION) -->
     <section class="intro-section" data-aos="fade-up">
       <div class="section-header">
         <div class="section-icon"><i class="fas fa-fire"></i></div>
-        <h2>NUESTRAS HAMBURGUESAS</h2>
+        <h2>BURGERS SOLD THIS YEAR</h2>
       </div>
-      <p>Ingredientes prohibidos, sabores que no deberías desear... pero no podrás resistirte</p>
+      <div class="burger-counter-container">
+        <div class="burger-counter">
+          <div class="counter-value" id="burger-counter">0</div>
+          <div class="counter-label">GULA BURGERS</div>
+          <div class="counter-subtitle">Served with forbidden ingredients and irresistible flavors</div>
+        </div>
+      </div>
     </section>
 
     <!-- FEATURED SINS SECTION -->
@@ -111,14 +117,14 @@
         <div class="sin-card" data-sin="gula">
           <div class="sin-badge">BESTSELLER</div>
           <div class="sin-img-container">
-            <img src="../Imagenes/gula.png" alt="La Gula">
+            <img src="../Imagenes/gula.png" alt="The Gluttony">
             <div class="sin-overlay"></div>
             <div class="sin-number">1</div>
           </div>
           <div class="sin-content">
-            <h3 class="sin-title">LA GULA</h3>
+            <h3 class="sin-title">THE GLUTTONY</h3>
             <div class="sin-description">
-              <p>Doble smash burger, queso ahumado fundido, doble de bacon crujiente y nuestra salsa especial pecaminosa</p>
+              <p>Double smash burger, melted smoked cheese, double crispy bacon and our special sinful sauce</p>
             </div>
             <div class="sin-footer">
               <div class="sin-price">13.95€</div>
@@ -129,16 +135,16 @@
 
         <!-- Hamburguesa 2 - La Lujuria -->
         <div class="sin-card" data-sin="lujuria">
-          <div class="sin-badge">TENTADOR</div>
+          <div class="sin-badge">TEMPTING</div>
           <div class="sin-img-container">
-            <img src="../Imagenes/lujuria.png" alt="La Lujuria">
+            <img src="../Imagenes/lujuria.png" alt="The Lust">
             <div class="sin-overlay"></div>
             <div class="sin-number">2</div>
           </div>
           <div class="sin-content">
-            <h3 class="sin-title">LA LUJURIA</h3>
+            <h3 class="sin-title">THE LUST</h3>
             <div class="sin-description">
-              <p>Carne de ternera madurada, queso brie fundido, cebolla caramelizada y mermelada de bacon casera</p>
+              <p>Aged beef, melted brie cheese, caramelized onions and homemade bacon jam</p>
             </div>
             <div class="sin-footer">
               <div class="sin-price">14.95€</div>
@@ -149,16 +155,16 @@
 
         <!-- Hamburguesa 3 - La Ira -->
         <div class="sin-card" data-sin="ira">
-          <div class="sin-badge">PICANTE</div>
+          <div class="sin-badge">SPICY</div>
           <div class="sin-img-container">
-            <img src="../Imagenes/ira.png" alt="La Ira">
+            <img src="../Imagenes/ira.png" alt="The Wrath">
             <div class="sin-overlay"></div>
             <div class="sin-number">3</div>
           </div>
           <div class="sin-content">
-            <h3 class="sin-title">LA IRA</h3>
+            <h3 class="sin-title">THE WRATH</h3>
             <div class="sin-description">
-              <p>Carne de res, jalapeños frescos picados, salsa picante casera, queso pepper jack y guacamole</p>
+              <p>Beef patty, fresh chopped jalapeños, homemade hot sauce, pepper jack cheese and guacamole</p>
             </div>
             <div class="sin-footer">
               <div class="sin-price">13.50€</div>
@@ -168,7 +174,7 @@
         </div>
       </div>
       <div class="see-more-btn">
-        <a href="menu.html">VER TODOS LOS PECADOS <i class="fas fa-arrow-right"></i></a>
+        <a href="menu.html">SEE ALL SINS <i class="fas fa-arrow-right"></i></a>
       </div>
     </section>
 
@@ -176,43 +182,29 @@
     <section id="about" class="about-section" data-aos="fade-up">
       <div class="section-header">
         <div class="section-icon"><i class="fas fa-fire"></i></div>
-        <h2>¿POR QUÉ ELEGIRNOS?</h2>
+        <h2>WHY CHOOSE US?</h2>
       </div>
       <div class="about-grid">
         <div class="about-item" data-aos="fade-up" data-aos-delay="100">
           <div class="about-icon">
             <i class="fas fa-certificate"></i>
           </div>
-          <h3>INGREDIENTES PREMIUM</h3>
-          <p>Seleccionamos los ingredientes más frescos y de la más alta calidad para nuestras creaciones</p>
+          <h3>PREMIUM INGREDIENTS</h3>
+          <p>We select the freshest and highest quality ingredients for our creations</p>
         </div>
         <div class="about-item" data-aos="fade-up" data-aos-delay="200">
           <div class="about-icon">
             <i class="fas fa-fire-alt"></i>
           </div>
-          <h3>COCINADOS AL MOMENTO</h3>
-          <p>Preparamos cada hamburguesa al momento para garantizar un sabor único e inigualable</p>
+          <h3>COOKED TO ORDER</h3>
+          <p>We prepare each burger at the moment to guarantee a unique and unmatched flavor</p>
         </div>
         <div class="about-item" data-aos="fade-up" data-aos-delay="300">
           <div class="about-icon">
             <i class="fas fa-medal"></i>
           </div>
-          <h3>RECETAS ORIGINALES</h3>
-          <p>Nuestras recetas exclusivas son creadas por chefs expertos para ofrecerte una experiencia irresistible</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOODTRUCK SECTION (REDUCIDA) -->
-    <section class="foodtruck-section-mini" data-aos="fade-up">
-      <div class="foodtruck-content-mini">
-        <div class="foodtruck-text-mini">
-          <h2>NUESTRO FOODTRUCK</h2>
-          <p>Lleva la tentación a tus eventos</p>
-          <a href="foodtruck.html" class="foodtruck-btn">RESERVAR AHORA <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="foodtruck-image-mini" data-aos="fade-left" data-aos-delay="200">
-          <img src="../Imagenes/foodtruck.webp" alt="GULA Foodtruck">
+          <h3>ORIGINAL RECIPES</h3>
+          <p>Our exclusive recipes are created by expert chefs to offer you an irresistible experience</p>
         </div>
       </div>
     </section>
@@ -221,34 +213,34 @@
     <section id="game-section" class="game-section" data-aos="fade-up">
       <div class="section-header">
         <div class="section-icon"><i class="fas fa-gamepad"></i></div>
-        <h2>¡CAZA EL DESCUENTO!</h2>
+        <h2>CATCH THE DISCOUNT!</h2>
       </div>
       <div class="game-description">
-        <p>Juega con nuestro diablito GULA y consigue un cupón de descuento. Recoge hamburguesas y evita los obstáculos.</p>
+        <p>Play with our GULA devil and get a discount coupon. Collect burgers and avoid obstacles.</p>
       </div>
       
       <div class="game-container">
         <div class="game-overlay">
           <div class="game-start">
             <h3>GULA RUNNER</h3>
-            <p>Recoge 10 hamburguesas para ganar un cupón de descuento</p>
-            <button id="start-game" class="game-btn">¡JUGAR AHORA!</button>
+            <p>Collect 10 burgers to win a discount coupon</p>
+            <button id="start-game" class="game-btn">PLAY NOW!</button>
           </div>
           <div class="game-over hidden">
-            <h3>¡FIN DEL JUEGO!</h3>
-            <p id="game-result">Has recogido: <span id="final-score">0</span> hamburguesas</p>
+            <h3>GAME OVER!</h3>
+            <p id="game-result">You collected: <span id="final-score">0</span> burgers</p>
             <div id="coupon-container" class="hidden">
-              <p>¡Felicidades! Tu código de descuento es:</p>
+              <p>Congratulations! Your discount code is:</p>
               <div class="coupon-code">GULAPLAYER25</div>
-              <button id="copy-coupon" class="game-btn">COPIAR CÓDIGO</button>
+              <button id="copy-coupon" class="game-btn">COPY CODE</button>
             </div>
-            <button id="restart-game" class="game-btn">JUGAR DE NUEVO</button>
+            <button id="restart-game" class="game-btn">PLAY AGAIN</button>
           </div>
         </div>
         <canvas id="game-canvas" width="800" height="400"></canvas>
         <div class="game-controls">
           <div class="game-score">
-            <span>Hamburguesas: </span><span id="score-value">0</span>
+            <span>Burgers: </span><span id="score-value">0</span>
           </div>
           <div class="mobile-controls">
             <button id="btn-left"><i class="fas fa-arrow-left"></i></button>
@@ -256,7 +248,7 @@
             <button id="btn-right"><i class="fas fa-arrow-right"></i></button>
           </div>
           <div class="game-instructions">
-            <p>Controles: A/D para moverse, W o ESPACIO para saltar</p>
+            <p>Controls: A/D to move, W or SPACE to jump</p>
           </div>
         </div>
       </div>
@@ -266,7 +258,7 @@
     <section class="testimonials-section" data-aos="fade-up">
       <div class="section-header">
         <div class="section-icon"><i class="fas fa-fire"></i></div>
-        <h2>LO QUE DICEN NUESTROS CLIENTES</h2>
+        <h2>WHAT OUR CUSTOMERS SAY</h2>
       </div>
       <div class="testimonials-container">
         <div class="testimonial-card active">
@@ -277,9 +269,9 @@
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
           </div>
-          <p>"La mejor hamburguesa que he probado nunca. La 'GULA' es impresionante, y el ambiente del local es único. ¡Volveré seguro!"</p>
+          <p>"The best burger I've ever tried. The 'GLUTTONY' is impressive, and the atmosphere of the place is unique. I'll definitely be back!"</p>
           <div class="testimonial-author">
-            <span>Carlos M.</span>
+            <span>Charles M.</span>
           </div>
         </div>
         <div class="testimonial-card">
@@ -290,7 +282,7 @@
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
           </div>
-          <p>"Impresionante la hamburguesa 'LA IRA'. El picante perfecto, los ingredientes frescos y el sabor único. Sin duda, el mejor lugar para hamburguesas en la ciudad."</p>
+          <p>"The 'WRATH' burger is impressive. Perfect spice level, fresh ingredients, and unique flavor. Without a doubt, the best place for burgers in the city."</p>
           <div class="testimonial-author">
             <span>Laura G.</span>
           </div>
@@ -303,9 +295,9 @@
             <i class="fas fa-star"></i>
             <i class="fas fa-star-half-alt"></i>
           </div>
-          <p>"La hamburguesa 'LA LUJURIA' es adictiva. La combinación de queso brie y mermelada de bacon es divina. El local tiene un ambiente increíble."</p>
+          <p>"The 'LUST' burger is addictive. The combination of brie cheese and bacon jam is divine. The place has an incredible atmosphere."</p>
           <div class="testimonial-author">
-            <span>Miguel A.</span>
+            <span>Michael A.</span>
           </div>
         </div>
       </div>
@@ -315,46 +307,16 @@
         <span class="dot"></span>
       </div>
     </section>
-
-    <!-- LOCATIONS -->
-    <section class="locations-section" data-aos="fade-up">
-      <div class="section-header">
-        <div class="section-icon"><i class="fas fa-fire"></i></div>
-        <h2>NUESTROS RESTAURANTES</h2>
-      </div>
-      <div class="locations-grid">
-        <div class="location-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="location-img">
-            <img src="../Imagenes/local1.jpg" alt="GULA Centro">
-          </div>
-          <div class="location-info">
-            <h3>GULA CENTRO</h3>
-            <p>Calle Pecado, 7</p>
-            <a href="https://maps.google.com" target="_blank" class="location-btn">CÓMO LLEGAR <i class="fas fa-map-marker-alt"></i></a>
-          </div>
-        </div>
-        <div class="location-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="location-img">
-            <img src="../Imagenes/local2.jpg" alt="GULA Actur">
-          </div>
-          <div class="location-info">
-            <h3>GULA ACTUR</h3>
-            <p>Avenida Tentación, 23</p>
-            <a href="https://maps.google.com" target="_blank" class="location-btn">CÓMO LLEGAR <i class="fas fa-map-marker-alt"></i></a>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <!-- NEWSLETTER -->
   <section class="newsletter">
     <div class="newsletter-content" data-aos="fade-up">
-      <h3 class="newsletter-title">ÚNETE AL LADO OSCURO</h3>
-      <p>Suscríbete para recibir ofertas exclusivas y ser el primero en conocer nuestras nuevas creaciones</p>
+      <h3 class="newsletter-title">JOIN THE DARK SIDE</h3>
+      <p>Subscribe to receive exclusive offers and be the first to know about our new creations</p>
       <form class="newsletter-form">
-        <input type="email" placeholder="Tu email" required>
-        <button type="submit" class="pulse-element">SUSCRIBIRME</button>
+        <input type="email" placeholder="Your email" required>
+        <button type="submit" class="pulse-element">SUBSCRIBE</button>
       </form>
     </div>
   </section>
@@ -364,7 +326,7 @@
     <div class="footer-top">
       <div class="footer-col">
         <h4>GULA</h4>
-        <p>Hamburguesas que despiertan pecados desde 2022.</p>
+        <p>Burgers that awaken sins since 2022.</p>
         <div class="social-links">
           <a href="https://www.instagram.com/gulabvrgers/" target="_blank"><i class="fab fa-instagram"></i></a>
           <a href="#"><i class="fab fa-facebook"></i></a>
@@ -372,40 +334,40 @@
         </div>
       </div>
       <div class="footer-col">
-        <h4>EXPLORA</h4>
+        <h4>EXPLORE</h4>
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="menu.html">Menú</a></li>
+          <li><a href="menu.html">Menu</a></li>
           <li><a href="foodtruck.html">FoodTruck</a></li>
-          <li><a href="restaurantes.html">Restaurantes</a></li>
+          <li><a href="restaurantes.html">Restaurants</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>CONTACTO</h4>
+        <h4>CONTACT</h4>
         <ul>
-          <li><i class="fas fa-envelope"></i> info@gula.es</li>
+          <li><i class="fas fa-envelope"></i> info@gula.com</li>
           <li><i class="fas fa-phone"></i> +34 666 666 666</li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>NEWSLETTER</h4>
-        <p>Recibe ofertas pecaminosas</p>
+        <p>Receive sinful offers</p>
         <div class="newsletter-form">
-          <input type="email" placeholder="Tu email">
+          <input type="email" placeholder="Your email">
           <button type="submit"><i class="fas fa-paper-plane"></i></button>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>🔥 Sabor que enciende tus pecados. Hecho con pasión por <strong>GULA</strong> 🍔</p>
-      <p class="copyright">© 2025 GULA. Todos los derechos reservados.</p>
+      <p>🔥 Flavor that ignites your sins. Made with passion by <strong>GULA</strong> 🍔</p>
+      <p class="copyright">© 2025 GULA. All rights reserved.</p>
     </div>
   </footer>
 
   <!-- NOTIFICATION COMPONENT -->
   <div class="notification" id="notification">
     <i class="notification-icon fas fa-check-circle"></i>
-    <span class="notification-message">Producto añadido al carrito</span>
+    <span class="notification-message">Product added to cart</span>
   </div>
 
   <!-- FLOATING EMBERS -->
@@ -419,45 +381,45 @@
     <div class="floating-ember floating-ember7"></div>
   </div>
 
-  <!-- CARRITO DESPLEGABLE -->
+  <!-- CART DROPDOWN -->
   <div id="carrito-desplegable">
     <div class="carrito-header">
-      <h4>TU PEDIDO</h4>
+      <h4>YOUR ORDER</h4>
       <button class="carrito-close"><i class="fas fa-times"></i></button>
     </div>
     <ul id="lista-carrito">
-      <li class="carrito-empty">Tu carrito está vacío</li>
+      <li class="carrito-empty">Your cart is empty</li>
     </ul>
     <div class="carrito-total">
       <span class="carrito-total-label">Total:</span>
       <span class="carrito-total-precio"><span id="carrito-total">0.00</span> €</span>
     </div>
     <div class="carrito-botones">
-      <a href="#" class="btn-vaciar">Vaciar</a>
+      <a href="#" class="btn-vaciar">Clear</a>
       <a href="checkout.html" class="btn-checkout">Checkout</a>
     </div>
   </div>
 
-  <!-- Modal de Descuento -->
+  <!-- Discount Modal -->
   <div id="discount-modal" class="discount-modal">
     <div class="discount-modal-content">
       <span class="discount-close">&times;</span>
       <div class="discount-header">
         <i class="fas fa-fire"></i>
-        <h2>¡HAS CAPTURADO AL DIABLO!</h2>
+        <h2>YOU'VE CAUGHT THE DEVIL!</h2>
         <i class="fas fa-fire"></i>
       </div>
       <div class="discount-body">
-        <p>¡Enhorabuena! Has conseguido un descuento especial del</p>
+        <p>Congratulations! You've earned a special discount of</p>
         <div class="discount-amount">25% OFF</div>
-        <p>Usa este código en tu próxima compra:</p>
+        <p>Use this code on your next purchase:</p>
         <div class="discount-code">
           <span id="discount-code-text">DIABLOGULA25</span>
           <button id="copy-code-btn"><i class="fas fa-copy"></i></button>
         </div>
-        <p class="discount-valid">Válido hasta el 30/06/2025</p>
+        <p class="discount-valid">Valid until 06/30/2025</p>
       </div>
-      <button class="discount-btn">¡Aprovechar ahora!</button>
+      <button class="discount-btn">Use it now!</button>
     </div>
   </div>
 </body>

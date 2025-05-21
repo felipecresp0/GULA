@@ -1,11 +1,11 @@
-/* =========== ESTILOS GENERALES =========== */
+/* =========== GENERAL STYLES =========== */
 :root {
-  --primary-color: #ff0066;  /* Rosa neón */
+  --primary-color: #ff0066;  /* Neon pink */
   --primary-dark: #cc0052;
   --primary-light: #ff4d94;
-  --secondary-color: #00ffcc;  /* Turquesa neón */
+  --secondary-color: #00ffcc;  /* Neon turquoise */
   --secondary-dark: #00ccaa;
-  --accent-color: #ffcc00;  /* Amarillo neón */
+  --accent-color: #ffcc00;  /* Neon yellow */
   --text-color: #fff;
   --text-dark: #ccc;
   --background-dark: #000;
@@ -639,11 +639,45 @@ button {
   margin-bottom: var(--spacing-lg);
 }
 
-.intro-section p {
-  max-width: 600px;
-  margin: 0 auto;
+/* Burger Counter Styles */
+.burger-counter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--spacing-md);
+}
+
+.burger-counter {
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 2px solid var(--primary-color);
+  border-radius: var(--box-radius);
+  padding: var(--spacing-md);
+  box-shadow: 0 0 20px rgba(255, 0, 102, 0.5);
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.counter-value {
+  font-size: 4rem;
+  font-weight: bold;
+  font-family: 'Bebas Neue', sans-serif;
+  color: var(--primary-color);
+  text-shadow: 0 0 15px rgba(255, 0, 102, 0.7);
+  margin-bottom: var(--spacing-xs);
+}
+
+.counter-label {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--text-color);
+  margin-bottom: var(--spacing-xs);
+}
+
+.counter-subtitle {
+  font-size: 1rem;
   color: var(--text-dark);
-  font-size: 1.1rem;
 }
 
 /* =========== FEATURED SINS SECTION =========== */
@@ -885,115 +919,6 @@ button {
   font-size: 0.95rem;
 }
 
-/* =========== FOODTRUCK SECTION =========== */
-.foodtruck-section {
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: var(--spacing-lg);
-  margin: var(--spacing-lg) 0;
-  border-radius: var(--box-radius);
-  overflow: hidden;
-  position: relative;
-}
-
-.foodtruck-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('../imagenes/pattern.png');
-  opacity: 0.1;
-  z-index: 0;
-}
-
-.foodtruck-content {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-lg);
-  position: relative;
-  z-index: 1;
-}
-
-.foodtruck-text {
-  flex: 1;
-}
-
-.foodtruck-text h2 {
-  font-size: 2.5rem;
-  margin-bottom: var(--spacing-sm);
-  color: var(--primary-color);
-}
-
-.foodtruck-text p {
-  font-size: 1.2rem;
-  margin-bottom: var(--spacing-md);
-  color: var(--text-color);
-}
-
-.foodtruck-features {
-  list-style: none;
-  margin-bottom: var(--spacing-md);
-}
-
-.foodtruck-features li {
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.foodtruck-features li i {
-  color: var(--primary-color);
-}
-
-.foodtruck-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background-color: var(--primary-color);
-  color: white;
-  padding: 12px 25px;
-  border-radius: 30px;
-  font-weight: 700;
-  text-transform: uppercase;
-  transition: var(--transition);
-  box-shadow: 0 0 15px rgba(255, 0, 102, 0.5);
-}
-
-.foodtruck-btn:hover {
-  background-color: white;
-  color: var(--primary-color);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(255, 0, 102, 0.5);
-}
-
-.foodtruck-btn:hover i {
-  transform: translateX(5px);
-}
-
-.foodtruck-btn i {
-  transition: transform 0.3s ease;
-}
-
-.foodtruck-image {
-  flex: 1;
-  position: relative;
-}
-
-.foodtruck-image img {
-  width: 100%;
-  height: auto;
-  border-radius: var(--box-radius);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: var(--transition);
-}
-
-.foodtruck-image:hover img {
-  transform: scale(1.05);
-  box-shadow: 0 15px 40px rgba(255, 0, 102, 0.4);
-}
-
 /* =========== TESTIMONIALS SECTION =========== */
 .testimonials-section {
   text-align: center;
@@ -1062,175 +987,6 @@ button {
   background-color: var(--primary-color);
   transform: scale(1.2);
   box-shadow: 0 0 10px rgba(255, 0, 102, 0.5);
-}
-
-/* =========== LOCATIONS SECTION =========== */
-.locations-section {
-  margin-bottom: var(--spacing-lg);
-  text-align: center;
-}
-
-.locations-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  margin-top: var(--spacing-md);
-}
-
-.location-card {
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: var(--box-radius);
-  overflow: hidden;
-  transition: var(--transition);
-  border: 1px solid rgba(255, 0, 102, 0.3);
-}
-
-.location-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 30px rgba(255, 0, 102, 0.3);
-  border-color: var(--primary-color);
-}
-
-.location-img {
-  height: 200px;
-  overflow: hidden;
-}
-
-.location-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: var(--transition);
-}
-
-.location-card:hover .location-img img {
-  transform: scale(1.1);
-}
-
-.location-info {
-  padding: var(--spacing-md);
-}
-
-.location-info h3 {
-  margin-bottom: 5px;
-  font-size: 1.5rem;
-}
-
-.location-info p {
-  color: var(--text-dark);
-  margin-bottom: 15px;
-}
-
-.location-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background-color: transparent;
-  color: var(--text-color);
-  border: 1px solid var(--primary-color);
-  padding: 8px 15px;
-  border-radius: var(--border-radius);
-  font-size: 0.9rem;
-  transition: var(--transition);
-}
-
-.location-btn:hover {
-  background-color: var(--primary-color);
-  color: white;
-}
-
-.location-btn i {
-  transition: transform 0.3s ease;
-}
-
-.location-btn:hover i {
-  transform: translateX(3px);
-}
-
-/* =========== CTA SECTION =========== */
-.cta-section {
-  position: relative;
-  padding: var(--spacing-lg) var(--spacing-md);
-  margin: var(--spacing-lg) 0;
-  background-image: url('../imagenes/cta-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  text-align: center;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.cta-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to right, rgba(255, 0, 102, 0.7), rgba(0, 0, 0, 0.7));
-  z-index: 1;
-}
-
-.cta-content {
-  position: relative;
-  z-index: 2;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.cta-content h2 {
-  font-size: 2.5rem;
-  margin-bottom: var(--spacing-sm);
-  color: white;
-  text-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-}
-
-.cta-content p {
-  margin-bottom: var(--spacing-md);
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.cta-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background-color: white;
-  color: var(--primary-color);
-  padding: 12px 25px;
-  border-radius: var(--border-radius);
-  font-weight: bold;
-  font-size: 1rem;
-  text-transform: uppercase;
-  transition: var(--transition);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-}
-
-.cta-button:hover {
-  background-color: var(--primary-color);
-  color: white;
-  transform: translateY(-3px);
-  box-shadow: 0 5px 20px rgba(255, 0, 102, 0.5);
-}
-
-.cta-button:hover i {
-  transform: translateX(5px);
-}
-
-.cta-button i {
-  transition: transform 0.3s ease;
-}
-
-.cta-icon {
-  width: 70px;
-  height: 70px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto var(--spacing-md);
-  color: var(--primary-color);
-  font-size: 2rem;
 }
 
 /* =========== NEWSLETTER =========== */
@@ -1661,7 +1417,7 @@ button {
   transform: translateY(-2px);
 }
 
-/* =========== ANIMACIONES =========== */
+/* =========== ANIMATIONS =========== */
 .animate-ready {
   opacity: 0;
   transform: translateY(30px);
@@ -1697,10 +1453,6 @@ button {
   
   .footer-top {
     grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .foodtruck-content {
-    flex-direction: column;
   }
 }
 
@@ -1791,10 +1543,6 @@ button {
     margin-bottom: var(--spacing-xs);
   }
   
-  .cta-content h2 {
-    font-size: 1.8rem;
-  }
-  
   .footer-top {
     grid-template-columns: 1fr;
   }
@@ -1804,9 +1552,13 @@ button {
     right: 20px;
     max-width: none;
   }
+  
+  .counter-value {
+    font-size: 3rem;
+  }
 }
 
-/* Estilos para menú móvil */
+/* Mobile menu styles */
 @media (max-width: 768px) {
   .nav-links {
     position: fixed;

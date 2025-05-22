@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-  console.log("🔥 Formulario de usuarios cargado - Modo Infernal activado");
+  console.log("🔥 User form loaded - Infernal mode activated");
   
-  // Referencias a elementos del DOM
+  // DOM element references
   const formLogin = document.getElementById('form-login');
   const formRegistro = document.getElementById('form-registro');
   const mensaje = document.getElementById('mensaje');
@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const contrasenaInput = document.getElementById('contrasena');
   const confirmarContrasenaInput = document.getElementById('confirmar-contrasena');
   
-  // Inicializar efectos visuales
+  // Initialize visual effects
   initVisualEffects();
   
-  // Toggle para mostrar/ocultar contraseña
+  // Toggle to show/hide password
   if (togglePassword.length > 0) {
     togglePassword.forEach(toggle => {
       toggle.addEventListener('click', () => {
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
         input.setAttribute('type', type);
         
-        // Cambiar icono
+        // Change icon
         const icon = toggle.querySelector('i');
         icon.classList.toggle('fa-eye');
         icon.classList.toggle('fa-eye-slash');
@@ -28,17 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  // Validación de fuerza de contraseña
+  // Password strength validation
   if (contrasenaInput) {
     contrasenaInput.addEventListener('input', validatePasswordStrength);
   }
   
-  // Procesamiento del formulario de login
+  // Login form processing
   if (formLogin) {
     formLogin.addEventListener('submit', async (e) => {
       e.preventDefault();
       
-      // Mostrar animación de carga
+      // Show loading animation
       showLoadingAnimation(formLogin.querySelector('.submit-btn'));
       
       const email = document.getElementById('email').value;
@@ -55,21 +55,21 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const datos = await res.json();
         
-        // Quitar animación de carga
+        // Remove loading animation
         hideLoadingAnimation(formLogin.querySelector('.submit-btn'));
         
         if (res.ok) {
-          // Guardar token
+          // Save token
           localStorage.setItem('token', datos.token);
           
-          // Mostrar mensaje de éxito
-          displayMessage('¡Bienvenido al infierno! Redirigiendo...', 'success');
+          // Show success message
+          displayMessage('Welcome to hell! Redirecting...', 'success');
           
-          // Decodificar el token para obtener el rol
+          // Decode token to get role
           const payload = JSON.parse(atob(datos.token.split('.')[1]));
           const rol = payload.rol;
           
-          // Redirección según el rol con animación
+          // Redirect based on role with animation
           setTimeout(() => {
             if (rol === 'admin') {
               animateRedirect('admin.html');
@@ -80,19 +80,19 @@ document.addEventListener('DOMContentLoaded', () => {
           
         } else {
           shake(formLogin);
-          displayMessage(datos.mensaje || 'Las puertas del infierno permanecen cerradas', 'error');
+          displayMessage(datos.mensaje || 'The gates of hell remain closed', 'error');
         }
         
       } catch (error) {
-        console.error('Error en la petición:', error);
+        console.error('Request error:', error);
         shake(formLogin);
         hideLoadingAnimation(formLogin.querySelector('.submit-btn'));
-        displayMessage('Error de conexión con el servidor del inframundo', 'error');
+        displayMessage('Connection error with the underworld server', 'error');
       }
     });
   }
   
-  // Procesamiento del formulario de registro
+  // Registration form processing
   if (formRegistro) {
     formRegistro.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -102,28 +102,28 @@ document.addEventListener('DOMContentLoaded', () => {
       const contrasena = document.getElementById('contrasena').value.trim();
       const confirmarContrasena = document.getElementById('confirmar-contrasena')?.value.trim();
       
-      // Mostrar animación de carga
+      // Show loading animation
       showLoadingAnimation(formRegistro.querySelector('.submit-btn'));
       
-      // Validaciones
+      // Validations
       if (!nombre || !email || !contrasena) {
         shake(formRegistro);
         hideLoadingAnimation(formRegistro.querySelector('.submit-btn'));
-        displayMessage('Todos los campos son obligatorios para vender tu alma', 'error');
+        displayMessage('All fields are required to sell your soul', 'error');
         return;
       }
       
       if (contrasena.length < 6) {
         shake(formRegistro);
         hideLoadingAnimation(formRegistro.querySelector('.submit-btn'));
-        displayMessage('Tu contraseña es demasiado débil (mínimo 6 caracteres)', 'error');
+        displayMessage('Your password is too weak (minimum 6 characters)', 'error');
         return;
       }
       
       if (confirmarContrasena && contrasena !== confirmarContrasena) {
         shake(formRegistro);
         hideLoadingAnimation(formRegistro.querySelector('.submit-btn'));
-        displayMessage('Las contraseñas no coinciden', 'error');
+        displayMessage('Passwords do not match', 'error');
         return;
       }
       
@@ -138,30 +138,30 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const datos = await res.json();
         
-        // Quitar animación de carga
+        // Remove loading animation
         hideLoadingAnimation(formRegistro.querySelector('.submit-btn'));
         
         if (res.ok) {
-          displayMessage('¡Tu alma ahora nos pertenece! Redirigiendo...', 'success');
+          displayMessage('Your soul now belongs to us! Redirecting...', 'success');
           
           setTimeout(() => {
             animateRedirect('acceso.html');
           }, 2000);
         } else {
           shake(formRegistro);
-          displayMessage(datos.mensaje || 'Error al intentar vender tu alma', 'error');
+          displayMessage(datos.mensaje || 'Error trying to sell your soul', 'error');
         }
         
       } catch (error) {
-        console.error('Error en el registro:', error);
+        console.error('Registration error:', error);
         shake(formRegistro);
         hideLoadingAnimation(formRegistro.querySelector('.submit-btn'));
-        displayMessage('Error de conexión con el servidor del inframundo', 'error');
+        displayMessage('Connection error with the underworld server', 'error');
       }
     });
   }
   
-  // 🔐 Logout funcional para cualquier página
+  // 🔐 Functional logout for any page
   const botonLogout = document.getElementById('logout');
   if (botonLogout) {
     botonLogout.addEventListener('click', () => {
@@ -170,40 +170,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  // Función para inicializar efectos visuales
+  // Function to initialize visual effects
   function initVisualEffects() {
-    // Crear partículas de fuego
+    // Create fire particles
     setInterval(() => {
       const particle = document.createElement('div');
       particle.className = 'floating-ember';
       
-      // Posición random en la parte inferior de la pantalla
+      // Random position at bottom of screen
       const posX = Math.random() * window.innerWidth;
       particle.style.left = `${posX}px`;
       particle.style.bottom = '0';
       
-      // Color random entre rojo y naranja
+      // Random color between red and orange
       const hue = Math.floor(Math.random() * 30);
       const saturation = 90 + Math.floor(Math.random() * 10);
       const lightness = 50 + Math.floor(Math.random() * 10);
       particle.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
       
-      // Tamaño random
+      // Random size
       const size = 5 + Math.random() * 10;
       particle.style.width = `${size}px`;
       particle.style.height = `${size}px`;
       
-      // Añadir al DOM
+      // Add to DOM
       document.querySelector('.floating-embers').appendChild(particle);
       
-      // Eliminar después de la animación
+      // Remove after animation
       setTimeout(() => {
         particle.remove();
       }, 5000);
     }, 500);
   }
   
-  // Función para validar la fuerza de la contraseña
+  // Function to validate password strength
   function validatePasswordStrength() {
     if (!contrasenaInput) return;
     
@@ -215,42 +215,42 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let strength = 0;
     
-    // Longitud
+    // Length
     if (password.length >= 6) strength += 1;
     if (password.length >= 10) strength += 1;
     
-    // Complejidad
+    // Complexity
     if (/[A-Z]/.test(password)) strength += 1;
     if (/[0-9]/.test(password)) strength += 1;
     if (/[^A-Za-z0-9]/.test(password)) strength += 1;
     
-    // Actualizar UI según la fuerza
+    // Update UI based on strength
     if (strength <= 2) {
-      strengthText.textContent = 'Débil';
+      strengthText.textContent = 'Weak';
       strengthText.className = '';
       progressBar.style.width = '30%';
       progressBar.className = 'strength-progress';
     } else if (strength <= 4) {
-      strengthText.textContent = 'Media';
+      strengthText.textContent = 'Medium';
       strengthText.className = 'medium';
       progressBar.style.width = '60%';
       progressBar.className = 'strength-progress medium';
     } else {
-      strengthText.textContent = 'Fuerte';
+      strengthText.textContent = 'Strong';
       strengthText.className = 'strong';
       progressBar.style.width = '100%';
       progressBar.className = 'strength-progress strong';
     }
   }
   
-  // Función para mostrar mensajes
+  // Function to display messages
   function displayMessage(text, type = 'error') {
     if (!mensaje) return;
     
     mensaje.textContent = text;
     mensaje.className = `message ${type}`;
     
-    // Efecto de aparición
+    // Appearance effect
     mensaje.style.opacity = '0';
     mensaje.style.transform = 'translateY(-10px)';
     
@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 10);
   }
   
-  // Función para animar el formulario al tener un error
+  // Function to animate form on error
   function shake(element) {
     element.classList.add('shake');
     
@@ -270,17 +270,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
   }
   
-  // Mostrar animación de carga en botón
+  // Show loading animation on button
   function showLoadingAnimation(button) {
     if (!button) return;
     
     const originalText = button.innerHTML;
     button.setAttribute('data-original-text', originalText);
-    button.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> PROCESANDO';
+    button.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> PROCESSING';
     button.disabled = true;
   }
   
-  // Ocultar animación de carga en botón
+  // Hide loading animation on button
   function hideLoadingAnimation(button) {
     if (!button) return;
     
@@ -291,9 +291,9 @@ document.addEventListener('DOMContentLoaded', () => {
     button.disabled = false;
   }
   
-  // Función para animar la redirección
+  // Function to animate redirect
   function animateRedirect(url) {
-    // Crear overlay de transición
+    // Create transition overlay
     const overlay = document.createElement('div');
     overlay.className = 'redirect-overlay';
     overlay.style.position = 'fixed';
@@ -308,18 +308,18 @@ document.addEventListener('DOMContentLoaded', () => {
     
     document.body.appendChild(overlay);
     
-    // Animar fade in
+    // Animate fade in
     setTimeout(() => {
       overlay.style.opacity = '1';
       
-      // Redireccionar después del fade in
+      // Redirect after fade in
       setTimeout(() => {
         window.location.href = url;
       }, 500);
     }, 10);
   }
   
-  // Añadir estilos CSS para animaciones adicionales
+  // Add CSS styles for additional animations
   const style = document.createElement('style');
   style.textContent = `
     @keyframes shake {

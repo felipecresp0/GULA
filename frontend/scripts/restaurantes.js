@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-  console.log("🔥 Página Restaurantes cargada correctamente - Modo Infernal activado");
+  console.log("🔥 Restaurants Page Successfully Loaded - Infernal Mode Activated");
   
-  // Referencias a elementos DOM
+  // DOM element references
   const searchToggle = document.getElementById("search-toggle");
   const searchOverlay = document.querySelector(".search-overlay");
   const closeSearch = document.querySelector(".close-search");
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const restaurantOverlay = document.getElementById('restaurant-details-overlay');
   const restaurantContent = document.getElementById('restaurant-details-content');
   
-  // Datos de los restaurantes (simulados)
+  // Restaurant data (simulated)
   const restaurantesData = [
     {
       id: "madrid",
@@ -105,17 +105,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
   
-  // Inicializar mapa con estilo personalizado
-  const mapa = L.map('restaurantes-mapa').setView([40.4168, -3.7038], 5); // Centrado en España
+  // Initialize map with custom style
+  const mapa = L.map('restaurantes-mapa').setView([40.4168, -3.7038], 5); // Centered on Spain
   
-  // Estilo personalizado para el mapa
+  // Custom style for the map
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
     maxZoom: 20
   }).addTo(mapa);
   
-  // Crear icono personalizado para los marcadores
+  // Create custom icon for markers
   const customIcon = L.divIcon({
     className: 'custom-marker',
     html: `<div class="marker-icon"><i class="fas fa-fire"></i></div>`,
@@ -123,11 +123,11 @@ document.addEventListener('DOMContentLoaded', () => {
     iconAnchor: [15, 30]
   });
   
-  // Añadir marcadores de los restaurantes en el mapa
+  // Add restaurant markers to the map
   restaurantesData.forEach(restaurant => {
     const marker = L.marker([restaurant.latitud, restaurant.longitud], { icon: customIcon }).addTo(mapa);
     
-    // Crear contenido personalizado para el popup
+    // Create custom content for popup
     const popupContent = `
       <div class="restaurant-popup">
         <h3>${restaurant.nombre}</h3>
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     marker.bindPopup(popupContent);
     
-    // Añadir evento al popup
+    // Add event to popup
     marker.on('popupopen', function() {
       document.querySelector('.popup-reserve-btn').addEventListener('click', function() {
         const restaurantId = this.getAttribute('data-id');
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  // Efecto visual al cargar la página
+  // Visual effect when loading the page
   setTimeout(() => {
     const pulseRings = document.querySelector('.pulse-rings');
     if (pulseRings) {
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, 1000);
   
-  // Funcionalidad Search Overlay
+  // Search Overlay Functionality
   if (searchToggle && searchOverlay && closeSearch) {
     searchToggle.addEventListener("click", () => {
       searchOverlay.classList.add("active");
@@ -170,42 +170,63 @@ document.addEventListener('DOMContentLoaded', () => {
       searchOverlay.classList.remove("active");
       document.body.style.overflow = "";
     });
-  }
-  
-  // Funcionalidad del menú móvil
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
+    
+    // Close search with ESC key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
+        searchOverlay.classList.remove('active');
+        document.body.style.overflow = "";
+      }
     });
   }
   
-  // Gestionar búsqueda por código postal
+  // Mobile menu functionality
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      
+      // Add close button if it doesn't exist
+      if (!navLinks.querySelector('.close-menu')) {
+        const closeButton = document.createElement('button');
+        closeButton.className = 'close-menu';
+        closeButton.innerHTML = '<i class="fas fa-times"></i>';
+        navLinks.prepend(closeButton);
+        
+        // Event to close
+        closeButton.addEventListener('click', () => {
+          navLinks.classList.remove('active');
+        });
+      }
+    });
+  }
+  
+  // Handle postal code search
   if (form) {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const cp = document.getElementById('codigo-postal').value;
       
       try {
-        // En un entorno real, esto haría una llamada a la API
-        // Por ahora filtramos los datos simulados
+        // In a real environment, this would make an API call
+        // For now we filter the simulated data
         const restaurantesCercanos = restaurantesData.filter(r => {
-          return r.cp.startsWith(cp.substring(0, 2)); // Simulación simple
+          return r.cp.startsWith(cp.substring(0, 2)); // Simple simulation
         });
         
         if (restaurantesCercanos.length === 0) {
-          // Crear una notificación personalizada
-         mostrarNotificacion("No restaurants found in your area. Try a different postal code.", "error");
+          // Create custom notification
+          mostrarNotificacion("No restaurants found in your area. Try a different postal code.", "error");
           return;
         }
         
-        // Limpiar marcadores anteriores
+        // Clear previous markers
         mapa.eachLayer((layer) => {
           if (layer instanceof L.Marker) {
             mapa.removeLayer(layer);
           }
         });
         
-        // Añadir nuevos marcadores
+        // Add new markers
         restaurantesCercanos.forEach(restaurant => {
           const marker = L.marker([restaurant.latitud, restaurant.longitud], { icon: customIcon }).addTo(mapa);
           
@@ -228,23 +249,22 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         });
         
-        // Zoom al primer restaurante encontrado
+        // Zoom to first restaurant found
         if (restaurantesCercanos.length > 0) {
           mapa.setView([restaurantesCercanos[0].latitud, restaurantesCercanos[0].longitud], 13);
           
-          // Mostrar notificación de éxito
+          // Show success notification
           mostrarNotificacion(`Found ${restaurantesCercanos.length} restaurants in your area.`, "success");
-
         }
         
       } catch (error) {
-        console.error('Error al buscar restaurantes:', error);
-        mostrarNotificacion('Hubo un error al buscar los restaurantes.', "error");
+        console.error('Error searching restaurants:', error);
+        mostrarNotificacion('There was an error searching for restaurants.', "error");
       }
     });
   }
   
-  // Eventos para los restaurantes destacados
+  // Events for featured restaurants
   const reserveBtns = document.querySelectorAll('.reserve-btn');
   reserveBtns.forEach(btn => {
     btn.addEventListener('click', function() {
@@ -253,13 +273,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  // Gestionar overlay de detalles de restaurante
+  // Handle restaurant details overlay
   function mostrarDetallesRestaurante(restaurantId) {
     const restaurant = restaurantesData.find(r => r.id === restaurantId);
     
     if (!restaurant) return;
     
-    // Construir el contenido del overlay
+    // Build overlay content
     const caracteristicasHTML = restaurant.caracteristicas
       .map(c => `<span><i class="fas fa-check"></i> ${c}</span>`)
       .join('');
@@ -305,24 +325,24 @@ document.addEventListener('DOMContentLoaded', () => {
       <a href="reservas.html?restaurante=${restaurant.id}" class="detail-reserve-btn">RESERVAR MESA AHORA</a>
     `;
     
-    // Mostrar el overlay
+    // Show overlay
     restaurantOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
     
-    // Configurar cierre del overlay
+    // Setup overlay close
     document.querySelector('.close-overlay').addEventListener('click', function() {
       restaurantOverlay.classList.remove('active');
       document.body.style.overflow = '';
     });
   }
   
-  // Mostrar notificaciones personalizadas
+  // Show custom notifications
   function mostrarNotificacion(mensaje, tipo) {
-    // Eliminar notificaciones anteriores
+    // Remove existing notifications
     const notificacionesExistentes = document.querySelectorAll('.notificacion');
     notificacionesExistentes.forEach(n => n.remove());
     
-    // Crear elemento de notificación
+    // Create notification element
     const notificacion = document.createElement('div');
     notificacion.className = `notificacion ${tipo}`;
     
@@ -337,15 +357,15 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
     
-    // Añadir al DOM
+    // Add to DOM
     document.body.appendChild(notificacion);
     
-    // Mostrar con animación
+    // Show with animation
     setTimeout(() => {
       notificacion.classList.add('show');
     }, 10);
     
-    // Ocultar después de 4 segundos
+    // Hide after 4 seconds
     setTimeout(() => {
       notificacion.classList.remove('show');
       setTimeout(() => {
@@ -354,43 +374,97 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 4000);
   }
   
-  // Crear efecto de partículas de fuego
-  function crearEfectoFuego() {
+  // Create fire particle effect
+  function createFireEffect() {
     setInterval(() => {
-      // Crear partícula
+      // Create particle
       const particle = document.createElement('div');
       particle.className = 'fire-particle';
       
-      // Posición random en la parte inferior de la pantalla
+      // Random position at bottom of screen
       const posX = Math.random() * window.innerWidth;
       particle.style.left = `${posX}px`;
       particle.style.bottom = '0';
       
-      // Color random entre rojo y naranja
+      // Random color between red and orange
       const hue = Math.floor(Math.random() * 30);
       const saturation = 90 + Math.floor(Math.random() * 10);
       const lightness = 50 + Math.floor(Math.random() * 10);
       particle.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
       
-      // Tamaño random
+      // Random size
       const size = 5 + Math.random() * 10;
       particle.style.width = `${size}px`;
       particle.style.height = `${size}px`;
       
-      // Añadir al DOM
+      // Add to DOM
       document.body.appendChild(particle);
       
-      // Eliminar después de la animación
+      // Remove after animation
       setTimeout(() => {
         particle.remove();
       }, 3000);
     }, 300);
   }
   
-  // Iniciar efecto de fuego
-  crearEfectoFuego();
+  // Initialize scroll animations
+  const elements = document.querySelectorAll('.intro-section, .featured-restaurants, .restaurant-info-section');
   
-  // Añadir estilos CSS para notificaciones
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animated');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.2
+  });
+  
+  elements.forEach(element => {
+    element.classList.add('animate-on-scroll');
+    observer.observe(element);
+  });
+  
+  // Initialize cart counter
+  const cartCountElement = document.querySelector('.cart-count');
+  if (cartCountElement) {
+    updateCartCount();
+  }
+  
+  // Add hover effects to navigation
+  const navItems = document.querySelectorAll('.nav-links a');
+  navItems.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      if (!item.classList.contains('active')) {
+        item.style.color = '#ff0066';
+        item.style.textShadow = '0 0 10px rgba(255, 0, 102, 0.7), 0 0 20px rgba(255, 0, 102, 0.5)';
+      }
+    });
+    item.addEventListener('mouseleave', () => {
+      if (!item.classList.contains('active')) {
+        item.style.color = '';
+        item.style.textShadow = '';
+      }
+    });
+  });
+  
+  // Start fire effect
+  createFireEffect();
+  
+  // Random neon effect in header elements
+  setInterval(() => {
+    const randomElement = document.querySelectorAll('.nav-links a, .header-right i')[Math.floor(Math.random() * 5)];
+    if (randomElement) {
+      randomElement.style.textShadow = '0 0 15px rgba(255, 0, 102, 1), 0 0 30px rgba(255, 0, 102, 0.8)';
+      
+      setTimeout(() => {
+        randomElement.style.textShadow = '';
+      }, 500);
+    }
+  }, 2000);
+  
+  // Add CSS styles for notifications
   const styleElement = document.createElement('style');
   styleElement.textContent = `
     .notificacion {
@@ -460,7 +534,66 @@ document.addEventListener('DOMContentLoaded', () => {
         opacity: 0;
       }
     }
+    
+    /* Mobile navigation styles */
+    @media (max-width: 767px) {
+      .nav-links {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 280px;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: left 0.3s ease;
+        z-index: 2000;
+        border-right: 2px solid var(--primary-color);
+        box-shadow: 0 0 30px rgba(255, 0, 102, 0.5);
+      }
+      
+      .nav-links.active {
+        left: 0;
+      }
+      
+      .nav-links a {
+        font-size: 1.5rem;
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 0, 102, 0.3);
+      }
+      
+      .close-menu {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+    }
   `;
   
   document.head.appendChild(styleElement);
 });
+
+// Update cart counter
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartCountElement = document.querySelector('.cart-count');
+  if (cartCountElement) {
+    cartCountElement.textContent = cart.length;
+    
+    // Add highlight class if there are items
+    if (cart.length > 0) {
+      cartCountElement.classList.add('highlighted');
+    } else {
+      cartCountElement.classList.remove('highlighted');
+    }
+  }
+}

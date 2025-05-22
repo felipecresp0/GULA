@@ -1,20 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
-  console.log("🔥 Carrito cargado correctamente - Modo Infernal activado");
+  console.log("🔥 Cart loaded successfully - Infernal mode activated");
   
-  // Referencias a elementos DOM
+  // DOM element references
   const searchToggle = document.getElementById("search-toggle");
   const searchOverlay = document.querySelector(".search-overlay");
   const closeSearch = document.querySelector(".close-search");
   const menuToggle = document.querySelector(".menu-toggle");
   const navLinks = document.querySelector(".nav-links");
-  const listaCarrito = document.getElementById('lista-carrito');
+  const cartList = document.getElementById('cart-list');
+  const mobileCartList = document.getElementById('mobile-cart-list');
   const subtotalElement = document.getElementById('subtotal');
-  const impuestosElement = document.getElementById('impuestos');
+  const taxesElement = document.getElementById('taxes');
   const totalElement = document.getElementById('total');
   const clearCartBtn = document.getElementById('clear-cart');
   const checkoutBtn = document.getElementById('checkout-btn');
-  const carritoVacio = document.getElementById('carrito-vacio');
-  const carritoContenido = document.getElementById('carrito-contenido');
+  const emptyCart = document.getElementById('empty-cart');
+  const cartContent = document.getElementById('cart-content');
   const confirmModal = document.getElementById('confirm-modal');
   const modalMessage = document.getElementById('modal-message');
   const modalCancel = document.getElementById('modal-cancel');
@@ -23,8 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const cartCountElement = document.querySelector('.cart-count');
   const notificationElement = document.getElementById('notification');
  
+  // Check if we're on mobile
+  const isMobile = () => window.innerWidth <= 768;
   
-  // Inicializar efectos visuales
+  // Initialize visual effects
   initVisualEffects();
   
   // Search Overlay
@@ -43,41 +46,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  // Menú móvil
+  // Mobile menu
   if (menuToggle && navLinks) {
     menuToggle.addEventListener("click", () => {
       navLinks.classList.toggle("active");
     });
   }
   
-  // Cargar datos del carrito
-  cargarCarrito();
+  // Load cart data
+  loadCart();
   
   // Event Listeners
   if (clearCartBtn) {
     clearCartBtn.addEventListener('click', () => {
       showConfirmationModal(
-        '¿Estás seguro de que quieres vaciar el carrito?',
-        vaciarCarrito
+        'Are you sure you want to clear your cart?',
+        clearCart
       );
     });
   }
   
   if (checkoutBtn) {
     checkoutBtn.addEventListener('click', () => {
-      // En una implementación real, este botón llevaría a la página de checkout
-      showNotification('Redirigiendo a la página de pago...', 'success');
+      // In a real implementation, this button would lead to the checkout page
+      showNotification('Redirecting to payment page...', 'success');
       
       setTimeout(() => {
         showConfirmationModal(
-          '¿Estás seguro de que quieres finalizar tu compra?',
-          finalizarCompra
+          'Are you sure you want to complete your purchase?',
+          finishPurchase
         );
       }, 1000);
     });
   }
   
-  // Gestión del modal de confirmación
+  // Confirmation modal management
   if (closeModal) {
     closeModal.addEventListener('click', () => {
       hideConfirmationModal();
@@ -90,453 +93,554 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  // Botones de productos recomendados
+  // Recommended product buttons
   const addToCartBtns = document.querySelectorAll('.add-to-cart-btn');
   if (addToCartBtns) {
     addToCartBtns.forEach(btn => {
       btn.addEventListener('click', function() {
         const card = this.closest('.recommendation-card');
-        const nombre = card.querySelector('h4').textContent;
-        const precio = parseFloat(card.querySelector('p').textContent.replace('€', ''));
+        const name = card.querySelector('h4').textContent;
+        const price = parseFloat(card.querySelector('p').textContent.replace('$', ''));
         
-        // Simular añadir al carrito y mostrar notificación
-        addToCart(nombre, precio);
+        // Simulate adding to cart and show notification
+        addToCart(name, price);
       });
     });
   }
   
-  // FUNCIONES PRINCIPALES
+  // Handle window resize for responsive behavior
+  window.addEventListener('resize', () => {
+    if (cartList && mobileCartList) {
+      // Re-render cart items when switching between mobile and desktop
+      const currentItems = getCurrentCartItems();
+      if (currentItems.length > 0) {
+        renderCartItems(currentItems);
+      }
+    }
+  });
   
-  // Función para cargar los productos del carrito
-  async function cargarCarrito() {
+  // MAIN FUNCTIONS
+  
+  // Function to load cart products
+  async function loadCart() {
     try {
-      // Mostrar animación de carga
+      // Show loading animation
       showLoadingAnimation();
       
-      // En un entorno real, esta sería la llamada a la API
-      // const res = await fetch('http://localhost:3000/api/carrito', {
+      // In a real environment, this would be the API call
+      // const res = await fetch('http://localhost:3000/api/cart', {
       //   headers: {
       //     'Authorization': `Bearer ${token}`
       //   }
       // });
-      // const datos = await res.json();
+      // const data = await res.json();
       
-      // Simular datos para demostración
-      const datos = await simulateApiCall();
+      // Simulate data for demonstration
+      const data = await simulateApiCall();
       
-      // Ocultar animación de carga
+      // Hide loading animation
       hideLoadingAnimation();
       
-      // Mostrar carrito vacío si no hay productos
-      if (datos.length === 0) {
+      // Show empty cart if no products
+      if (data.length === 0) {
         showEmptyCart();
         return;
       }
       
-      // Mostrar carrito con productos
+      // Show cart with products
       showPopulatedCart();
       
-      // Limpiar la lista actual
-      listaCarrito.innerHTML = '';
+      // Render cart items
+      renderCartItems(data);
       
-      // Variables para cálculos
-      let subtotal = 0;
-      
-      // Renderizar cada producto
-      datos.forEach((item, index) => {
-        const total = item.precio * item.cantidad;
-        subtotal += total;
-        
-        // Crear la fila del producto
-        const fila = document.createElement('tr');
-        fila.dataset.id = item.id;
-        fila.style.animationDelay = `${index * 0.1}s`;
-        
-        fila.innerHTML = `
-          <td>
-            <div class="product-info">
-              <img src="${item.imagen}" alt="${item.nombre}" class="product-image">
-              <div class="product-details">
-                <h4>${item.nombre}</h4>
-                <p>${item.descripcion || ''}</p>
-              </div>
-            </div>
-          </td>
-          <td>${item.precio.toFixed(2)} €</td>
-          <td>
-            <div class="quantity-controls">
-              <button class="quantity-btn decrease-btn" data-id="${item.id}">-</button>
-              <input type="number" class="quantity-input" value="${item.cantidad}" min="1" data-id="${item.id}">
-              <button class="quantity-btn increase-btn" data-id="${item.id}">+</button>
-            </div>
-          </td>
-          <td class="product-total">${(item.precio * item.cantidad).toFixed(2)} €</td>
-          <td>
-            <button class="remove-btn" data-id="${item.id}"><i class="fas fa-trash-alt"></i></button>
-          </td>
-        `;
-        
-        listaCarrito.appendChild(fila);
-      });
-      
-      // Añadir event listeners a los nuevos botones
-      addCartItemListeners();
-      
-      // Actualizar resumen y contador
+      // Update summary and counter
+      const subtotal = calculateSubtotalFromData(data);
       updateCartSummary(subtotal);
-      updateCartCount(datos.length);
+      updateCartCount(data.length);
       
     } catch (error) {
-      console.error('Error al cargar el carrito:', error);
-      showNotification('Error al cargar el carrito', 'error');
+      console.error('Error loading cart:', error);
+      showNotification('Error loading cart', 'error');
       hideLoadingAnimation();
     }
   }
   
-  // Función para añadir event listeners a los elementos del carrito
+  // Function to render cart items (responsive)
+  function renderCartItems(data) {
+    if (isMobile()) {
+      renderMobileCartItems(data);
+    } else {
+      renderDesktopCartItems(data);
+    }
+  }
+  
+  // Render cart items for mobile
+  function renderMobileCartItems(data) {
+    if (!mobileCartList) return;
+    
+    // Clear current list
+    mobileCartList.innerHTML = '';
+    
+    // Render each product
+    data.forEach((item, index) => {
+      const total = item.price * item.quantity;
+      
+      // Create mobile card
+      const card = document.createElement('div');
+      card.className = 'mobile-cart-item';
+      card.dataset.id = item.id;
+      card.style.animationDelay = `${index * 0.1}s`;
+      
+      card.innerHTML = `
+        <div class="mobile-item-image">
+          <img src="${item.image}" alt="${item.name}" class="product-image">
+          <button class="mobile-remove-btn" data-id="${item.id}">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </div>
+        <div class="mobile-item-details">
+          <div class="mobile-item-info">
+            <h4>${item.name}</h4>
+            <p class="mobile-item-description">${item.description || ''}</p>
+            <div class="mobile-item-price">$${item.price.toFixed(2)} each</div>
+          </div>
+          <div class="mobile-item-controls">
+            <div class="mobile-quantity-controls">
+              <button class="quantity-btn decrease-btn" data-id="${item.id}">-</button>
+              <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-id="${item.id}">
+              <button class="quantity-btn increase-btn" data-id="${item.id}">+</button>
+            </div>
+            <div class="mobile-item-total">
+              <span class="total-label">Total:</span>
+              <span class="product-total">$${total.toFixed(2)}</span>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      mobileCartList.appendChild(card);
+    });
+    
+    // Add event listeners to new buttons
+    addCartItemListeners();
+  }
+  
+  // Render cart items for desktop
+  function renderDesktopCartItems(data) {
+    if (!cartList) return;
+    
+    // Clear current list
+    cartList.innerHTML = '';
+    
+    // Render each product
+    data.forEach((item, index) => {
+      const total = item.price * item.quantity;
+      
+      // Create table row
+      const row = document.createElement('tr');
+      row.dataset.id = item.id;
+      row.style.animationDelay = `${index * 0.1}s`;
+      
+      row.innerHTML = `
+        <td>
+          <div class="product-info">
+            <img src="${item.image}" alt="${item.name}" class="product-image">
+            <div class="product-details">
+              <h4>${item.name}</h4>
+              <p>${item.description || ''}</p>
+            </div>
+          </div>
+        </td>
+        <td>$${item.price.toFixed(2)}</td>
+        <td>
+          <div class="quantity-controls">
+            <button class="quantity-btn decrease-btn" data-id="${item.id}">-</button>
+            <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-id="${item.id}">
+            <button class="quantity-btn increase-btn" data-id="${item.id}">+</button>
+          </div>
+        </td>
+        <td class="product-total">$${total.toFixed(2)}</td>
+        <td>
+          <button class="remove-btn" data-id="${item.id}"><i class="fas fa-trash-alt"></i></button>
+        </td>
+      `;
+      
+      cartList.appendChild(row);
+    });
+    
+    // Add event listeners to new buttons
+    addCartItemListeners();
+  }
+  
+  // Function to add event listeners to cart elements
   function addCartItemListeners() {
-    // Botones de disminuir cantidad
+    // Decrease quantity buttons
     const decreaseBtns = document.querySelectorAll('.decrease-btn');
     decreaseBtns.forEach(btn => {
       btn.addEventListener('click', function() {
         const id = this.getAttribute('data-id');
-        const input = this.parentElement.querySelector('.quantity-input');
+        const input = this.parentElement.querySelector('.quantity-input') || 
+                     this.closest('.mobile-cart-item').querySelector('.quantity-input');
         let value = parseInt(input.value);
         
         if (value > 1) {
           value--;
           input.value = value;
-          modificarCantidad(id, value);
+          modifyQuantity(id, value);
         }
       });
     });
     
-    // Botones de aumentar cantidad
+    // Increase quantity buttons
     const increaseBtns = document.querySelectorAll('.increase-btn');
     increaseBtns.forEach(btn => {
       btn.addEventListener('click', function() {
         const id = this.getAttribute('data-id');
-        const input = this.parentElement.querySelector('.quantity-input');
+        const input = this.parentElement.querySelector('.quantity-input') || 
+                     this.closest('.mobile-cart-item').querySelector('.quantity-input');
         let value = parseInt(input.value);
         
         value++;
         input.value = value;
-        modificarCantidad(id, value);
+        modifyQuantity(id, value);
       });
     });
     
-    // Inputs de cantidad
+    // Quantity inputs
     const quantityInputs = document.querySelectorAll('.quantity-input');
     quantityInputs.forEach(input => {
       input.addEventListener('change', function() {
         const id = this.getAttribute('data-id');
         let value = parseInt(this.value);
         
-        // Validar valor mínimo
+        // Validate minimum value
         if (value < 1) {
           value = 1;
           this.value = value;
         }
         
-        modificarCantidad(id, value);
+        modifyQuantity(id, value);
       });
     });
     
-    // Botones de eliminar
-    const removeBtns = document.querySelectorAll('.remove-btn');
+    // Remove buttons (both desktop and mobile)
+    const removeBtns = document.querySelectorAll('.remove-btn, .mobile-remove-btn');
     removeBtns.forEach(btn => {
       btn.addEventListener('click', function() {
         const id = this.getAttribute('data-id');
         showConfirmationModal(
-          '¿Estás seguro de que quieres eliminar este producto?',
-          () => eliminarDelCarrito(id)
+          'Are you sure you want to remove this product?',
+          () => removeFromCart(id)
         );
       });
     });
   }
   
-  // Función para modificar la cantidad de un producto
-  async function modificarCantidad(id, nuevaCantidad) {
+  // Function to modify product quantity
+  async function modifyQuantity(id, newQuantity) {
     try {
-      // Simular carga
-      const row = document.querySelector(`tr[data-id="${id}"]`);
-      row.classList.add('update-item');
+      // Simulate loading
+      const element = document.querySelector(`[data-id="${id}"]`);
+      element.classList.add('update-item');
       
-      // En un entorno real, esta sería la llamada a la API
-      // const res = await fetch('http://localhost:3000/api/carrito/cantidad', {
+      // In a real environment, this would be the API call
+      // const res = await fetch('http://localhost:3000/api/cart/quantity', {
       //   method: 'PUT',
       //   headers: {
       //     'Content-Type': 'application/json',
       //     'Authorization': `Bearer ${token}`
       //   },
-      //   body: JSON.stringify({ id, cantidad: parseInt(nuevaCantidad) })
+      //   body: JSON.stringify({ id, quantity: parseInt(newQuantity) })
       // });
-      // const datos = await res.json();
+      // const data = await res.json();
       
-      // Simulación
+      // Simulation
       await new Promise(resolve => setTimeout(resolve, 300));
       
-      // Actualizar la UI
-      const producto = findProductById(id);
-      if (producto) {
-        producto.cantidad = nuevaCantidad;
-        updateProductRow(id, producto);
+      // Update the UI
+      const product = findProductById(id);
+      if (product) {
+        product.quantity = newQuantity;
+        updateProductElement(id, product);
         updateCartSummary(calculateSubtotal());
-        showNotification('Cantidad actualizada', 'success');
+        showNotification('Quantity updated', 'success');
       }
       
-      // Quitar la clase de animación
+      // Remove animation class
       setTimeout(() => {
-        row.classList.remove('update-item');
+        element.classList.remove('update-item');
       }, 500);
       
     } catch (error) {
-      console.error('Error al actualizar cantidad:', error);
-      showNotification('Error al actualizar la cantidad', 'error');
+      console.error('Error updating quantity:', error);
+      showNotification('Error updating quantity', 'error');
     }
   }
   
-  // Función para eliminar un producto del carrito
-  async function eliminarDelCarrito(id) {
+  // Function to remove a product from cart
+  async function removeFromCart(id) {
     try {
-      const row = document.querySelector(`tr[data-id="${id}"]`);
-      row.classList.add('remove-item');
+      const element = document.querySelector(`[data-id="${id}"]`);
+      element.classList.add('remove-item');
       
-      // En un entorno real, esta sería la llamada a la API
-      // const res = await fetch(`http://localhost:3000/api/carrito/${id}`, {
+      // In a real environment, this would be the API call
+      // const res = await fetch(`http://localhost:3000/api/cart/${id}`, {
       //   method: 'DELETE',
       //   headers: {
       //     'Authorization': `Bearer ${token}`
       //   }
       // });
-      // const datos = await res.json();
+      // const data = await res.json();
       
-      // Simulación
+      // Simulation
       await new Promise(resolve => setTimeout(resolve, 500));
       
-      // Eliminar fila de la tabla
+      // Remove element from DOM
       setTimeout(() => {
-        row.remove();
+        element.remove();
         
-        // Actualizar resumen
-        const nuevoSubtotal = calculateSubtotal();
-        updateCartSummary(nuevoSubtotal);
+        // Update summary
+        const newSubtotal = calculateSubtotal();
+        updateCartSummary(newSubtotal);
         
-        // Actualizar contador
-        const itemCount = document.querySelectorAll('#lista-carrito tr').length;
+        // Update counter
+        const itemCount = document.querySelectorAll('[data-id]').length;
         updateCartCount(itemCount);
         
-        // Mostrar carrito vacío si no hay productos
+        // Show empty cart if no products
         if (itemCount === 0) {
           showEmptyCart();
         }
         
-        // Mostrar notificación
-        showNotification('Producto eliminado del carrito', 'success');
+        // Show notification
+        showNotification('Product removed from cart', 'success');
       }, 500);
       
     } catch (error) {
-      console.error('Error al eliminar producto:', error);
-      showNotification('Error al eliminar el producto', 'error');
+      console.error('Error removing product:', error);
+      showNotification('Error removing product', 'error');
     }
   }
   
-  // Función para vaciar todo el carrito
-  async function vaciarCarrito() {
+  // Function to clear entire cart
+  async function clearCart() {
     try {
-      // En un entorno real, esta sería la llamada a la API
-      // const res = await fetch('http://localhost:3000/api/carrito/vaciar', {
+      // In a real environment, this would be the API call
+      // const res = await fetch('http://localhost:3000/api/cart/clear', {
       //   method: 'DELETE',
       //   headers: {
       //     'Authorization': `Bearer ${token}`
       //   }
       // });
-      // const datos = await res.json();
+      // const data = await res.json();
       
-      // Simulación
+      // Simulation
       await new Promise(resolve => setTimeout(resolve, 500));
       
-      // Mostrar carrito vacío
+      // Show empty cart
       showEmptyCart();
       
-      // Actualizar contador
+      // Update counter
       updateCartCount(0);
       
-      // Mostrar notificación
-      showNotification('Carrito vaciado correctamente', 'success');
+      // Show notification
+      showNotification('Cart cleared successfully', 'success');
       
     } catch (error) {
-      console.error('Error al vaciar el carrito:', error);
-      showNotification('Error al vaciar el carrito', 'error');
+      console.error('Error clearing cart:', error);
+      showNotification('Error clearing cart', 'error');
     }
   }
   
-  // Función para finalizar la compra
-  async function finalizarCompra() {
+  // Function to finish purchase
+  async function finishPurchase() {
     try {
-      // En un entorno real, esta sería la llamada a la API
-      // const res = await fetch('http://localhost:3000/api/pedidos', {
+      // In a real environment, this would be the API call
+      // const res = await fetch('http://localhost:3000/api/orders', {
       //   method: 'POST',
       //   headers: {
       //     'Content-Type': 'application/json',
       //     'Authorization': `Bearer ${token}`
       //   }
       // });
-      // const datos = await res.json();
+      // const data = await res.json();
       
-      // Simulación
+      // Simulation
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // Mostrar carrito vacío
+      // Show empty cart
       showEmptyCart();
       
-      // Actualizar contador
+      // Update counter
       updateCartCount(0);
       
-      // Mostrar notificación
-      showNotification('¡Pedido realizado con éxito!', 'success');
+      // Show notification
+      showNotification('Order placed successfully!', 'success');
       
-      // Después de un momento, redirigir a una página de confirmación
+      // After a moment, redirect to confirmation page
       setTimeout(() => {
-        // window.location.href = 'confirmacion.html';
-        alert('En una implementación real, aquí redirigirías a una página de confirmación de pedido');
+        // window.location.href = 'confirmation.html';
+        alert('In a real implementation, you would redirect to an order confirmation page here');
       }, 2000);
       
     } catch (error) {
-      console.error('Error al finalizar la compra:', error);
-      showNotification('Error al procesar el pedido', 'error');
+      console.error('Error completing purchase:', error);
+      showNotification('Error processing order', 'error');
     }
   }
   
-  // Función para agregar un producto al carrito
-  function addToCart(nombre, precio) {
-    // En un entorno real, esta sería la llamada a la API
-    // const res = await fetch('http://localhost:3000/api/carrito', {
+  // Function to add a product to cart
+  function addToCart(name, price) {
+    // In a real environment, this would be the API call
+    // const res = await fetch('http://localhost:3000/api/cart', {
     //   method: 'POST',
     //   headers: {
     //     'Content-Type': 'application/json',
     //     'Authorization': `Bearer ${token}`
     //   },
-    //   body: JSON.stringify({ productoId: id, cantidad: 1 })
+    //   body: JSON.stringify({ productId: id, quantity: 1 })
     // });
     
-    // Simular la adición al carrito
+    // Simulate adding to cart
     const currentCount = parseInt(cartCountElement.textContent);
     updateCartCount(currentCount + 1);
-    showNotification(`${nombre} añadido al carrito`, 'success');
+    showNotification(`${name} added to cart`, 'success');
     
-    // En una implementación real, recargarías el carrito
-    // cargarCarrito();
+    // In a real implementation, you would reload the cart
+    // loadCart();
   }
   
-  // FUNCIONES DE UTILIDAD
+  // UTILITY FUNCTIONS
   
-  // Simular una llamada a la API para obtener los productos del carrito
+  // Get current cart items from DOM
+  function getCurrentCartItems() {
+    const items = [];
+    const elements = document.querySelectorAll('[data-id]');
+    
+    elements.forEach(element => {
+      const id = element.dataset.id;
+      const product = findProductById(id);
+      if (product) {
+        items.push(product);
+      }
+    });
+    
+    return items;
+  }
+  
+  // Simulate API call to get cart products
   function simulateApiCall() {
     return new Promise(resolve => {
       setTimeout(() => {
         resolve([
           {
             id: 1,
-            nombre: 'LA TENTACIÓN',
-            descripcion: 'Doble carne, cheddar, bacon crujiente y salsa secreta',
-            precio: 12.95,
-            cantidad: 2,
-            imagen: '../imagenes/burger-small1.jpg'
+            name: 'THE TEMPTATION',
+            description: 'Double meat, cheddar, crispy bacon and secret sauce',
+            price: 12.95,
+            quantity: 2,
+            image: '../imagenes/burger-small1.jpg'
           },
           {
             id: 2,
-            nombre: 'LA LUJURIA',
-            descripcion: 'Carne madurada, queso brie fundido y cebolla caramelizada',
-            precio: 13.95,
-            cantidad: 1,
-            imagen: '../imagenes/burger-small2.jpg'
+            name: 'THE LUST',
+            description: 'Aged meat, melted brie cheese and caramelized onion',
+            price: 13.95,
+            quantity: 1,
+            image: '../imagenes/burger-small2.jpg'
           },
           {
             id: 3,
-            nombre: 'LA IRA',
-            descripcion: 'Carne, jalapeños, salsa picante casera y guacamole',
-            precio: 13.50,
-            cantidad: 1,
-            imagen: '../imagenes/burger-small3.jpg'
+            name: 'THE WRATH',
+            description: 'Meat, jalapeños, homemade hot sauce and guacamole',
+            price: 13.50,
+            quantity: 1,
+            image: '../imagenes/burger-small3.jpg'
           }
         ]);
       }, 800);
     });
   }
   
-  // Encontrar un producto por ID
+  // Find product by ID
   function findProductById(id) {
-    // Simulación - En una app real esto vendría de la API o del estado local
+    // Simulation - In a real app this would come from API or local state
     const products = [
       {
         id: 1,
-        nombre: 'LA TENTACIÓN',
-        descripcion: 'Doble carne, cheddar, bacon crujiente y salsa secreta',
-        precio: 12.95,
-        cantidad: 2,
-        imagen: '../imagenes/burger-small1.jpg'
+        name: 'THE TEMPTATION',
+        description: 'Double meat, cheddar, crispy bacon and secret sauce',
+        price: 12.95,
+        quantity: 2,
+        image: '../imagenes/burger-small1.jpg'
       },
       {
         id: 2,
-        nombre: 'LA LUJURIA',
-        descripcion: 'Carne madurada, queso brie fundido y cebolla caramelizada',
-        precio: 13.95,
-        cantidad: 1,
-        imagen: '../imagenes/burger-small2.jpg'
+        name: 'THE LUST',
+        description: 'Aged meat, melted brie cheese and caramelized onion',
+        price: 13.95,
+        quantity: 1,
+        image: '../imagenes/burger-small2.jpg'
       },
       {
         id: 3,
-        nombre: 'LA IRA',
-        descripcion: 'Carne, jalapeños, salsa picante casera y guacamole',
-        precio: 13.50,
-        cantidad: 1,
-        imagen: '../imagenes/burger-small3.jpg'
+        name: 'THE WRATH',
+        description: 'Meat, jalapeños, homemade hot sauce and guacamole',
+        price: 13.50,
+        quantity: 1,
+        image: '../imagenes/burger-small3.jpg'
       }
     ];
     
     return products.find(p => p.id === parseInt(id));
   }
   
-  // Actualizar una fila de producto
-  function updateProductRow(id, producto) {
-    const row = document.querySelector(`tr[data-id="${id}"]`);
-    if (row) {
-      const totalCell = row.querySelector('.product-total');
-      totalCell.textContent = `${(producto.precio * producto.cantidad).toFixed(2)} €`;
+  // Update product element
+  function updateProductElement(id, product) {
+    const element = document.querySelector(`[data-id="${id}"]`);
+    if (element) {
+      const totalElement = element.querySelector('.product-total');
+      if (totalElement) {
+        totalElement.textContent = `$${(product.price * product.quantity).toFixed(2)}`;
+      }
     }
   }
   
-  // Calcular subtotal
+  // Calculate subtotal from data
+  function calculateSubtotalFromData(data) {
+    return data.reduce((total, item) => total + (item.price * item.quantity), 0);
+  }
+  
+  // Calculate subtotal from DOM
   function calculateSubtotal() {
     let subtotal = 0;
-    const totalCells = document.querySelectorAll('.product-total');
+    const totalElements = document.querySelectorAll('.product-total');
     
-    totalCells.forEach(cell => {
-      subtotal += parseFloat(cell.textContent.replace('€', ''));
+    totalElements.forEach(element => {
+      subtotal += parseFloat(element.textContent.replace('$', ''));
     });
     
     return subtotal;
   }
   
-  // Actualizar el resumen del carrito
+  // Update cart summary
   function updateCartSummary(subtotal) {
-    if (subtotalElement && impuestosElement && totalElement) {
-      const impuestos = subtotal * 0.10; // 10% de IVA
-      const total = subtotal + impuestos;
+    if (subtotalElement && taxesElement && totalElement) {
+      const taxes = subtotal * 0.10; // 10% tax
+      const total = subtotal + taxes;
       
-      subtotalElement.textContent = `${subtotal.toFixed(2)} €`;
-      impuestosElement.textContent = `${impuestos.toFixed(2)} €`;
-      totalElement.textContent = `${total.toFixed(2)} €`;
+      subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+      taxesElement.textContent = `$${taxes.toFixed(2)}`;
+      totalElement.textContent = `$${total.toFixed(2)}`;
     }
   }
   
-  // Actualizar el contador del carrito
+  // Update cart counter
   function updateCartCount(count) {
     if (cartCountElement) {
       cartCountElement.textContent = count;
       
-      // Si hay productos, agregar la clase "highlighted"
+      // If there are products, add highlighted class
       if (count > 0) {
         cartCountElement.classList.add('highlighted');
       } else {
@@ -545,29 +649,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
-  // Mostrar carrito vacío
+  // Show empty cart
   function showEmptyCart() {
-    if (carritoVacio && carritoContenido) {
-      carritoVacio.style.display = 'block';
-      carritoContenido.style.display = 'none';
+    if (emptyCart && cartContent) {
+      emptyCart.style.display = 'block';
+      cartContent.style.display = 'none';
     }
   }
   
-  // Mostrar carrito con productos
+  // Show populated cart
   function showPopulatedCart() {
-    if (carritoVacio && carritoContenido) {
-      carritoVacio.style.display = 'none';
-      carritoContenido.style.display = 'block';
+    if (emptyCart && cartContent) {
+      emptyCart.style.display = 'none';
+      cartContent.style.display = 'block';
     }
   }
   
-  // Mostrar modal de confirmación
+  // Show confirmation modal
   function showConfirmationModal(message, confirmCallback) {
     if (confirmModal && modalMessage) {
       modalMessage.textContent = message;
       confirmModal.classList.add('active');
       
-      // Configurar el callback para el botón de confirmar
+      // Configure callback for confirm button
       modalConfirm.onclick = () => {
         hideConfirmationModal();
         if (confirmCallback) confirmCallback();
@@ -575,21 +679,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
-  // Ocultar modal de confirmación
+  // Hide confirmation modal
   function hideConfirmationModal() {
     if (confirmModal) {
       confirmModal.classList.remove('active');
     }
   }
   
-  // Mostrar notificación
+  // Show notification
   function showNotification(message, type = 'info') {
     if (notificationElement) {
-      // Establecer el mensaje
+      // Set message
       const messageElement = notificationElement.querySelector('.notification-message');
       if (messageElement) messageElement.textContent = message;
       
-      // Establecer el icono según el tipo
+      // Set icon based on type
       const iconElement = notificationElement.querySelector('.notification-icon');
       if (iconElement) {
         iconElement.className = 'notification-icon fas';
@@ -606,31 +710,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
       
-      // Mostrar la notificación
+      // Show notification
       notificationElement.classList.add('active');
       
-      // Ocultar después de 3 segundos
+      // Hide after 3 seconds
       setTimeout(() => {
         notificationElement.classList.remove('active');
       }, 3000);
     }
   }
   
-  // Mostrar animación de carga
+  // Show loading animation
   function showLoadingAnimation() {
-    // Crear y mostrar un indicador de carga (spinner)
+    // Create and show loading indicator (spinner)
     const loadingOverlay = document.createElement('div');
     loadingOverlay.className = 'loading-overlay';
     loadingOverlay.innerHTML = `
       <div class="loading-spinner">
         <i class="fas fa-circle-notch fa-spin"></i>
-        <p>Cargando tu carrito de pecados...</p>
+        <p>Loading your cart of sins...</p>
       </div>
     `;
     
     document.body.appendChild(loadingOverlay);
     
-    // Agregar estilos para el overlay
+    // Add styles for overlay
     const styleElement = document.createElement('style');
     styleElement.textContent = `
       .loading-overlay {
@@ -667,7 +771,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(styleElement);
   }
   
-  // Ocultar animación de carga
+  // Hide loading animation
   function hideLoadingAnimation() {
     const loadingOverlay = document.querySelector('.loading-overlay');
     if (loadingOverlay) {
@@ -678,33 +782,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
-  // Inicializar efectos visuales
+  // Initialize visual effects
   function initVisualEffects() {
-    // Crear partículas de fuego
+    // Create fire particles
     setInterval(() => {
       const particle = document.createElement('div');
       particle.className = 'floating-ember';
       
-      // Posición random en la parte inferior de la pantalla
+      // Random position at bottom of screen
       const posX = Math.random() * window.innerWidth;
       particle.style.left = `${posX}px`;
       particle.style.bottom = '0';
       
-      // Color random entre rojo y naranja
+      // Random color between red and orange
       const hue = Math.floor(Math.random() * 30);
       const saturation = 90 + Math.floor(Math.random() * 10);
       const lightness = 50 + Math.floor(Math.random() * 10);
       particle.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
       
-      // Tamaño random
+      // Random size
       const size = 5 + Math.random() * 10;
       particle.style.width = `${size}px`;
       particle.style.height = `${size}px`;
       
-      // Añadir al DOM
+      // Add to DOM
       document.querySelector('.floating-embers').appendChild(particle);
       
-      // Eliminar después de la animación
+      // Remove after animation
       setTimeout(() => {
         particle.remove();
       }, 5000);

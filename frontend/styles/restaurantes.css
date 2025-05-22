@@ -1,16 +1,17 @@
-/* =========== ESTILOS GENERALES =========== */
+/* =========== GENERAL STYLES =========== */
 :root {
-  --primary-color: #ff0066;  /* Rosa neón */
+  --primary-color: #ff0066;  /* Neon pink */
   --primary-dark: #cc0052;
   --primary-light: #ff4d94;
-  --secondary-color: #00ffcc;  /* Turquesa neón */
+  --secondary-color: #00ffcc;  /* Neon turquoise */
   --secondary-dark: #00ccaa;
+  --accent-color: #ffcc00;  /* Neon yellow */
   --text-color: #fff;
   --text-dark: #ccc;
   --background-dark: #000;
   --background-light: #1a1a1a;
-  --accent-color: #ffcc00;  /* Amarillo neón */
   --border-radius: 4px;
+  --box-radius: 10px;
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 2rem;
@@ -27,7 +28,7 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: var(--text-color);
   line-height: 1.6;
   background-color: var(--background-dark);
@@ -67,10 +68,11 @@ button {
   display: flex;
   align-items: center;
   margin-bottom: var(--spacing-md);
+  flex-direction: column;
 }
 
 .section-heading h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   text-transform: uppercase;
   color: var(--primary-color);
   letter-spacing: 1px;
@@ -86,7 +88,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
   color: var(--text-color);
   font-size: 1.2rem;
   box-shadow: var(--glow-effect);
@@ -98,18 +100,21 @@ button {
 }
 
 /* =========== HEADER =========== */
-header {
+.header {
   background-color: rgba(0, 0, 0, 0.9);
   color: var(--text-color);
   padding: var(--spacing-sm) var(--spacing-md);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 10px rgba(255, 0, 102, 0.5);
   border-bottom: 1px solid var(--primary-color);
+  filter: brightness(1.1);
 }
 
 .logo-img {
@@ -119,8 +124,7 @@ header {
 }
 
 .nav-links {
-  display: flex;
-  gap: var(--spacing-md);
+  display: none;
 }
 
 .nav-links a {
@@ -205,6 +209,7 @@ header {
   font-size: 0.9rem;
   transition: var(--transition);
   box-shadow: var(--glow-effect);
+  display: none;
 }
 
 .sign-in-btn:hover {
@@ -213,33 +218,9 @@ header {
 }
 
 .menu-toggle {
-  display: none;
+  display: block;
   font-size: 1.5rem;
   cursor: pointer;
-}
-
-.search-container {
-  display: none;
-  position: relative;
-}
-
-.search-input {
-  background-color: #333;
-  border: none;
-  padding: 8px 16px;
-  border-radius: var(--border-radius);
-  color: white;
-  width: 180px;
-}
-
-.search-btn {
-  position: absolute;
-  right: 5px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: white;
 }
 
 /* Search Overlay */
@@ -263,7 +244,7 @@ header {
 }
 
 .search-box {
-  width: 80%;
+  width: 90%;
   max-width: 600px;
   position: relative;
 }
@@ -271,7 +252,7 @@ header {
 .search-input-overlay {
   width: 100%;
   padding: 15px 20px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   background-color: transparent;
   border: none;
   border-bottom: 2px solid var(--primary-color);
@@ -293,9 +274,9 @@ header {
 
 .close-search {
   position: absolute;
-  top: 30px;
-  right: 30px;
-  font-size: 2rem;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem;
   color: white;
   cursor: pointer;
 }
@@ -309,7 +290,8 @@ header {
 .hero-banner {
   position: relative;
   height: 50vh;
-  background-image: url('../imagenes/restaurantes-hero.jpg');
+  min-height: 300px;
+  background-image: url('https://gula-hamburguesas.s3.us-east-1.amazonaws.com/restaurantes-hero.jpg');
   background-size: cover;
   background-position: center;
   color: var(--text-color);
@@ -317,9 +299,10 @@ header {
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
   position: relative;
   overflow: hidden;
+  margin-top: 70px;  /* Space for fixed header */
 }
 
 .hero-banner::before {
@@ -346,12 +329,12 @@ header {
 .hero-content {
   position: relative;
   z-index: 10;
-  max-width: 800px;
+  width: 100%;
   padding: 0 var(--spacing-md);
 }
 
 .hero-content h1 {
-  font-size: 4rem;
+  font-size: 3rem;
   margin-bottom: var(--spacing-sm);
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -369,7 +352,7 @@ header {
 }
 
 .hero-content p {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-bottom: var(--spacing-md);
   font-family: 'Bebas Neue', sans-serif;
   letter-spacing: 3px;
@@ -390,16 +373,16 @@ header {
   }
 }
 
-/* =========== CONTENIDO PRINCIPAL =========== */
+/* =========== MAIN CONTENT =========== */
 .contenido {
   max-width: 1200px;
   margin: 0 auto;
-  padding: var(--spacing-lg) var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-sm);
   position: relative;
   z-index: 10;
 }
 
-/* Fondo tenue para el contenido para mejorar la legibilidad */
+/* Background overlay for better readability */
 .contenido::before {
   content: '';
   position: fixed;
@@ -500,7 +483,7 @@ header {
   border-radius: 5px;
 }
 
-/* Estilo personalizado para el mapa de Leaflet */
+/* Custom Leaflet map styling */
 .leaflet-container {
   background-color: #0a0a0a !important;
 }
@@ -565,7 +548,7 @@ header {
   transform: translateY(-2px);
 }
 
-/* Anillos pulsantes para el mapa */
+/* Pulse rings for the map */
 .pulse-rings {
   position: absolute;
   top: 50%;
@@ -609,7 +592,7 @@ header {
   }
 }
 
-/* Marcadores personalizados */
+/* Custom markers */
 .custom-marker {
   text-align: center;
 }
@@ -889,7 +872,7 @@ header {
 }
 
 #restaurant-details-content {
-  /* Contenido se llena dinámicamente con JS */
+  /* Content is dynamically filled with JS */
 }
 
 .restaurant-detail-header {
@@ -985,7 +968,7 @@ header {
 }
 
 /* =========== FOOTER =========== */
-.footer-gula {
+.footer {
   background-color: rgba(0, 0, 0, 0.8);
   color: var(--text-color);
   padding-top: var(--spacing-lg);
@@ -998,7 +981,7 @@ header {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr;
   gap: var(--spacing-md);
   padding: 0 var(--spacing-md) var(--spacing-md);
 }
@@ -1093,8 +1076,190 @@ header {
   color: rgba(255, 255, 255, 0.6);
 }
 
-/* =========== RESPONSIVE =========== */
-@media (max-width: 992px) {
+/* =========== FLOATING EMBERS =========== */
+.floating-embers {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.floating-ember {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #ff3300;
+  border-radius: 50%;
+  filter: blur(1px);
+  box-shadow: 0 0 10px #ff3300;
+  animation: float-up 5s infinite ease-out;
+  opacity: 0;
+}
+
+.floating-ember1 {
+  left: 10%;
+  bottom: 0;
+  animation-delay: 0s;
+}
+
+.floating-ember2 {
+  left: 40%;
+  bottom: 0;
+  animation-delay: 2s;
+}
+
+.floating-ember3 {
+  left: 70%;
+  bottom: 0;
+  animation-delay: 1s;
+}
+
+.floating-ember4 {
+  left: 90%;
+  bottom: 0;
+  animation-delay: 3s;
+}
+
+.floating-ember5 {
+  left: 20%;
+  bottom: 0;
+  animation-delay: 0.5s;
+}
+
+.floating-ember6 {
+  left: 60%;
+  bottom: 0;
+  animation-delay: 2.5s;
+}
+
+.floating-ember7 {
+  left: 80%;
+  bottom: 0;
+  animation-delay: 1.5s;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100vh) scale(0);
+    opacity: 0;
+  }
+}
+
+/* =========== RESPONSIVE MEDIA QUERIES =========== */
+@media (min-width: 576px) {
+  .hero-content h1 {
+    font-size: 4rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.5rem;
+  }
+  
+  .section-heading h2 {
+    font-size: 2.2rem;
+  }
+  
+  .contenido {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  
+  .section-heading {
+    flex-direction: row;
+  }
+  
+  .flame-icon {
+    margin-right: var(--spacing-sm);
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex;
+    gap: var(--spacing-md);
+  }
+  
+  .sign-in-btn {
+    display: block;
+  }
+  
+  .menu-toggle {
+    display: none;
+  }
+  
+  .hero-banner {
+    height: 60vh;
+    min-height: 400px;
+  }
+  
+  .hero-content h1 {
+    font-size: 5rem;
+  }
+  
+  .footer-top {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .input-group {
+    flex-direction: row;
+  }
+  
+  #codigo-postal {
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+  }
+  
+  .search-btn-cp {
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .restaurant-detail-header {
+    flex-direction: row;
+  }
+  
+  .detail-image {
+    width: 400px;
+    margin-bottom: 0;
+  }
+  
+  .detail-header-info {
+    padding: 0 var(--spacing-md);
+  }
+  
+  .footer-top {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .hero-banner {
+    margin-top: 80px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-content h1 {
+    font-size: 6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .restaurant-grid {
+    grid-template-columns: 1fr;
+  }
+  
   .restaurant-detail-header {
     flex-direction: column;
   }
@@ -1106,58 +1271,6 @@ header {
   
   .detail-header-info {
     padding: 0;
-  }
-  
-  .footer-top {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-  
-  .menu-toggle {
-    display: block;
-  }
-  
-  .header-right {
-    gap: var(--spacing-xs);
-  }
-  
-  .sign-in-btn {
-    display: none;
-  }
-  
-  .hero-content h1 {
-    font-size: 3rem;
-  }
-  
-  .section-heading h2 {
-    font-size: 2rem;
-  }
-  
-  .restaurant-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .footer-top {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 576px) {
-  .hero-content h1 {
-    font-size: 2.5rem;
-  }
-  
-  .hero-content p {
-    font-size: 1.2rem;
-  }
-  
-  .section-heading h2 {
-    font-size: 1.8rem;
   }
   
   .input-group {
